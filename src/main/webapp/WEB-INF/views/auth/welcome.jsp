@@ -24,7 +24,7 @@
 	<link rel="stylesheet" href="${resources}/css/footer.css">
 
     <!-- 회원가입 완료 페이지 레이아웃 불러오기-->
-    <link rel="stylesheet" href="${resources}css/layout/welcome_layout.css">
+    <link rel="stylesheet" href="${resources}/css/layout/welcome_layout.css">
 
     <title>Team4 - 회원가입 완료 페이지</title>
 </head>
@@ -47,7 +47,7 @@
                     </div>
                     <div class="d-flex justify-content-center">
                         <button class="black_button w-25">
-                            <a href="http://localhost:5500">
+                            <a href="${contextPath}">
                                 <span class="h6 white_text">
                                     메인으로</span>
                             </a>
