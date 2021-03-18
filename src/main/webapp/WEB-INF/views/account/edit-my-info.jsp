@@ -91,7 +91,7 @@
                         </div>
                     </div>
                     <div class="col d-md-block d-none text-center">
-                        <img src="../../assets/images/account/edit-my-info/edit-my-info.png" alt="product" width="75%"> 
+                        <img src="${resources}/images/account/edit-my-info/edit-my-info.png" alt="product" width="75%"> 
                     </div>
                 </div>
             </div>

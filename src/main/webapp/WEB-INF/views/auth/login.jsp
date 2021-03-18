@@ -41,7 +41,7 @@
                             <h2 class="eng_h1">Login</h2>
                         </div>
                         <div class="col-2 find_password pt-3">
-                            <h6 class="eng_h3"><a href="${contextPath}/auth/forgot-my-pw.html">find my password</a></h6>
+                            <h6 class="eng_h3"><a href="${contextPath}/auth/forgot-my-pw">find my password</a></h6>
                         </div>
                         <div class="col-3"></div>
                     </div>
@@ -53,8 +53,10 @@
                             <input type="text" name="email" id="email" placeholder="E-mail">
                         </div>
                         <div class="col-2">
-                            <button class="black_button ml-1">
-                                <span class="h4 eng_h2">LOGIN</span>
+                            <button class="black_button ml-1" onclick="goHomePage('${contextPath}')">
+                                <span class="h4 eng_h2 login_button">
+                                
+                                LOGIN</span>
                             </button>
                         </div>
                         <div class="col-3"></div>
@@ -65,11 +67,9 @@
                             <input type="password" name="password" id="password" placeholder="PW">
                         </div>
                         <div class="col-2">
-                            <button class="white_button ml-1">
+                            <button class="white_button ml-1" onClick="goRegisterPage('${contextPath}')">
                                 <span class="h4 eng_h2">
-                                    <a href="${contextPath}/auth/register.html">
                                         REGISTER
-                                    </a>
                                     </span>
                             </button>
                         </div>
@@ -82,7 +82,9 @@
 
 	<jsp:include page="/WEB-INF/views/fragments/footer.jsp" />
 
+
     <!-- jQuery DOM 조작 관련된 JS -->
    	<script src="${resources}/js/common.js"></script>
+   	<script src="${resources}/js/login.js"></script>
 </body>
 </html>

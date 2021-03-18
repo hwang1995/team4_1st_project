@@ -54,7 +54,11 @@
                         </div>
                         <div class="find_pw_result_login text-center">
                             <button class="black_button w-40">
-                                <h5 class="eng_h2">LOGIN</h5>
+                                <h5 class="eng_h2">
+									<a href="${contextPath}/auth/login" class="white_text">
+										LOGIN
+									</a>                                
+                                </h5>
                             </button>
                         </div>
                     </div>

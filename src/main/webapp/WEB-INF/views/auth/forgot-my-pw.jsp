@@ -77,7 +77,7 @@
                 <div class="d-flex mt-5 justify-content-center">
                     <button class="black_button w-25 forgot_my_pw_button_desktop">
                         <h5 class="eng_h2 ">
-                        	<a href="${contextPath}/auth/forgot-my-pw-result.html" class="white_text">CHECK</a>
+                        	<a href="${contextPath}/auth/forgot-my-pw-result" class="white_text">CHECK</a>
                        	</h5>
                     </button>
                 </div>
@@ -118,7 +118,7 @@
                 </div>
                 <div class="d-flex mt-5 justify-content-center">
                     <button class="black_button w-50 forgot_my_pw_button_mobile">
-                        <h5 class="eng_h2">CHECK</h5>
+                        <a href="${contextPath}/auth/forgot-my-pw-result" class="white_text">CHECK</a>
                     </button>
                 </div>
 
