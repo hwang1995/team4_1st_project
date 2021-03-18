@@ -315,7 +315,7 @@
                 </div>
               </div>
               <div class="d-flex justify-content-center mt-2">
-                <a href="${contextPath}/order/checked.html">
+                <a href="${contextPath}/order/checked">
                   <button class="order_info_black_button">
                     <span class="h6">주문하기</span>
                   </button>

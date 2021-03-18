@@ -42,7 +42,7 @@
                             <h1 class="eng_h1">My Info</h1>
                         </div>
                         <div class="col-5 myinfo_edit">
-                            <h5 class="eng_h3"><a href="http://localhost:5500/pages/account/edit-my-info.html">Edit</a></h5>
+                            <h5 class="eng_h3"><a href="${contextPath}/account/edit-info">Edit</a></h5>
                         </div>
                         <div class="col-3"></div>
                     </div>
@@ -112,8 +112,8 @@
 
             <div class="mypage_table_container">
                 <div class="col-2"></div>
-                <div class="col-8">
-                    <table class="order_list_table">
+                <div class="col-8 table-responsive">
+                    <table class="order_list_table table">
                         <thead class="order_list_thead">
                             <th scope="col">Order No.</th>
                             <th scope="col">Product</th>
@@ -125,16 +125,16 @@
                           <tr>
                             <td rowspan="2">
                                 2021-02-23<br/>
-                                <a href="" class="order_list_orderno">[0000180]</a>
+                                <a href="${contextPath}/account/order-info" class="order_list_orderno">[0000180]</a>
                             </td>
                             <td>
                                 <a href="">
-                                    <img src="../../assets/images/products/mypage01.PNG" width="50%">
+                                    <img src="${resources}/images/products/mypage01.PNG" width="50%">
                                 </a>
                             </td>
                             <td>
-                                Mock Turtleneck Knit<br/>
-                                Color : Ivory
+                               Mock Turtleneck Knit<br/>
+                                Color : Ivory 
                             </td>
                             <td>1</td>
                             <td>KRW 238,000</td>
@@ -142,7 +142,7 @@
                           <tr>
                             <td>
                                 <a href="">
-                                    <img src="../../assets/images/products/mypage02.PNG" width="50%">
+                                    <img src="${resources}/images/products/mypage02.PNG" width="50%">
                                 </a>
                             </td>
                             <td>

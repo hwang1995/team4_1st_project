@@ -31,19 +31,7 @@
 
 </head>
 <body>
-
-    <!-- 헤더 영역 -->
-    <header class="global_sticky_header">
-        <nav class="global_nav">
-            <!-- jQuery include -->
-        </nav>
-
-        <div class="nav_drawer_mobile d-md-none">
-            <!-- jQuery include -->
-        </div>
-    </header>
-    
-
+	<jsp:include page="/WEB-INF/views/fragments/header.jsp" />
     <section>
         <article>
            <!--주문상세페이지-->
@@ -155,7 +143,7 @@
                             <div class="row">
                                 <div class="col-3">
                                     <a href="#">
-                                    <img src="../../assets/images/products/2.jpg" width="100%"></a>
+                                    <img src="${resources}/images/products/2.jpg" width="100%"></a>
                                 </div>
                                 <div class="col-3 order_item_description">
                                     <h6 class="eng_h4">Bleu Ciel Cardigan</h6>
@@ -179,7 +167,7 @@
                             <div class="row">
                                 <div class="col-3">
                                     <a href="#">
-                                        <img src="../../assets/images/products/3.jpg" width="100%"></a>
+                                        <img src="${resources}/images/products/3.jpg" width="100%"></a>
                                 </div>
                                 <div class="col-3 order_item_description">
                                     <h6 class="eng_h4">Creased Denim Pants</h6>

@@ -182,7 +182,7 @@
                             
                         </button>
                         <button class="black_button m-3">
-                            <a href="${contextPath}/order/checkout.html">
+                            <a href="${contextPath}/order/checkout">
                                 <h4 class="eng_h2 white_text">Check</h4>
                             </a>
                             
