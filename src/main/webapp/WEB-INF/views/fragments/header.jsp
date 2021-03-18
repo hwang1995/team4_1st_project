@@ -6,7 +6,7 @@
 <header class="global_sticky_header">
 	<nav class="global_nav">
 		<div class="nav_logo">
-			<a href="http://localhost:5500/"> <img
+			<a href="${contextPath}"> <img
 				src="${contextPath}/resources/images/main/mainlogo.png"
 				alt="mainLogo" width="100%">
 			</a>
@@ -76,7 +76,7 @@
 	<div class="nav_drawer_mobile d-md-none">
 
 		<div class="p-4">
-			<a href="http://localhost:5500/pages/shop/all.html">
+			<a href="${contextPath}/shop">
 				<h4 class="eng_h2 text_underline mt-3">ALL</h4>
 			</a>
 
