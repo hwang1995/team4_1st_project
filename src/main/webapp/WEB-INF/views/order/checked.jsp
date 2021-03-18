@@ -67,7 +67,7 @@
                     <div class="d-flex mt-5 mb-5 justify-content-center">
 
                         <button class="black_button w-25">
-                          <a href="http://localhost:5500">
+                          <a href="${contextPath}">
                             <span class="h6 white_text">메인으로</span>
                           </a>
                             
