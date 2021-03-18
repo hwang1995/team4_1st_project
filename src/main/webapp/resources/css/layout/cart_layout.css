@@ -1,0 +1,42 @@
+.cart_title {
+    padding-top: 8rem;
+    padding-bottom: 1rem;
+}
+
+.cart_bar {
+    padding: 0.5rem;
+    height: 2rem;
+    background-color: black;
+    color: white;
+    text-align: center;
+}
+
+.cart_description {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+ 
+}
+
+.cart_quantity {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.cart_price {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.cart_delete {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+
+

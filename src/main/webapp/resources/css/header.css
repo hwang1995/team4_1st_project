@@ -1,0 +1,79 @@
+@media (min-width : 340px) and (max-width : 769px){
+    .nav_content_item { display : none; }
+    .nav_icon_item { display : none; }
+}
+
+@media (min-width : 770px) and (max-width : 1024px) {
+    .nav_content_item { font-size : 0.8rem; }    
+}
+
+/* 데스크탑 헤더 레이아웃 */
+
+.global_sticky_header {
+    position: -webkit-sticky;
+    position : sticky;
+    background : white;
+    top : 0px;
+    z-index: 1;
+}
+
+.global_nav {
+    display : grid;
+    grid-template-columns: repeat(11, 1fr);
+    margin : 6px;
+    gap : 8px;
+}
+
+.nav_logo {
+    grid-column-start : 1;
+    grid-column-end : 1;
+    min-width: 70px;
+    max-width: 100px;
+    display : flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.nav_content {
+    display : flex;
+    grid-column-start : 2;
+    grid-column-end : 11;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.nav_content_list {
+    display : flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.nav_content_item {
+    font-family: 'Raleway', sans-serif;
+    margin-right : 22px;
+    letter-spacing: -0.5px;
+    font-weight: 200;
+}
+
+.nav_content_item:hover, .nav_content_item_active {
+    font-weight : 500;
+}
+
+.nav_icon {
+    display : flex;
+    grid-column-start : 11;
+    grid-column-end : 11;
+    justify-content: flex-end;
+    align-items : center;
+}
+.nav_icon_item {
+    margin-right : 11px;
+}
+
+.nav_drawer_mobile {
+    /* 기본 속성은 display : none; */
+    display : none;
+    z-index: 4;
+    width : 100vw;
+}

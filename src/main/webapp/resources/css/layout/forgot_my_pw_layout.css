@@ -1,0 +1,10 @@
+.forgot_my_pw_input {
+    border : 2px solid #ced4da;
+    border-radius : 5px;
+}
+
+.forgot_my_pw_input::placeholder {
+    font-size : 0.8rem;
+    font-family: 'Raleway', sans-serif;
+    padding-left : 0.2rem;
+}

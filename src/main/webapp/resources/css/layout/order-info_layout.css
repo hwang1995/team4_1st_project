@@ -1,0 +1,69 @@
+.order_info_title {
+    padding-top: 5rem;
+    padding-bottom: 3rem;
+}
+
+table {
+    width: 100%;
+    height: 5rem;
+    border: black solid 1px;
+}
+th {
+    border: black solid 1px;
+    width: 10%;
+    padding-left: 0.4rem;
+}
+
+td {
+    border: black solid 1px;
+    width: 40%;
+    padding-left: 0.4rem;
+}
+
+.order_item_info_bar {
+    margin-bottom: 2rem;
+    padding: 0.5rem;
+    height: 2rem;
+    background-color: black;
+    color: white;
+    text-align: center;
+}
+.order_item_description {
+   display: flex;
+   flex-direction: column;
+   justify-content: center;
+   align-items: center;
+
+}
+.order_item_quantity {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.order_item_price {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.order_total_charge_row {
+    margin-bottom: 5rem;
+}
+
+.button_area {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 5rem;
+}
+
+/* .black_button {
+    padding-right: 4rem;
+    padding-left: 4rem;
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+    background-color: black;
+    color: white;
+    border: black solid 1px;
+} */

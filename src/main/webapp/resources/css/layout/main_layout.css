@@ -1,0 +1,18 @@
+.main_text_header {
+    margin-top : 8px;
+    margin-bottom : -3rem;
+    padding : 1.5rem;
+    text-decoration: underline;
+}
+
+.main_item {
+    display : flex;
+    flex-direction: column;
+    padding : 1rem;
+}
+
+.main_item_text {
+    font-size : 1.1rem;
+    text-align : center;
+}
+

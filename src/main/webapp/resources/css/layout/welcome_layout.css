@@ -1,0 +1,19 @@
+.welcome_area {
+    border-top: solid;
+    border-bottom: solid;
+    margin-top: 15rem;
+    margin-bottom: 15rem;
+    padding-bottom: 20px;
+}
+
+.welcome_text {
+    font-size: 1.5rem;
+    padding-top: 30px;
+}
+
+.welcome_text_small {
+    font-size : 0.95rem;
+    color: gray;
+    padding-top: 10px;
+    padding-bottom: 50px;
+}

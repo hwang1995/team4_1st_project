@@ -1,0 +1,59 @@
+.mypage_myinfo {
+    margin-top: 2rem;
+}
+
+.myinfo_top_content {
+    margin-bottom: 3rem;
+}
+
+.myinfo_edit {
+    margin-top: 2rem;
+    text-decoration: underline;
+}
+
+.myinfo_edit {
+    color:gray;
+    margin-bottom: 1rem;
+    display: flex;
+    justify-content: center;
+}
+
+.myinfo_bar {
+    border-bottom: 3px solid gray;
+    margin-top: 3rem;
+    margin-bottom: 1rem;
+}
+
+.order_list_title{
+    display: inline-flex;
+}
+
+.order_list_sub_title {
+    display: inline-flex;
+    color: gray;
+}
+
+.mypage_table_container {
+    display: flex;
+    
+}
+
+.order_list_orderno {
+    text-decoration: underline;
+}
+
+.order_list_table {
+    text-align: center;
+    vertical-align: middle;
+    margin-bottom: 3rem;
+}
+
+.order_list_table > th, td {
+    padding: 3px;
+}
+
+.order_list_thead {
+    background-color: black;
+    color: white;
+    
+}

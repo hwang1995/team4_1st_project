@@ -1,0 +1,16 @@
+.order_finished_container {
+    margin-top : 13rem;
+    padding-top : 0.8rem;
+    margin-bottom : 20rem;
+}
+
+.order_table_container {
+    margin : 20px 100px 0 100px;
+    padding-top : 10px;
+}
+
+.order_table_border_top_bottom{
+    border-top : 2px solid #000;
+    border-bottom : 2px solid #000;
+}
+

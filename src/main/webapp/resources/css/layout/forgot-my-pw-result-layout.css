@@ -1,0 +1,29 @@
+.find_pw_result_title {
+    padding-top: 8rem;
+    padding-bottom: 1rem;
+    border-bottom: black solid 5px;
+}
+
+.find_pw_result_letter {
+    padding-top: 4rem;
+}
+
+.find_pw_content-box {
+    margin-top: 1rem;
+    margin-bottom: 2rem;
+    padding: 2rem;
+    border: grey solid 2px;
+    border-radius: 10px;
+    text-align: center;
+}
+.find_pw_result_login {
+    /* display: flex; */
+    /* justify-content: center;
+    align-items: center;     */
+}
+
+.find_pw_result_bottom_line {
+    margin-bottom: 4rem;
+    padding-top: 4rem;
+    border-bottom: black solid 5px;
+}

@@ -1,0 +1,72 @@
+.order_info_line {
+    border-top : 2px solid #000;
+    border-bottom : 2px solid rgb(161, 161, 161);
+    margin-top : 20px;
+    padding-bottom: 10px;
+    padding-top : 10px;
+}
+
+.order_info_toptext {
+    margin-top : 100px;
+    padding-top : 10px;
+}
+
+.order_info_md_line {
+    border-top : 1px solid rgb(235, 235, 235);
+    padding-top : 10px;
+    margin-top: -10px;
+}
+
+.order_info_bt_line {
+    border-bottom : 2px solid rgb(161, 161, 161);
+}
+
+.order_info_margin {
+    margin-bottom : 50px;
+}
+
+.order_info_list_line {
+    border-top : 1px solid rgb(235, 235, 235);
+    padding-top : 5px;
+    padding-bottom : 5px;
+}
+
+.order_info_font_size {
+    font-size : 1.5rem;
+}
+
+.order_info_bg_color {
+    background-color : rgb(138, 138, 138);
+}
+
+.order_info_textbox {
+    border : 1px solid rgb(138, 138, 138);
+    width : 800px;
+    height : 100px;
+}
+
+.order_info_lastbox {
+    height :75px;
+    display : flex;
+    align-items : center;
+    border-top : 2px solid black;
+    border-bottom : 2px solid black;
+}
+
+.order_info_black_button {
+    background-color : black;
+    border : 1px solid grey;
+    height : 3rem;
+    width : 14rem;
+    text-align : center;
+    color : white;
+}
+
+.order_info_white_button {
+    background-color :white;
+    border : 1px solid grey;
+    height : 3rem;
+    width : 14rem;
+    text-align : center;
+    color : black;
+}
