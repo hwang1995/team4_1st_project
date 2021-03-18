@@ -76,7 +76,9 @@
 
                 <div class="d-flex mt-5 justify-content-center">
                     <button class="black_button w-25 forgot_my_pw_button_desktop">
-                        <h5 class="eng_h2">CHECK</h5>
+                        <h5 class="eng_h2 ">
+                        	<a href="${contextPath}/auth/forgot-my-pw-result.html" class="white_text">CHECK</a>
+                       	</h5>
                     </button>
                 </div>
                 

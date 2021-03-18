@@ -41,7 +41,7 @@
                             <h2 class="eng_h1">Login</h2>
                         </div>
                         <div class="col-2 find_password pt-3">
-                            <h6 class="eng_h3"><a href="http://localhost:5500/pages/auth/forgot-my-pw.html">find my password</a></h6>
+                            <h6 class="eng_h3"><a href="${contextPath}/auth/forgot-my-pw.html">find my password</a></h6>
                         </div>
                         <div class="col-3"></div>
                     </div>
@@ -67,7 +67,7 @@
                         <div class="col-2">
                             <button class="white_button ml-1">
                                 <span class="h4 eng_h2">
-                                    <a href="../auth/register.html">
+                                    <a href="${contextPath}/auth/register.html">
                                         REGISTER
                                     </a>
                                     </span>

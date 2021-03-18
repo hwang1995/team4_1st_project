@@ -14,7 +14,7 @@ public class AuthController {
 	
 	@GetMapping("/login")
 	public String loginPage() {
-		return null;
+		return "auth/login";
 	}
 	
 	@GetMapping("/register")
@@ -24,12 +24,12 @@ public class AuthController {
 	
 	@GetMapping("/welcome")
 	public String welcomePage() {
-		return null;
+		return "auth/welcome";
 	}
 	
 	@GetMapping("/forgot-my-pw-result")
 	public String forgotMyPwResultPage() {
-		return null;
+		return "auth/forgot-my-pw-result";
 	}
 	
 	@GetMapping("/forgot-my-pw")
