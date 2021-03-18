@@ -113,7 +113,7 @@
                         </div>
                         <div>
                           <div class="row align-items-center order_info_list_line">
-                            <div class="col-2"><img src="../../assets/images/order/order1.png" width="30%"> </div>
+                            <div class="col-2"><img src="${resources}/images/order/order1.png" width="30%"> </div>
                             <div class="col-4">Vera Vashmere Crevneck Knit</div>
                             <div class="col-2">그레이</div>
                             <div class="col-1">M</div>
@@ -121,7 +121,7 @@
                             <div class="col-2">45,000원</div>
                           </div>
                           <div class="row align-items-center order_info_list_line">
-                            <div class="col-2"><img src="../../assets/images/order/order2.png" width="30%"> </div>
+                            <div class="col-2"><img src="${resources}/images/order/order2.png" width="30%"> </div>
                             <div class="col-4">Child Corduroy Pants by Okayama</div>
                             <div class="col-2">에크루</div>
                             <div class="col-1">M</div>
@@ -315,14 +315,14 @@
                 </div>
               </div>
               <div class="d-flex justify-content-center mt-2">
-                <a href="http://localhost:5500/pages/order/checked.html">
+                <a href="${contextPath}/order/checked.html">
                   <button class="order_info_black_button">
                     <span class="h6">주문하기</span>
                   </button>
                 </a>
                
                 <div class="ml-3 mr-3"></div>
-                <a href="http://localhost:5500">
+                <a href="${contextPath}">
                   <button class="order_info_white_button">
                     <span class="h6">주문취소</span>
                   </button>
