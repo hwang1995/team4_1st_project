@@ -13,17 +13,17 @@ public class OrderController {
 	
 	@GetMapping("/cart")
 	public String cartPage() {
-		return "product/product_details";
+		return "order/cart";
 	}
 	
 	@GetMapping("/checkout")
 	public String checkOutPage() {
-		return null;
+		return "order/checkout";
 	}
 	
 	@GetMapping("/checked")
 	public String checkedPage() {
-		return null;
+		return "order/checked";
 	}
 	
 

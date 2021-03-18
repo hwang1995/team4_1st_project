@@ -81,7 +81,7 @@
                             <div class="row">
                                 <div class="col-3">
                                     <a href="#"> <!--나중에 onclick 이벤트-->
-                                    <img src="../../assets/images/products/2.jpg" width="100%"></a>
+                                    <img src="${resources}/images/products/2.jpg" width="100%"></a>
                                 </div>
                                 <div class="col-3 cart_description">
                                     <h6 class="eng_h4">Bleu Ciel Cardigan</h6>
@@ -108,7 +108,7 @@
                             <div class="row">
                                 <div class="col-3">
                                     <a class="text_underline" href="#"> <!--나중에 onclick 이벤트-->
-                                    <img src="../../assets/images/products/3.jpg" width="100%"></a>
+                                    <img src="${resources}/images/products/3.jpg" width="100%"></a>
                                 </div>
                                 <div class="col-3 cart_description">
                                     <h6 class="eng_h4">Creased Denim Pants</h6>
@@ -176,13 +176,13 @@
                     <div class="col-3"></div>
                     <div class="col-6 d-flex">
                         <button class="white_button m-3">
-                            <a href="http://localhost:5500/">
+                            <a href="${contextPath}">
                                 <h4 class="eng_h2 ">Back</h4>
                             </a>
                             
                         </button>
                         <button class="black_button m-3">
-                            <a href="http://localhost:5500/pages/order/checkout.html">
+                            <a href="${contextPath}/order/checkout.html">
                                 <h4 class="eng_h2 white_text">Check</h4>
                             </a>
                             

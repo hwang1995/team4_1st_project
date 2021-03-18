@@ -14,8 +14,7 @@ public class ShopController {
 	
 	@GetMapping("")
 	public String allPage() {
-		
-		return "shop/all";
+		return null;
 	}
 	
 
