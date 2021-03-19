@@ -1,21 +1,17 @@
-.write_qna_container {
-    margin-top : 1rem;
-    padding-top : 0.8rem;
-    margin-bottom : 1rem;
+.qna_select_area_container {
+	line-height : 2.4rem;
 }
 
-.write_qna_top_bottom{
-    border-top : 2px solid #000;
-    border-bottom : 2px solid #000;
+.qna_input_area_container {
+	line-height : 2.2rem;
+	border : 1px solid #c7c7c7;
+	border-radius : 5px;	
 }
 
-.write_qna_box {
-	height: calc(1.5em + .75rem + 2px);
-    padding: .375rem .75rem;
-    margin-left: 1rem;
-}
-
-.write_qna_contentbox {
-	width:800px;
-	height:300px;
+.qna_textarea_container {
+	height : 50vh;
+	padding : 1rem;
+	border : 1px solid #c7c7c7;
+	border-radius : 5px;
+	resize : none;
 }
