@@ -227,7 +227,7 @@
                 <!--close button-->
                 <div class="row text-center mb-5" >
                     <div class="col">
-                        <button class="black_button w-25"><h4 class="eng_h2">Check</h4></button>
+                        <button class="black_button w-25" onclick="goCheckedPage('${contextPath}')"><h4 class="eng_h2">Check</h4></button>
                     </div>
                 </div>
             </div>
@@ -239,6 +239,7 @@
 
     <!-- jQuery DOM 조작 관련된 JS -->
     <script src="${resources}/js/common.js"></script>
+    <script src="${resources}/js/order-info.js"></script>
 
 </body>
 </html>

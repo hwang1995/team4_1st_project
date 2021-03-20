@@ -112,8 +112,8 @@
 
             <div class="mypage_table_container">
                 <div class="col-2"></div>
-                <div class="col-8 table-responsive">
-                    <table class="order_list_table table">
+                <div class="col-8">
+                    <table class="order_list_table">
                         <thead class="order_list_thead">
                             <th scope="col">Order No.</th>
                             <th scope="col">Product</th>
