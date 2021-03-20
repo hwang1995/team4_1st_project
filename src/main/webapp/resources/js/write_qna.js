@@ -8,6 +8,4 @@ const getQnaData = (path) => {
 	qnaObj.content = contentElem;
 	console.log(qnaObj);
 	window.location.href = path + "/qna/result";
-
-
 }

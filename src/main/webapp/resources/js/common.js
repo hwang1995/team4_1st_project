@@ -15,3 +15,7 @@ const drawerClickEvent = () => {
     isOpened = !isOpened;
     (isOpened) ? (drawer.show("slow")) : (drawer.hide("slow"));
 }
+
+const goQnaPage = (path) => {
+	window.location.href = path + "/qna";
+}

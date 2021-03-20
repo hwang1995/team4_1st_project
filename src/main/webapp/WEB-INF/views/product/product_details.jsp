@@ -83,10 +83,8 @@
                                         <option value="ivory">아이보리</option>
                                         <option value="old_rose">올드로즈</option>
                                     </select>
-                                    <button class="mt-3 white_button">
-                                        <a href="${contextPath}/order/cart">
-                                        <span class="eng_h5" style="color : black;">ADD TO CART</span>
-                                        </a>
+                                    <button class="mt-3 white_button" onclick="goCartPage('${contextPath}')">
+                                        <span class="eng_h5">ADD TO CART</span>
                                     </button>
                                 </div>
                                 <div class="col mt-3">
@@ -100,10 +98,8 @@
                                             <img src="${resources}/svg/plus.svg" alt="plus" width="24px">
                                         </div>
                                     </div>
-                                    <button class="mt-3 black_button">
-                                        <a href="${contextPath}/order/checkout">
+                                    <button class="mt-3 black_button" onclick="goBuyPage('${contextPath}')">
                                             <span class="eng_h5 white_text">BUY NOW</span>
-                                        </a>
                                         
                                     </button>
                                 </div>
