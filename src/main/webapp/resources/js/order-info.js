@@ -1,3 +1,3 @@
 const goCheckedPage = (path) => {
-	window.location = path + "/order/checkout";
+	window.location = path + "/account/mypage";
 }

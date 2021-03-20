@@ -227,7 +227,7 @@
                 <!--close button-->
                 <div class="row text-center mb-5" >
                     <div class="col">
-                        <button class="black_button w-25" onclick="goCheckedPage('${contextPath}')"><h4 class="eng_h2">Check</h4></button>
+                        <button class="black_button w-25" onclick="goCheckedPage('${contextPath}')"><h4 class="eng_h2">Back</h4></button>
                     </div>
                 </div>
             </div>
