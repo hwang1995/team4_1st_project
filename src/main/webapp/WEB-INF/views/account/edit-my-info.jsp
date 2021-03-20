@@ -27,7 +27,7 @@
     <!-- 주문 완료 페이지 레이아웃 불러오기-->
     <link rel="stylesheet" href="${resources}/css/layout/edit-my-info_layout.css">
 
-    <title>Team4 - 메인 페이지</title>
+    <title>Team4 - 정보 수정 페이지</title>
 </head>
 <body>
 	<jsp:include page="/WEB-INF/views/fragments/header.jsp" />
