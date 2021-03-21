@@ -17,6 +17,12 @@ public class AuthController {
 		return "auth/login";
 	}
 	
+	// redirect 구현 하기
+	@GetMapping("/login/result")
+	public String loginRedirectPage() {
+		return "redirect:/";
+	}
+	
 	@GetMapping("/register")
 	public String registerPage() {
 		return "auth/register";

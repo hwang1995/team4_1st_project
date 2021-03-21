@@ -49,3 +49,17 @@ $('.item_details_plus').click(() => {
     // jQuery에 속성이 변경되었다고 알려준다.
     quantityElem.change();
 });
+
+/**
+ * ADD TO CART, BUY NOW 버튼을 클릭 시 
+ * 장바구니 페이지와 구매 페이지로 넘어가는 DOM Event 
+ */
+
+const goCartPage = (path) => {
+	window.location.href = path + "/order/cart";
+}
+
+const goBuyPage = (path) => {
+	window.location.href = path + "/order/checkout";
+}
+

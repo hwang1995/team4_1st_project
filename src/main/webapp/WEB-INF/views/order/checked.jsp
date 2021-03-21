@@ -27,7 +27,7 @@
     <!-- 주문 완료 페이지 레이아웃 불러오기-->
     <link rel="stylesheet" href="${resources}/css/layout/order_checked_layout.css">
 
-    <title>Team4 - 메인 페이지</title>
+    <title>Team4 - 결제 페이지</title>
 </head>
 <body>
 	<jsp:include page="/WEB-INF/views/fragments/header.jsp" />

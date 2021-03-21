@@ -27,7 +27,7 @@
     <!-- 주문 완료 페이지 레이아웃 불러오기-->
     <link rel="stylesheet" href="${resources}/css/layout/edit-my-info_layout.css">
 
-    <title>Team4 - 메인 페이지</title>
+    <title>Team4 - 정보 수정 페이지</title>
 </head>
 <body>
 	<jsp:include page="/WEB-INF/views/fragments/header.jsp" />
@@ -79,12 +79,12 @@
                         </form>
                         <div class="row mt-5">
                             <div class="col d-flex justify-content-end">
-                                <button class="white_button w-70">
+                                <button class="white_button w-70" onclick="goMyPage('${contextPath}')">
                                     <span class="eng_h1">Back</span>
                                 </button>
                             </div>
                             <div class="col">
-                                <button class="black_button w-70">
+                                <button class="black_button w-70" onclick="goMyPageWithSendData('${contextPath}')">
                                     <span class="eng_h1">Confirm</span>
                                 </button>
                             </div>
@@ -102,6 +102,7 @@
 
     <!-- jQuery DOM 조작 관련된 JS -->
     <script src="${resources}/js/common.js"></script>
+    <script src="${resources}/js/edit-my-info.js"></script>
 
 </body>
 </html>

@@ -53,10 +53,12 @@
                             <input type="text" name="email" id="email" placeholder="E-mail">
                         </div>
                         <div class="col-2">
-                            <button class="black_button ml-1" onclick="goHomePage('${contextPath}')">
-                                <span class="h4 eng_h2 login_button">
-                                
-                                LOGIN</span>
+                           <!-- <button class="black_button ml-1" onclick="goHomePage('${contextPath}')"> -->
+                           <button class="black_button ml-1">
+                           <a href="${contextPath}/auth/login/result">
+								<span class="h4 eng_h2 login_button white_text">LOGIN</span>
+                           </a>
+
                             </button>
                         </div>
                         <div class="col-3"></div>

@@ -1,0 +1,17 @@
+.qna_select_area_container {
+	line-height : 2.4rem;
+}
+
+.qna_input_area_container {
+	line-height : 2.2rem;
+	border : 1px solid #c7c7c7;
+	border-radius : 5px;	
+}
+
+.qna_textarea_container {
+	height : 50vh;
+	padding : 1rem;
+	border : 1px solid #c7c7c7;
+	border-radius : 5px;
+	resize : none;
+}
