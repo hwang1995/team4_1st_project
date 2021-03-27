@@ -9,7 +9,7 @@ import com.team4.webapp.dto.SizesDTO;
 @Mapper
 public interface SizesDAO {
 	public List<SizesDTO> selectSizesList();
-	public int selectBySizeId(Long sizeId);
+	public SizesDTO selectBySizeId(Long sizeId);
 	public int insertSizes(SizesDTO sizes);
 	public int updateSizes(SizesDTO sizes);
 	public int deleteBySizeId(Long sizeId);

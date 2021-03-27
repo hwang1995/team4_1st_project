@@ -29,7 +29,7 @@
 		recipient_address = #{recipient_address}
 	where cart_id=#{order_id}
 </update>
-<delete id="deleteOrders" parameterType="long">
+<delete id="deleteByOrderId" parameterType="long">
 	delete from orders where order_id=#{order_id}
 </delete>
 

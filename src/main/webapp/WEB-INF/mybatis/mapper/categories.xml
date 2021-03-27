@@ -26,7 +26,7 @@
 		where category_id=#{category_id}
 	</update>
 	
-	<delete id="deleteCategory" parameterType="long">
+	<delete id="deleteByCategoryId" parameterType="long">
 		delete from categories where category_id=#{category_id}
 	</delete>
 

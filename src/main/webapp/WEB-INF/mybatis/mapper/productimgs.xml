@@ -28,7 +28,7 @@
 		where product_img_id=#{product_img_id}
 	</update>
 	
-	<delete id="deleteProductImg" parameterType="long">
+	<delete id="deleteByProductImgId" parameterType="long">
 		delete from product_imgs where product_img_id=#{product_img_id}
 	</delete>
 

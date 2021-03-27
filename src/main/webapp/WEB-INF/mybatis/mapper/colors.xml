@@ -26,7 +26,7 @@
 		where color_id=#{color_id}
 	</update>
 	
-	<delete id="deleteColor" parameterType="long">
+	<delete id="deleteByColorId" parameterType="long">
 		delete from colors where color_id=#{color_id}
 	</delete>
 

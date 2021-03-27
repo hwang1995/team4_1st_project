@@ -24,7 +24,7 @@
 		product_content=#{product_content},
 		where product_id=#{product_id}
 </update>
-<delete id="deleteProducts" parameterType="long">
+<delete id="deleteByProductId" parameterType="long">
 	delete from products where product_id=#{product_id}
 </delete>
 </mapper>

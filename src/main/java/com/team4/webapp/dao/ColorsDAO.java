@@ -9,8 +9,8 @@ import com.team4.webapp.dto.ColorsDTO;
 @Mapper
 public interface ColorsDAO {
 	public List<ColorsDTO> selectColorList();
-	public ColorsDTO selectByColorId(long color_id);
+	public ColorsDTO selectByColorId(Long color_id);
 	public int insertColor(ColorsDTO colors);
 	public int updateColor(ColorsDTO colors);
-	public int deleteColor(long color_id);
+	public int deleteByColorId(Long color_id);
 }

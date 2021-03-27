@@ -8,8 +8,8 @@ import com.team4.webapp.dto.OrdersDTO;
 @Mapper
 public interface OrdersDAO {
 	public List<OrdersDTO> selectOrdersList();
-	public OrdersDTO selectByOrderId(long order_id);
+	public OrdersDTO selectByOrderId(Long order_id);
 	public int insertOrders(OrdersDTO carts);
 	public int updateOrders(OrdersDTO carts);
-	public int deleteOrders(long order_id);
+	public int deleteByOrderId(Long order_id);
 }

@@ -9,9 +9,9 @@ import com.team4.webapp.dto.CartsDTO;
 @Mapper
 public interface CartsDAO {
 	public List<CartsDTO> selectCartsList();
-	public CartsDTO selectByCartId(long cart_id);
+	public CartsDTO selectByCartId(Long cart_id);
 	public int insertCarts(CartsDTO carts);
 	public int updateCarts(CartsDTO carts);
-	public int deleteCarts(long cart_id);
+	public int deleteByCartId(Long cart_id);
 	
 }

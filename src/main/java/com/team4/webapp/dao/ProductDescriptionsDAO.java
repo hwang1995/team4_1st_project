@@ -9,7 +9,7 @@ import com.team4.webapp.dto.ProductDescriptionsDTO;
 @Mapper
 public interface ProductDescriptionsDAO {
 	public List<ProductDescriptionsDTO> selectProductDescriptionsList();
-	public int selectByProductDescriptionsId(Long produtDescriptionId);
+	public ProductDescriptionsDTO selectByProductDescriptionsId(Long produtDescriptionId);
 	public int insertProductDescriptions(ProductDescriptionsDTO productDescriptions);
 	public int updateProductDescriptions(ProductDescriptionsDTO productDescriptions);
 	public int deleteByProductDescriptionsId(Long productDescriptionId);

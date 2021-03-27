@@ -9,7 +9,7 @@ import com.team4.webapp.dto.SubCategoriesDTO;
 @Mapper
 public interface SubCategoriesDAO {
 	public List<SubCategoriesDTO> selectSubCategoriesList();
-	public int selectBySubCategoryId (Long subCategoryId);
+	public SubCategoriesDTO selectBySubCategoryId (Long subCategoryId);
 	public int insertSubCategories(SubCategoriesDTO subCategories);
 	public int updateSubCategories(SubCategoriesDTO subCategories);
 	public int deleteBySubCategoriesId(Long subcategoryId);
