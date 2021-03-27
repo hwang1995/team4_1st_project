@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:security="http://www.springframework.org/schema/security"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security.xsd">
+	
+	<!-- 보안을 체크할 필요가 없는 resources 경로 설정 -->
+	<security:http pattern="/resources/**" security="none" />
+	
+	<!-- 보안 필터 체인 (프로세싱) -->
+	<security:http>
+		<!-- 우선 보안 세션을 체크할 페이지가 정확하게 인식되지 않았으므로 permitAll -->
+		<security:intercept-url pattern="/**" access="permitAll"/>
+		
+		<!-- 로그인 / 로그아웃 설정 -->
+		<!-- 
+			나중에 authentication-success-handler-ref, 
+			authentication-failure-handler-ref 만들기 (내일 오전까지 / 3월 27일)
+		 -->
+		<security:form-login
+			login-page="/auth/login"
+			login-processing-url="/login"
+			username-parameter="user_email"
+			password-parameter="user_password"
+		/>
+		
+		<security:logout logout-url="/logout"/>
+		
+		<!-- 로그인 중복 처리 설정 (중복 로그인 시에 세션 관리) -->
+		<security:session-management>
+			<security:concurrency-control
+				max-sessions="1"
+				error-if-maximum-exceeded="false"
+				expired-url="/auth/login"
+			/>
+		</security:session-management>
+		
+		<!-- 403 Forbidden (클라이언트가 컨텐츠에 접근할 권리가 없을 경우) 띄움
+			아직 403 페이지가 없어서 메인 페이지로 이동
+		 -->
+		<security:access-denied-handler error-page="/"/>
+		
+	</security:http>
+	
+	<security:authentication-manager>
+		<security:authentication-provider ref="daoAuthenticationProvider"/>
+	</security:authentication-manager>
+	
+	<bean
+		id="daoAuthenticationProvider"
+		class="org.springframework.security.authentication.dao.DaoAuthenticationProvider">
+		
+		<property name="userDetailsService" ref="jdbcUserService" />
+		<property name="authoritiesMapper" ref="roleHierarchyAuthoritiesMapper" />
+		<property name="passwordEncoder" ref="bCryptPasswordEncoder"/>
+	</bean>
+
+	<bean id="bCryptPasswordEncoder" class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder"/>
+	
+	<security:jdbc-user-service 
+		id="jdbcUserService"
+		data-source-ref="dataSource"
+		users-by-username-query="select member_email, member_pw, member_enabled from members where member_email=?"
+		authorities-by-username-query="select member_email, member_authority from members where member_email=?"
+	/>
+	
+	<bean 
+		id="roleHierarchyAuthoritiesMapper" 
+		class="org.springframework.security.access.hierarchicalroles.RoleHierarchyAuthoritiesMapper"
+		>
+		<constructor-arg>
+			<bean class="org.springframework.security.access.hierarchicalroles.RoleHierarchyImpl">
+				<property name="hierarchy">
+					<value>
+					ROLE_ADMIN > ROLE_USER
+					</value>
+
+				</property>
+			</bean>
+		</constructor-arg>
+	</bean>
+		
+		
+</beans>

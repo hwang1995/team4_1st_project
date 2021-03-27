@@ -50,7 +50,7 @@
                     <div class="row mb-3">
                         <div class="col-3"></div>
                         <div class="col-4">
-                            <input type="text" name="email" id="email" placeholder="E-mail">
+                            <input type="text" name="user_email" id="user_email" placeholder="E-mail">
                         </div>
                         <div class="col-2">
                            <!-- <button class="black_button ml-1" onclick="goHomePage('${contextPath}')"> -->
@@ -66,7 +66,7 @@
                     <div class="row">
                         <div class="col-3"></div>
                         <div class="col-4">
-                            <input type="password" name="password" id="password" placeholder="PW">
+                            <input type="password" name="user_password" id="user_password" placeholder="PW">
                         </div>
                         <div class="col-2">
                             <button class="white_button ml-1" onClick="goRegisterPage('${contextPath}')">
