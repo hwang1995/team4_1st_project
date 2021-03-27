@@ -5,7 +5,6 @@ import java.util.List;
 import org.apache.ibatis.annotations.Mapper;
 
 import com.team4.webapp.dto.CategoriesDTO;
-import com.team4.webapp.dto.ColorsDTO;
 
 @Mapper
 public interface CategoriesDAO {
