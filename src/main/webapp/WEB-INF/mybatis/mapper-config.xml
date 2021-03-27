@@ -3,7 +3,17 @@
                         "http://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
    <typeAliases>
-     <!--  <typeAlias alias="user" type="com.team4.webapp.dto.User" />
-      <typeAlias alias="board" type="com.team4.webapp.dto.Board" /> -->
+   		<typeAlias type="com.team4.webapp.dto.CartsDTO" alias="carts"/>
+   		<typeAlias type="com.team4.webapp.dto.CategoriesDTO" alias="categories"/>
+   		<typeAlias type="com.team4.webapp.dto.ColorsDTO" alias="colors"/>
+   		<typeAlias type="com.team4.webapp.dto.MembersDTO" alias="members"/>
+   		<typeAlias type="com.team4.webapp.dto.OrderlistsDTO" alias="orderlists"/>
+   		<typeAlias type="com.team4.webapp.dto.OrdersDTO" alias="orders"/>
+   		<typeAlias type="com.team4.webapp.dto.ProductDescriptionsDTO" alias="productdescriptions"/>
+   		<typeAlias type="com.team4.webapp.dto.ProductImgsDTO" alias="productImgs"/>
+   		<typeAlias type="com.team4.webapp.dto.ProductsDTO" alias="products"/>
+   		<typeAlias type="com.team4.webapp.dto.QnasDTO" alias="qnas"/>
+   		<typeAlias type="com.team4.webapp.dto.SizesDTO" alias="sizes"/>
+   		<typeAlias type="com.team4.webapp.dto.SubCategoriesDTO" alias="subcategories"/>
    </typeAliases>
 </configuration>
