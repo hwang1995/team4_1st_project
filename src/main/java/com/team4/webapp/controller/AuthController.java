@@ -67,5 +67,31 @@ public class AuthController {
 			return "failure";
 		}
 	}
+	
+	@PostMapping("/existed-email")
+	@ResponseBody
+	public String isExistedEmail(MembersDTO member) {
+		String email = member.getMember_email();
+		boolean result = authService.isExistedEmail(email);
+		if(result) {
+			return "failure";
+		} else {
+			return "success";
+		}
+	}
+	
+	@PostMapping("/forgot-my-pw")
+	@ResponseBody
+	public String findMyPassword(MembersDTO member) {
+		String email = member.getMember_email();
+		String name = member.getMember_name();
+		logger.info(email + name); 
+		boolean result = authService.findMyPassword(email, name);
+		if(result) {
+			return "failure";
+		} else {
+			return "success";
+		}
+	}
 
 }

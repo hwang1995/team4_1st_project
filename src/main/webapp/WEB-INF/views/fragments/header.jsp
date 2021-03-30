@@ -73,11 +73,12 @@
 			</sec:authorize>
 			<sec:authorize access="isAuthenticated()">
 				<form method="POST" action="${contextPath}/logout" class="d-inline-flex">
-				<button type="submit">
-					<img
+
+					<input type="image" src="${contextPath}/resources/svg/box-arrow-in-right.svg" class="nav_icon_item" width="24px">
+					<%-- <img
 						src="${contextPath}/resources/svg/box-arrow-in-right.svg"
-						class="nav_icon_item" width="24px" />
-				</button>
+						class="nav_icon_item" width="24px" /> --%>
+
 					
 				</form>
 				<a href="${contextPath}/account/mypage"> 

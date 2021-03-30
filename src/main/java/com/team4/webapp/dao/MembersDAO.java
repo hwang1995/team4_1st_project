@@ -13,4 +13,5 @@ public interface MembersDAO {
 	public MembersDTO selectByMemberId(Long member_id);
 	public int updateMembers(MembersDTO membersdto);
 	public int deleteByMemberId(Long member_id);
+	public MembersDTO selectByEmailId(String member_email);
 }

@@ -12,9 +12,9 @@
 
 // 전역 변수 (이메일 있는지 체크 여부, email, pw, tel 정규 표현식 작성)
 let isEmailChecked = false;
-const emailPattern = "";
-const pwPattern = "";
-const telPattern = "";
+let emailRegExp = /^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/i;
+let telRegExp = /^01(?:0|1|[6-9])-(?:\d{3}|\d{4})-\d{4}$/;
+let passwordRegExp = /^(?=.*\d)(?=.*[a-zA-Z])[0-9a-zA-Z]{8,10}$/; //  8 ~ 10자 영문, 숫자 조합
 
 
 /**
@@ -61,16 +61,37 @@ $('#all_check').click( () => {
 
 // 3) 이메일 주소가 유효한지 점검하는 로직
 $('.email_check_button').click(() => {
-    isEmailChecked = true;
-    alert("정상적인 이메일 주소입니다.");
+	
+	const u_email = $("#u_email").val();
+	const emailResult = emailRegExp.test(u_email);
+	
+	if(!emailResult){
+		alert("올바르지 않은 이메일 주소입니다.")
+		return;
+	}
+	
+	const emailInfo = {
+		"member_email" : u_email
+	};
+    
+	$.ajax({
+		url: "/webapp/auth/existed-email",
+		data: emailInfo,
+		method: "post"
+	}).then(data => {
+		if(data == "success"){
+			isEmailChecked = true;
+			alert("사용가능한 이메일 입니다.");
+		} else{
+			alert("사용 불가능한 이메일 입니다.");
+		}
+	});
 
 });
 
 function validate(){
 	//정규표현식
-	let emailRegExp = /^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/i;
-	let telRegExp = /^01(?:0|1|[6-9])-(?:\d{3}|\d{4})-\d{4}$/;
-	let passwordRegExp = /^(?=.*\d)(?=.*[a-zA-Z])[0-9a-zA-Z]{8,10}$/; //  8 ~ 10자 영문, 숫자 조합
+	
 	let passwordResult = true;
 	let agreementResult = true;
 	let memberInfo = {};
@@ -83,25 +104,47 @@ function validate(){
 	const agreement = $("#agreement").prop("checked");
 	const gdpr_agreement = $("#gdpr_agreement").prop("checked");
 	const marketing_agreement = $("#marketing_agreement").prop("checked");
-	
-	
-	
-	if(u_password == "" && u_re_password == ""){
-		passwordResult = false;
-	} else if(u_password != u_re_password){
-		passwordResult = false;		
-	} else if(!passwordRegExp.test(u_password)){
-		passwordResult = false;
-	}
-	
 	const emailResult = emailRegExp.test(u_email);
 	const telResult = telRegExp.test(u_tel);
+	const nameResult = true;
 	
-	if(!(agreement && gdpr_agreement && marketing_agreement)){
-		agreementResult = false;
+	if(!emailResult){
+		alert("이메일 형식이 올바르지 않습니다.");
+		return;
 	}
 	
-	if(passwordResult && agreementResult && emailResult && telResult){
+	if(u_name == ""){
+		alert("이름을 입력해주세요.");
+		return;
+	}
+	
+	if(u_password == "" && u_re_password == ""){
+		alert("비밀번호를 입력해주세요.");
+		passwordResult = false;
+		return;
+	} else if(u_password != u_re_password){
+		alert("비밀번호가 다릅니다.");
+		passwordResult = false;
+		return;		
+	} else if(!passwordRegExp.test(u_password)){
+		alert("비밀번호 형식이 올바르지 않습니다.");
+		passwordResult = false;
+		return;
+	}
+	
+	if(!telResult){
+		alert("전화번호 형식이 올바르지 않습니다.");
+		return;
+	}
+	
+	
+	if(!(agreement && gdpr_agreement && marketing_agreement)){
+		alert("약관에 동의해주세요.");
+		agreementResult = false;
+		return;
+	}
+	
+	if(passwordResult && agreementResult && emailResult && telResult && isEmailChecked){
 		memberInfo.member_email = u_email;
 		memberInfo.member_name = u_name;
 		memberInfo.member_pw = u_password;
@@ -124,13 +167,9 @@ function validate(){
 		console.log("실패");
 	}
 	
-	
-	
-	
-	
-	
-
 }
+
+
 
 // 4) 회원 가입 구현 로직
 // $('.register_confirm_button').click(() => {

@@ -8,7 +8,7 @@
  */
 
 // 전역 변수 (email, pw 정규 표현식)
-const emailPattern = "";
+let emailRegExp = /^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/i;
 const pwPattern = "";
 
 // 1) 이메일, 비밀번호 inputbox에 hover시 popover 구현
@@ -48,24 +48,40 @@ $('.forgot_my_pw_button_mobile').click(() => {
 
 $('.forgot_my_pw_button_desktop').click(() => {
     let infoObj = {};
-    infoObj.email = $('#u_email_desktop').val();
-    infoObj.password = $('#u_password_desktop').val();
+    infoObj.member_email = $('#u_email_desktop').val();
+    infoObj.member_pw = $('#u_password_desktop').val();
+
 
     // 1 - 이메일이 빈칸인가?
-    if(infoObj.email === ""){
+    if(infoObj.member_email === ""){
         alert("이메일이 빈칸입니다.");
         return;
     }
 
     // 2 - 비밀번호가 빈칸인가?
-    if(infoObj.password === ""){
+    if(infoObj.member_pw === ""){
         alert("비밀번호가 빈칸입니다.");
         return;
     }
 
     // 2.1 - 비밀번호가 유효성 검사에 통과되었는가?
+	if(!emailRegExp.test(member_email)){
+		alert("비밀번호 형식이 올바르지 않습니다.");
+		return;
+	}
 
     // 3 - 서버로 데이터 넘겨주기
+	$.ajax({
+		url: "/webapp/auth/forgot-my-pw",
+		data: infoObj,
+		method: "post"
+	}).then( data => {
+		if(data == "success"){
+			window.location.href = "/webapp/auth/forgot-my-pw-result";
+		} else{
+			alert("존재하지 않는 계정 입니다.");
+		}
+	});
 
     console.log(infoObj);
 });

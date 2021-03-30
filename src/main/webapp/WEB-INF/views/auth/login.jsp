@@ -69,11 +69,16 @@
                             <input type="password" name="user_password" id="user_password" placeholder="PW">
                         </div>
                         <div class="col-2">
-                            <button class="white_button ml-1" onClick="goRegisterPage('${contextPath}')">
+                        <a href="${contextPath}/auth/register" class="btn white_button ml-1">
+                        	<span class="h4 eng_h2">
+                        		REGISTER
+                        	</span>
+                        </a>
+                          <%--   <button class="white_button ml-1" onClick="goRegisterPage('${contextPath}')">
                                 <span class="h4 eng_h2">
                                         REGISTER
                                     </span>
-                            </button>
+                            </button> --%>
                         </div>
                         <div class="col-3"></div>
                     </div>
