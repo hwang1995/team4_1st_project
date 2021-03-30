@@ -4,6 +4,7 @@ public class ProductsDTO {
 	private Long product_id;
 	private String product_name;
 	private int product_price;
+	private String product_image;
 	private String product_content;
 	private Long subcategory_id;
 	
@@ -38,11 +39,19 @@ public class ProductsDTO {
 	public void setSubcategory_id(Long subcategory_id) {
 		this.subcategory_id = subcategory_id;
 	}
+	public String getProduct_image() {
+		return product_image;
+	}
+	public void setProduct_image(String product_image) {
+		this.product_image = product_image;
+	}
 	
+	// For Testing purpose -> DTO의 값을 한번에 보고 싶을 때 사용
 	@Override
 	public String toString() {
 		return "ProductsDTO [product_id=" + product_id + ", product_name=" + product_name + ", product_price="
-				+ product_price + ", product_content=" + product_content + ", subcategory_id=" + subcategory_id + "]";
+				+ product_price + ", product_image=" + product_image + ", product_content=" + product_content
+				+ ", subcategory_id=" + subcategory_id + "]";
 	}
 	
 	

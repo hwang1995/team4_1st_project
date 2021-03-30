@@ -1,26 +1,26 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.team4.webapp.dao.ColorsDAO">
-	<select id="selectColorList" resultType="categories">
+	<select id="selectColorList" resultType="colors">
 		select color_id, color_name, product_id
 		from colors
 		order by color_id desc
 	</select>
 	
-	<select id="selectByColorId" parameterType="long" resultType="categories">
+	<select id="selectByColorId" parameterType="long" resultType="colors">
 		select color_id, color_name, product_id
 		from colors
 		where color_id=#{color_id}
 	</select>
 	
-	<insert id="insertColor" parameterType="categories">
+	<insert id="insertColor" parameterType="colors">
 		insert into colors
 		(color_id, color_name, product_id)
 		values
 		(#{color_id}, #{color_name}, #{product_id})
 	</insert>
 	
-	<update id="updateColor" parameterType="categories">
+	<update id="updateColor" parameterType="colors">
 		update colors set
 			color_name=#{color_name}
 		where color_id=#{color_id}

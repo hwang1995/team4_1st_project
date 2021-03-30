@@ -2,12 +2,12 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.team4.webapp.dao.CartsDAO">
 <select id="selectCartsList" resultType="carts">
-	select * 
+	select cart_id, cart_quantity, product_color, product_size, member_id, product_id
 	from carts
 	order by cart_id desc
 </select>
 <select id="selectByCartId" resultType="carts">
-	select * 
+	select cart_id, cart_quantity, product_color, product_size, member_id, product_id
 	from carts
 	where cart_id=#{cart_id}
 </select>
@@ -18,11 +18,13 @@
 		(#{cart_id}, #{cart_quantity}, #{product_color}, #{product_size}, #{member_id},#{product_id})
 </insert>
 <update id="updateCarts" parameterType="carts">
-	update carts set
+	update carts 
+	set
 		cart_quantity=#{cart_quantity},
 		product_color=#{product_color},
 		product_size=#{product_size}
-		where cart_id=#{cart_id}
+	where 
+		cart_id=#{cart_id}
 </update>
 <delete id="deleteByCartId" parameterType="long">
 	delete from carts where cart_id=#{cart_id}
