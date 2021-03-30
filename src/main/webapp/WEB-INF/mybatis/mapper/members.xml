@@ -1,6 +1,35 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.team4.webapp.dao.MembersDAO">
-
+	<select id="selectMembersList" resultType="members">
+		select member_id, member_email, member_name, member_pw, member_tel, member_address, member_authority, member_enabled
+		from members
+		order by member_id desc
+	</select>
+	<insert id="insertMembers" parameterType="members">
+		<selectKey keyProperty="member_id" resultType="int" order="BEFORE">
+			select seq_members_member_id.nextval from dual
+		</selectKey>
+		insert into members
+		(member_id, member_email, member_name, member_pw, member_tel, member_address, member_authority, member_enabled)
+		values
+		(#{member_id}, #{member_email}, #{member_name}, #{member_pw}, #{member_tel}, #{member_address}, #{member_authority}, #{member_enabled})
+	</insert>
+	<select id="selectByMemberId" parameterType="long" resultType="members">
+		select member_id, member_email, member_name, member_pw, member_tel, member_address, member_authority, member_enabled
+		from members
+		where member_id=#{member_id}
+	</select>
+	<update id="updateMembers" parameterType="members">
+		update members set
+			member_pw=#{member_pw},
+			member_tel=#{member_tel},
+			member_address=#{member_address}
+		where member_id=#{member_id}
+	</update>
+	<delete id="deleteByMemberId" parameterType="long">
+		delete from members
+		where member_id=#{member_id}
+	</delete>
 
 </mapper>

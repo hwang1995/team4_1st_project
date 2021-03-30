@@ -9,9 +9,9 @@ public class OrdersDTO {
 	private int order_delivery_charge;
 	private String order_payment_status;
 	private String order_delivery_status;
-	private boolean recipient_flag;
 	private String recipient_name;
 	private String recipient_address;
+	private String recipient_tel;
 	private Long member_id;
 	
 	// Getters & Setters
@@ -51,12 +51,6 @@ public class OrdersDTO {
 	public void setOrder_delivery_status(String order_delivery_status) {
 		this.order_delivery_status = order_delivery_status;
 	}
-	public boolean isRecipient_flag() {
-		return recipient_flag;
-	}
-	public void setRecipient_flag(boolean recipient_flag) {
-		this.recipient_flag = recipient_flag;
-	}
 	public String getRecipient_name() {
 		return recipient_name;
 	}
@@ -75,14 +69,20 @@ public class OrdersDTO {
 	public void setMember_id(Long member_id) {
 		this.member_id = member_id;
 	}
+	public String getRecipient_tel() {
+		return recipient_tel;
+	}
+	public void setRecipient_tel(String recipient_tel) {
+		this.recipient_tel = recipient_tel;
+	}
 	
 	// For Testing purpose -> DTO의 값을 한번에 보고 싶을 때 사용
 	@Override
 	public String toString() {
 		return "OrdersDTO [order_id=" + order_id + ", order_date=" + order_date + ", order_bank=" + order_bank
 				+ ", order_delivery_charge=" + order_delivery_charge + ", order_payment_status=" + order_payment_status
-				+ ", order_delivery_status=" + order_delivery_status + ", recipient_flag=" + recipient_flag
-				+ ", recipient_name=" + recipient_name + ", recipient_address=" + recipient_address + ", member_id="
+				+ ", order_delivery_status=" + order_delivery_status + ", recipient_name=" + recipient_name
+				+ ", recipient_address=" + recipient_address + ", recipient_tel=" + recipient_tel + ", member_id="
 				+ member_id + "]";
 	}
 	

@@ -1,12 +1,15 @@
 package com.team4.webapp.dto;
 
-public class CartsDTO {
+public class CartListDTO {
 	private Long cart_id;
 	private int cart_quantity;
 	private String product_color;
 	private String product_size;
 	private Long member_id;
 	private Long product_id;
+	private String product_image_name;
+	private String product_name;
+	private int product_price;
 	
 	// Getters & Setters
 	public Long getCart_id() {
@@ -45,12 +48,32 @@ public class CartsDTO {
 	public void setProduct_id(Long product_id) {
 		this.product_id = product_id;
 	}
+	public String getProduct_image_name() {
+		return product_image_name;
+	}
+	public void setProduct_image_name(String product_image_name) {
+		this.product_image_name = product_image_name;
+	}
+	public String getProduct_name() {
+		return product_name;
+	}
+	public void setProduct_name(String product_name) {
+		this.product_name = product_name;
+	}
+	public int getProduct_price() {
+		return product_price;
+	}
+	public void setProduct_price(int product_price) {
+		this.product_price = product_price;
+	}
 	
 	// For Testing purpose -> DTO의 값을 한번에 보고 싶을 때 사용
 	@Override
 	public String toString() {
-		return "CartsDTO [cart_id=" + cart_id + ", cart_quantity=" + cart_quantity + ", product_color=" + product_color
-				+ ", product_size=" + product_size + ", member_id=" + member_id + ", product_id=" + product_id + "]";
+		return "CartListDTO [cart_id=" + cart_id + ", cart_quantity=" + cart_quantity + ", product_color="
+				+ product_color + ", product_size=" + product_size + ", member_id=" + member_id + ", product_id="
+				+ product_id + ", product_image_name=" + product_image_name + ", product_name=" + product_name
+				+ ", product_price=" + product_price + "]";
 	}
 	
 	
