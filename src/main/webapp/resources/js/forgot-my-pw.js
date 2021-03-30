@@ -24,17 +24,17 @@ $('#u_password_desktop').popover({
 
 $('.forgot_my_pw_button_mobile').click(() => {
     let infoObj = {};
-    infoObj.email = $('#u_email_mobile').val();
-    infoObj.password = $('#u_password_mobile').val();
+    infoObj.member_email = $('#u_email_mobile').val();
+    infoObj.member_name = $('#u_name_mobile').val();
 
     // 1 - 이메일이 빈칸인가?
-    if(infoObj.email === ""){
+    if(infoObj.member_email === ""){
         alert("이메일이 빈칸입니다.");
         return;
     }
 
     // 2 - 비밀번호가 빈칸인가?
-    if(infoObj.password === ""){
+    if(infoObj.member_name === ""){
         alert("비밀번호가 빈칸입니다.");
         return;
     }
@@ -49,7 +49,7 @@ $('.forgot_my_pw_button_mobile').click(() => {
 $('.forgot_my_pw_button_desktop').click(() => {
     let infoObj = {};
     infoObj.member_email = $('#u_email_desktop').val();
-    infoObj.member_pw = $('#u_password_desktop').val();
+    infoObj.member_name = $('#u_name_desktop').val();
 
 
     // 1 - 이메일이 빈칸인가?
@@ -59,13 +59,13 @@ $('.forgot_my_pw_button_desktop').click(() => {
     }
 
     // 2 - 비밀번호가 빈칸인가?
-    if(infoObj.member_pw === ""){
+    if(infoObj.member_name === ""){
         alert("비밀번호가 빈칸입니다.");
         return;
     }
 
     // 2.1 - 비밀번호가 유효성 검사에 통과되었는가?
-	if(!emailRegExp.test(member_email)){
+	if(!emailRegExp.test(infoObj.member_email)){
 		alert("비밀번호 형식이 올바르지 않습니다.");
 		return;
 	}

@@ -56,16 +56,16 @@ public class AuthServiceImpl implements IAuthService {
 		try{
 			MembersDTO member = membersDAO.selectByEmailId(email);
 			logger.info(member.toString());
-//			if(member.getMember_name().equals(name)) {
-//				PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
-//				String encodedPassword = passwordEncoder.encode("1q2w3e4r");
-//				member.setMember_pw(encodedPassword);
-//				int row = membersDAO.updateMembers(member);
-//				logger.info(member.toString());
-//				if(row != 1) {
-//					return false;
-//				}
-//			}
+			if(member.getMember_name().equals(name)) {
+				PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+				String encodedPassword = passwordEncoder.encode("1q2w3e4r");
+				member.setMember_pw(encodedPassword);
+				int row = membersDAO.updateMembers(member);
+				logger.info(member.toString());
+				if(row != 1) {
+					return false;
+				}
+			}
 			
 			
 		} catch(NullPointerException e){

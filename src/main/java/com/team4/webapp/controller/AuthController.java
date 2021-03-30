@@ -85,12 +85,11 @@ public class AuthController {
 	public String findMyPassword(MembersDTO member) {
 		String email = member.getMember_email();
 		String name = member.getMember_name();
-		logger.info(email + name); 
 		boolean result = authService.findMyPassword(email, name);
 		if(result) {
-			return "failure";
-		} else {
 			return "success";
+		} else {
+			return "failure";
 		}
 	}
 
