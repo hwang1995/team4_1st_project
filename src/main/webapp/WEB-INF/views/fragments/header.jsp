@@ -50,12 +50,15 @@
 					href="${contextPath}/shop/bottom/skirt">Skirt</a>
 				</li>
 				<li class="nav_content_item">|</li>
+				<sec:authorize access="isAuthenticated()">
 				<li class="nav_content_item nav_content_item_active" onclick="goQnaPage('${contextPath}')">
 					<img
 						src="${contextPath}/resources/svg/chat-square.svg"
 						class="nav_icon_item" width="20px" />
 						&nbsp; Q&A
 				</li>
+				</sec:authorize>
+				
 			</ul>
 		</div>
 
@@ -69,7 +72,15 @@
 				</a> 
 			</sec:authorize>
 			<sec:authorize access="isAuthenticated()">
-			<a href="${contextPath}/account/mypage"> 
+				<form method="POST" action="${contextPath}/logout" class="d-inline-flex">
+				<button type="submit">
+					<img
+						src="${contextPath}/resources/svg/box-arrow-in-right.svg"
+						class="nav_icon_item" width="24px" />
+				</button>
+					
+				</form>
+				<a href="${contextPath}/account/mypage"> 
 					<img
 						src="${contextPath}/resources/svg/person.svg"
 						class="nav_icon_item" width="24px" />

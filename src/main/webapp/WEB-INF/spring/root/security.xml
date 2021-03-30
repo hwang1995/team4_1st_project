@@ -23,9 +23,13 @@
 			login-processing-url="/login"
 			username-parameter="user_email"
 			password-parameter="user_password"
+			authentication-success-handler-ref="authSuccessHandler"
+			authentication-failure-handler-ref="authFailureHandler"
 		/>
 		
-		<security:logout logout-url="/logout"/>
+		<security:logout logout-url="/logout"
+						  success-handler-ref="logoutSuccessHandler"
+		/>
 		<security:csrf disabled="true"/>
 		<!-- 로그인 중복 처리 설정 (중복 로그인 시에 세션 관리) -->
 		<security:session-management>
@@ -82,4 +86,22 @@
 	</bean>
 		
 		
+	<bean id="authSuccessHandler"
+		  class="com.team4.webapp.security.AuthSuccessHandler">
+		  
+	 <property name="alwaysUseDefaultTargetUrl" value="false"/>
+	 <property name="defaultTargetUrl" value="/"/>
+	</bean>
+	
+	<bean id="authFailureHandler"
+		  class="com.team4.webapp.security.AuthFailureHandler">
+	  <property name="useForward" value="true" />
+	  <property name="defaultFailureUrl" value="/auth/login"/>
+	</bean>
+	
+	<bean id="logoutSuccessHandler"
+		  class="com.team4.webapp.security.LogoutSuccessHandler"
+	>
+		<property name="defaultTargetUrl" value="/"/>
+	</bean>
 </beans>
