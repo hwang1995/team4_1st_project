@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
 	pageEncoding="utf-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec" %>
+
 <c:set var="contextPath" value="<%= request.getContextPath()%>"></c:set>  
 <c:set var="resources" value="${contextPath}/resources"></c:set>
 <header class="global_sticky_header">
@@ -59,12 +61,15 @@
 
 		<div class="nav_icon">
 			<div class="nav_icon_container">
+			<sec:authorize access="isAnonymous()">
 				<a href="${contextPath}/auth/login"> 
 					<img
 						src="${contextPath}/resources/svg/box-arrow-in-left.svg"
 						class="nav_icon_item" width="24px" />
 				</a> 
-				<a href="${contextPath}/account/mypage"> 
+			</sec:authorize>
+			<sec:authorize access="isAuthenticated()">
+			<a href="${contextPath}/account/mypage"> 
 					<img
 						src="${contextPath}/resources/svg/person.svg"
 						class="nav_icon_item" width="24px" />
@@ -74,6 +79,9 @@
 						src="${contextPath}/resources/svg/bag.svg"
 						class="nav_icon_item" width="20px" />
 				</a> 
+			</sec:authorize>
+			
+				
 				<img
 					src="${contextPath}/resources/svg/list.svg"
 					class="d-xs-block d-md-none" onclick="drawerClickEvent()"

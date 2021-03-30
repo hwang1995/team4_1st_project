@@ -66,6 +66,72 @@ $('.email_check_button').click(() => {
 
 });
 
+function validate(){
+	//정규표현식
+	let emailRegExp = /^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/i;
+	let telRegExp = /^01(?:0|1|[6-9])-(?:\d{3}|\d{4})-\d{4}$/;
+	let passwordRegExp = /^(?=.*\d)(?=.*[a-zA-Z])[0-9a-zA-Z]{8,10}$/; //  8 ~ 10자 영문, 숫자 조합
+	let passwordResult = true;
+	let agreementResult = true;
+	let memberInfo = {};
+	const u_email = $("#u_email").val();
+	const u_name = $("#u_name").val();
+	const u_password = $("#u_password").val();
+	const u_re_password = $("#u_re_password").val();
+	const u_tel = $("#u_tel").val();
+	const u_address = $("#u_address").val();
+	const agreement = $("#agreement").prop("checked");
+	const gdpr_agreement = $("#gdpr_agreement").prop("checked");
+	const marketing_agreement = $("#marketing_agreement").prop("checked");
+	
+	
+	
+	if(u_password == "" && u_re_password == ""){
+		passwordResult = false;
+	} else if(u_password != u_re_password){
+		passwordResult = false;		
+	} else if(!passwordRegExp.test(u_password)){
+		passwordResult = false;
+	}
+	
+	const emailResult = emailRegExp.test(u_email);
+	const telResult = telRegExp.test(u_tel);
+	
+	if(!(agreement && gdpr_agreement && marketing_agreement)){
+		agreementResult = false;
+	}
+	
+	if(passwordResult && agreementResult && emailResult && telResult){
+		memberInfo.member_email = u_email;
+		memberInfo.member_name = u_name;
+		memberInfo.member_pw = u_password;
+		memberInfo.member_tel = u_tel;
+		memberInfo.member_address = u_address;
+		console.log(memberInfo);
+		
+		$.ajax({
+			url: "/webapp/auth/register",
+			data: memberInfo,
+			method: "post"
+		}).then( data => {
+			if(data == "success"){
+				window.location.href = "/webapp/auth/welcome";
+			}
+			console.log(data);
+		}
+		);
+	} else{
+		console.log("실패");
+	}
+	
+	
+	
+	
+	
+	
+
+}
+
 // 4) 회원 가입 구현 로직
 // $('.register_confirm_button').click(() => {
 //     // 회원 객체 생성 준비

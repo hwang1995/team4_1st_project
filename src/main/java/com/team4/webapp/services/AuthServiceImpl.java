@@ -2,13 +2,23 @@ package com.team4.webapp.services;
 
 import java.util.List;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import com.team4.webapp.dao.MembersDAO;
 import com.team4.webapp.dto.MembersDTO;
 
 @Service
 public class AuthServiceImpl implements IAuthService {
-
+	@Autowired
+	private MembersDAO membersDAO;
+	
+	// 로거 설정
+	private static final Logger logger = LoggerFactory.getLogger(AuthServiceImpl.class);
 	/**
 	 * 서비스 목적
 	 * - 회원이 주문, 장바구니, QnA, 마이 페이지 등을 활용하기 위해 가입하는 서비스
@@ -18,7 +28,15 @@ public class AuthServiceImpl implements IAuthService {
 	public int registMember(MembersDTO member) {
 		// 1. MembersDAO의 insertMembers(member)를 전달한다.
 		// 2. 영향받은 행의 수를 전달한다.
-		return 0;
+		member.setMember_authority("ROLE_USER");
+		member.setMember_enabled(true);
+		PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+		String encodedPassword = passwordEncoder.encode(member.getMember_pw());
+		member.setMember_pw(encodedPassword);
+		
+		
+		int row = membersDAO.insertMembers(member);
+		return row;
 	}
 
 	/**
