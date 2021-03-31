@@ -66,7 +66,7 @@
                     </div>
                     <div class="col-5 d-flex align-items-center">
                         <input 
-                            type="password" name="u_password" id="u_password_desktop"
+                            type="text" name="u_name" id="u_name_desktop"
                             class="forgot_my_pw_input w-100 h-100"
                         >
 
@@ -77,7 +77,7 @@
                 <div class="d-flex mt-5 justify-content-center">
                     <button class="black_button w-25 forgot_my_pw_button_desktop">
                         <h5 class="eng_h2 ">
-                        	<a href="${contextPath}/auth/forgot-my-pw-result" class="white_text">CHECK</a>
+                        	<span class="white_text">CHECK</span>
                        	</h5>
                     </button>
                 </div>
@@ -111,14 +111,16 @@
                     </div>
                     <div class="col-9 d-flex align-items-center">
                         <input 
-                            type="email" name="u_password" id="u_password_mobile"
+                            type="text" name="u_name" id="u_name_mobile"
                             class="forgot_my_pw_input w-100 h-100"
                         >
                     </div>
                 </div>
                 <div class="d-flex mt-5 justify-content-center">
                     <button class="black_button w-50 forgot_my_pw_button_mobile">
-                        <a href="${contextPath}/auth/forgot-my-pw-result" class="white_text">CHECK</a>
+                        <h5 class="eng_h2">
+                        <span class="white_text">CHECK</span>
+                        </h5>
                     </button>
                 </div>
 

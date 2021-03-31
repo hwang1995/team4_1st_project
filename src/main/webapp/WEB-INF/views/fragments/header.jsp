@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
 	pageEncoding="utf-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec" %>
+
 <c:set var="contextPath" value="<%= request.getContextPath()%>"></c:set>  
 <c:set var="resources" value="${contextPath}/resources"></c:set>
 <header class="global_sticky_header">
@@ -48,22 +50,37 @@
 					href="${contextPath}/shop/bottom/skirt">Skirt</a>
 				</li>
 				<li class="nav_content_item">|</li>
+				<sec:authorize access="isAuthenticated()">
 				<li class="nav_content_item nav_content_item_active" onclick="goQnaPage('${contextPath}')">
 					<img
 						src="${contextPath}/resources/svg/chat-square.svg"
 						class="nav_icon_item" width="20px" />
 						&nbsp; Q&A
 				</li>
+				</sec:authorize>
+				
 			</ul>
 		</div>
 
 		<div class="nav_icon">
 			<div class="nav_icon_container">
+			<sec:authorize access="isAnonymous()">
 				<a href="${contextPath}/auth/login"> 
 					<img
 						src="${contextPath}/resources/svg/box-arrow-in-left.svg"
 						class="nav_icon_item" width="24px" />
 				</a> 
+			</sec:authorize>
+			<sec:authorize access="isAuthenticated()">
+				<form method="POST" action="${contextPath}/logout" class="d-inline-flex">
+
+					<input type="image" src="${contextPath}/resources/svg/box-arrow-in-right.svg" class="nav_icon_item" width="24px">
+					<%-- <img
+						src="${contextPath}/resources/svg/box-arrow-in-right.svg"
+						class="nav_icon_item" width="24px" /> --%>
+
+					
+				</form>
 				<a href="${contextPath}/account/mypage"> 
 					<img
 						src="${contextPath}/resources/svg/person.svg"
@@ -74,6 +91,9 @@
 						src="${contextPath}/resources/svg/bag.svg"
 						class="nav_icon_item" width="20px" />
 				</a> 
+			</sec:authorize>
+			
+				
 				<img
 					src="${contextPath}/resources/svg/list.svg"
 					class="d-xs-block d-md-none" onclick="drawerClickEvent()"

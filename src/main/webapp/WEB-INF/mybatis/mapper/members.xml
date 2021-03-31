@@ -7,8 +7,8 @@
 		order by member_id desc
 	</select>
 	<insert id="insertMembers" parameterType="members">
-		<selectKey keyProperty="member_id" resultType="int" order="BEFORE">
-			select seq_members_member_id.nextval from dual
+		<selectKey keyProperty="member_id" resultType="long" order="BEFORE">
+			select seq_members_memberid.nextval from dual
 		</selectKey>
 		insert into members
 		(member_id, member_email, member_name, member_pw, member_tel, member_address, member_authority, member_enabled)
@@ -31,5 +31,11 @@
 		delete from members
 		where member_id=#{member_id}
 	</delete>
+	
+	<select id="selectByEmailId" parameterType="string" resultType="members">
+		select member_id, member_email, member_name, member_pw, member_tel, member_address, member_authority, member_enabled
+		from members
+		where member_email=#{member_email}
+	</select>
 
 </mapper>

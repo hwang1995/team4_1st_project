@@ -22,6 +22,13 @@ public interface IAuthService {
 	boolean findMyPassword(String email, String name);
 	
 	/**
+	 * 회원이 회원가입 시에 존재하는 이메일이 있는지를 알기 위해 제공하는 인터페이스
+	 * @param String email
+	 * @return boolean (true or false)
+	 */
+	boolean isExistedEmail(String email);
+	
+	/**
 	 * 미구현 사항 - 회원이 탈퇴를 하기 위해 제공하는 인터페이스
 	 * @param Long member_id
 	 * @return int (영향 받은 행의 수를 얻기 위하여)

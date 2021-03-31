@@ -38,7 +38,7 @@
                     <div class="welcome_text text-center">
                         <h1>환영합니다!</h1>
                         <br>
-                        <p>aaa@aaa.aaa님, 회원가입을 축하합니다!</p>
+                        <p>${cookie.member_email.value}님, 회원가입을 축하합니다!</p>
                     </div>
                     <div class="welcome_text_small text-center">
                         <p>항상 회원님들의 입장에서</p>

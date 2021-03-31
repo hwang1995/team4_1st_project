@@ -69,7 +69,7 @@
                         <div class="col-6"> 
                             <input type="password" name="u_password" id="u_password" 
                                    class="w-100 register_input"
-                                   placeholder="대소문자/숫자/특문 포함 10-16자"
+                                   placeholder="영문, 숫자 조합 8 ~ 10자"
                             >
                             
                         </div>
@@ -164,10 +164,8 @@
                     </div>
 
                     <div class="d-flex flex-row-reverse mt-5 ">
-                        <button class="black_button w-50 register_confirm_button">
-                            <a href="${contextPath}/auth/welcome" >
+                        <button class="black_button w-50 register_confirm_button" onclick="validate()">
                                 <h5 class="eng_h2 white_text">CONFIRM</h5>
-                            </a>
                             
                         </button>
                     </div>
