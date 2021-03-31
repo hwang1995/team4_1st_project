@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec" %>
 <c:set var="contextPath" value="<%= request.getContextPath()%>"></c:set>  
 <c:set var="resources" value="${contextPath}/resources"></c:set>
 
@@ -46,20 +47,19 @@
                         <div class="col-3"></div>
                     </div>
                 </div>
-                <div class="login_main_conent">
+                <form method="post" action="${contextPath}/login">
+                                <div class="login_main_conent">
                     <div class="row mb-3">
                         <div class="col-3"></div>
                         <div class="col-4">
                             <input type="text" name="user_email" id="user_email" placeholder="E-mail">
                         </div>
                         <div class="col-2">
-                           <!-- <button class="black_button ml-1" onclick="goHomePage('${contextPath}')"> -->
-                           <button class="black_button ml-1">
-                           <a href="${contextPath}/auth/login/result">
+                          <button type="submit" class="black_button ml-1" >
 								<span class="h4 eng_h2 login_button white_text">LOGIN</span>
-                           </a>
-
-                            </button>
+                          </button>
+                           <!-- <button class="black_button ml-1" onclick="goHomePage('${contextPath}')"> -->
+                         
                         </div>
                         <div class="col-3"></div>
                     </div>
@@ -69,15 +69,22 @@
                             <input type="password" name="user_password" id="user_password" placeholder="PW">
                         </div>
                         <div class="col-2">
-                            <button class="white_button ml-1" onClick="goRegisterPage('${contextPath}')">
+                        <a href="${contextPath}/auth/register" class="btn white_button ml-1">
+                        	<span class="h4 eng_h2">
+                        		REGISTER
+                        	</span>
+                        </a>
+                          <%--   <button class="white_button ml-1" onClick="goRegisterPage('${contextPath}')">
                                 <span class="h4 eng_h2">
                                         REGISTER
                                     </span>
-                            </button>
+                            </button> --%>
                         </div>
                         <div class="col-3"></div>
                     </div>
                 </div>
+                </form>
+
             </div>
         </article>
     </section>

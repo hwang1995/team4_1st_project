@@ -2,13 +2,23 @@ package com.team4.webapp.services;
 
 import java.util.List;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import com.team4.webapp.dao.MembersDAO;
 import com.team4.webapp.dto.MembersDTO;
 
 @Service
 public class AuthServiceImpl implements IAuthService {
-
+	@Autowired
+	private MembersDAO membersDAO;
+	
+	// 로거 설정
+	private static final Logger logger = LoggerFactory.getLogger(AuthServiceImpl.class);
 	/**
 	 * 서비스 목적
 	 * - 회원이 주문, 장바구니, QnA, 마이 페이지 등을 활용하기 위해 가입하는 서비스
@@ -18,7 +28,15 @@ public class AuthServiceImpl implements IAuthService {
 	public int registMember(MembersDTO member) {
 		// 1. MembersDAO의 insertMembers(member)를 전달한다.
 		// 2. 영향받은 행의 수를 전달한다.
-		return 0;
+		member.setMember_authority("ROLE_USER");
+		member.setMember_enabled(true);
+		PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+		String encodedPassword = passwordEncoder.encode(member.getMember_pw());
+		member.setMember_pw(encodedPassword);
+		
+		
+		int row = membersDAO.insertMembers(member);
+		return row;
 	}
 
 	/**
@@ -35,8 +53,27 @@ public class AuthServiceImpl implements IAuthService {
 		// 5. 만약 동등하지 않다면 return false;
 		// 6. 둘다 동등하다면 MembersDTO에 암호화한 비밀번호 "1q2w3e4r"을 넣어준다.
 		// 7. MembersDAO에 updateMembers에 멤버 객체를 전달한다.
+		try{
+			MembersDTO member = membersDAO.selectByEmailId(email);
+			logger.info(member.toString());
+			if(member.getMember_name().equals(name)) {
+				PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+				String encodedPassword = passwordEncoder.encode("1q2w3e4r");
+				member.setMember_pw(encodedPassword);
+				int row = membersDAO.updateMembers(member);
+				logger.info(member.toString());
+				if(row != 1) {
+					return false;
+				}
+			}
+			
+			
+		} catch(NullPointerException e){
+			logger.info(email + name);
+			return false;
+		}
 		
-		return false;
+		return true;
 	}
 
 	/**
@@ -58,6 +95,24 @@ public class AuthServiceImpl implements IAuthService {
 	@Override
 	public List<MembersDTO> showMemberList() {
 		return null;
+	}
+	/**
+	 * 서비스 목적
+	 * - 회원이 회원가입시에 이메일이 중복되는지 체크하기 위한 서비스
+	 * - 컨트롤러에 true or false를 전달한다. 
+	 */
+	@Override
+	public boolean isExistedEmail(String email) {
+
+		try{
+			MembersDTO member = membersDAO.selectByEmailId(email);
+			logger.info(member.toString());
+		} catch(NullPointerException e){
+			return false;
+		}
+		
+		
+		return true;
 	}
 
 }
