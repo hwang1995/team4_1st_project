@@ -12,5 +12,6 @@ public interface ProductsDAO {
 	public int insertProducts(ProductsDTO products);
 	public int updateProducts(ProductsDTO products);
 	public int deleteByProductId(Long product_id);
-
+	public List<ProductsDTO> selectProdutsListOrderByHighPrice();
+	public List<ProductsDTO> selectProductsListOrderByLowPrice();
 }

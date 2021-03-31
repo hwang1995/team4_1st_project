@@ -2,8 +2,14 @@ package com.team4.webapp.services;
 
 import java.util.List;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.google.common.collect.Lists;
+import com.team4.webapp.controller.ShopController;
+import com.team4.webapp.dao.ProductsDAO;
 import com.team4.webapp.dto.ProductsDTO;
 
 @Service
@@ -14,8 +20,13 @@ public class ProductServiceImpl implements IProductService {
 	 * - 모든 사용자들이 웹 사이트의 모든 상품을 보기 위해 제공하는 서비스
 	 * - 컨트롤러에게 List<ProductsDTO> 를 전달해야 한다.
 	 */
+	
+	@Autowired
+	private ProductsDAO productDAO;
+	private static final Logger logger = LoggerFactory.getLogger(ProductServiceImpl.class);
+	
 	@Override
-	public List<ProductsDTO> showAllProduct(String orderBy) {
+	public List<List<ProductsDTO>> showAllProduct(String order) {
 		// 1. - 만약 orderBy = "DESC" 라면?
 		// 1.1 - ProductsDTO 리스트에 ProductsDAO.selectProductList() 실행
 		// 2. - 만약 orderBy = "HIGH" 라면?
@@ -23,7 +34,25 @@ public class ProductServiceImpl implements IProductService {
 		// 3. - 만약 orderBy = "LOW" 라면?
 		// 3.1 - ProductsDTO 리스트에 ProductsDAO.selectProductsListOrderByLowPrice() 실행
 		// 4. - 받은 List<ProductsDTO> 객체를 Controller로 넘긴다.
-		return null;
+		
+		List<ProductsDTO> lists;
+		
+		if(order.equals("desc")) {
+			lists = productDAO.selectProductsList();
+		}
+		else if(order.equals("high")) {
+			lists = productDAO.selectProdutsListOrderByHighPrice();
+		}else{
+			lists = productDAO.selectProductsListOrderByLowPrice();
+		}
+		for(ProductsDTO product : lists ) {
+			String filePath = "/webapp/image?path="+ product.getProduct_image();
+			product.setProduct_image(filePath);
+		}
+		
+		List<List<ProductsDTO>> subLists = Lists.partition(lists, 4);
+		
+		return subLists;
 	}
 
 	/**

@@ -10,7 +10,7 @@ public interface IProductService {
 	 * @param String orderBy = "DESC", "HIGH", "LOW"
 	 * @return List<ProductsDTO>
 	 */
-	List<ProductsDTO> showAllProduct(String orderBy);
+	List<List<ProductsDTO>> showAllProduct(String orderBy);
 	
 	/**
 	 * 모든 사용자들이 주 카테고리의 상품을 보기 위해 제공하는 인터페이스
