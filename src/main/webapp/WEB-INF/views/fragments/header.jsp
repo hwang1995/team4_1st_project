@@ -63,7 +63,7 @@
 		</div>
 
 		<div class="nav_icon">
-			<div class="nav_icon_container">
+			<div class="nav_icon_container d-inline-flex">
 			<sec:authorize access="isAnonymous()">
 				<a href="${contextPath}/auth/login"> 
 					<img
@@ -72,7 +72,7 @@
 				</a> 
 			</sec:authorize>
 			<sec:authorize access="isAuthenticated()">
-				<form method="POST" action="${contextPath}/logout" class="d-inline-flex">
+				<form method="POST" action="${contextPath}/logout" class="d-inline-flex nav_icon_form_logout">
 
 					<input type="image" src="${contextPath}/resources/svg/box-arrow-in-right.svg" class="nav_icon_item" width="24px">
 					<%-- <img

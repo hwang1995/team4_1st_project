@@ -56,10 +56,39 @@ $('.item_details_plus').click(() => {
  */
 
 const goCartPage = (path) => {
-	window.location.href = path + "/order/cart";
+	
+	
+	// window.location.href = path + "/order/cart";
 }
 
 const goBuyPage = (path) => {
-	window.location.href = path + "/order/checkout";
+	// elements 의 값을 가져온다.
+	const productIdInfo = location.href.split("/");
+	const colorElem = $('#color_select').val();
+	const sizeElem = $('#size_select').val();
+	const quantityElem = $('.item_details_quantity_status').val();
+	
+	// Object를 만들어준다.
+	let buyInfoObj = {
+		"product_id" : productIdInfo[productIdInfo.length - 1],
+		"product_color" : colorElem,
+		"product_size" : sizeElem,
+		"product_quantity" : quantityElem,
+	};
+	
+	// 유효성 검사 로직을 넣는다.
+	if(!colorElem){
+		alert("색상을 선택해주세요.");
+		return;
+	} else if(!sizeElem){
+		alert('사이즈를 선택해주세요.');
+		return;
+	} else if(quantityElem < 1){
+		alert("0이상의 숫자를 입력해주세요.");
+		return;
+	}
+	
+	console.log(buyInfoObj);
+	//window.location.href = path + "/order/checkout";
 }
 

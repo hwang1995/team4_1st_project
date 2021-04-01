@@ -71,6 +71,10 @@
     margin-right : 11px;
 }
 
+.nav_icon_form_logout {
+	margin-top : 2px;
+}
+
 .nav_drawer_mobile {
     /* 기본 속성은 display : none; */
     display : none;
