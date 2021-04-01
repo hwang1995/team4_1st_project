@@ -42,7 +42,14 @@
 		subcategory_id = #{subcategory_id}
 		
 	</delete>
-	
+	<select id="selectBySubCategoryName"
+			parameterType="string"
+			resultType="subcategories">
+		select subcategory_id, subcategory_name, category_id
+		from subcategories
+		where
+		subcategory_name = #{subcategory_name}
+	</select>
 
 
 </mapper>

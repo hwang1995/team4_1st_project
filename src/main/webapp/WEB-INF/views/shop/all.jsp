@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <c:set var="contextPath" value="<%= request.getContextPath()%>"></c:set>  
 <c:set var="resources" value="${contextPath}/resources"></c:set>
 
@@ -29,6 +30,7 @@
 
     <title>Team4 - 카테고리(All) 페이지</title>
 </head>
+
 <body>
 	<jsp:include page="/WEB-INF/views/fragments/header.jsp" />
 
@@ -37,21 +39,21 @@
             <div class="categories_article container-fluid">
                 <div class="categories_orders">
                     <select name="item" id="item_select" class="categories_orders_select" >
-                        <option value>Select</option>
-                        <option value="high_price">높은 가격순</option>
-                        <option value="low_price">낮은 가격순</option>
+                        <option value="">Select</option>
+                        <option value="high">높은 가격순</option>
+                        <option value="low">낮은 가격순</option>
                     </select>
                 </div>
                 
                <c:forEach var="product_list" items="${lists}">
                	<div class="row">
                		<c:forEach var="product" items="${product_list}">
-               			<div class="col-xs-12 col-md-6 col-lg-3">
+               			<div class="col-xs-12 col-md-6 col-lg-3" onclick="goProductDetailPage('${contextPath}','${product.product_id}')">
                         	<div class="categories_item">
                             	<img src="${product.product_image}" width="80%">
                             <div class="categories_item_text">
                                 <h5 class="eng_h4">${product.product_name}</h5>
-                                <h5 class="eng_h4">${product.product_price}</h5>
+                                <h5 class="eng_h4"><fmt:formatNumber value="${product.product_price}" pattern="#,###,###"/></h5>
                             </div>
                         </div>
                     </div>
@@ -66,6 +68,7 @@
 
     <!-- jQuery DOM 조작 관련된 JS -->
     <script src="${resources}/js/common.js"></script>
+    <script src="${resources}/js/shop.js"></script>
 
 </body>
 </html>

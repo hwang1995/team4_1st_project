@@ -9,6 +9,7 @@ public class ProductDetailsDTO {
 	private int product_quantity;
 	private String product_content;
 	private String product_subcontent;
+	private String product_image;
 	private ProductCategoryDTO product_category;
 	private List<ProductImgCarouselDTO> product_imgs_carousel_list;
 	private List<ProductImgDetailDTO> product_imgs_detail_list;
@@ -52,6 +53,12 @@ public class ProductDetailsDTO {
 	public void setProduct_subcontent(String product_subcontent) {
 		this.product_subcontent = product_subcontent;
 	}
+	public String getProduct_image() {
+		return product_image;
+	}
+	public void setProduct_image(String product_image) {
+		this.product_image = product_image;
+	}
 	public ProductCategoryDTO getProduct_category() {
 		return product_category;
 	}
@@ -87,11 +94,13 @@ public class ProductDetailsDTO {
 	public String toString() {
 		return "ProductDetailsDTO [product_id=" + product_id + ", product_name=" + product_name + ", product_price="
 				+ product_price + ", product_quantity=" + product_quantity + ", product_content=" + product_content
-				+ ", product_subcontent=" + product_subcontent + ", product_category=" + product_category
-				+ ", product_imgs_carousel_list=" + product_imgs_carousel_list + ", product_imgs_detail_list="
-				+ product_imgs_detail_list + ", product_sizes_list=" + product_sizes_list + ", product_colors_list="
-				+ product_colors_list + "]";
+				+ ", product_subcontent=" + product_subcontent + ", product_image=" + product_image
+				+ ", product_category=" + product_category + ", product_imgs_carousel_list="
+				+ product_imgs_carousel_list + ", product_imgs_detail_list=" + product_imgs_detail_list
+				+ ", product_sizes_list=" + product_sizes_list + ", product_colors_list=" + product_colors_list + "]";
 	}
+	
+
 	
 	
 	

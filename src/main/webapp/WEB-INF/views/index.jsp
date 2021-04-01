@@ -32,8 +32,6 @@
 
 	<jsp:include page="/WEB-INF/views/fragments/header.jsp" />
 
-	<img src="${contextPath}/image?path=/Top/Shirt/505.jpg" width="100%"/>
-
 	<section>
 		<article>
 			<div id="carousel" class="carousel slide" data-ride="carousel">

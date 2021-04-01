@@ -22,32 +22,32 @@
 				<li class="nav_content_item nav_content_item_active"><a
 					href="${contextPath}/shop/outer">Outer</a></li>
 				<li class="nav_content_item"><a
-					href="${contextPath}/shop/outer/jacket">Jacket</a>
+					href="${contextPath}/shop/outer?subcategory=Jacket">Jacket</a>
 				</li>
 				<li class="nav_content_item"><a
-					href="${contextPath}/shop/outer/coat">Coat</a>
+					href="${contextPath}/shop/outer?subcategory=Coat">Coat</a>
 				</li>
 				<li class="nav_content_item"><a
-					href="${contextPath}/shop/outer/jumper">Jumper</a>
+					href="${contextPath}/shop/outer?subcategory=Cardigan">Cardigan</a>
 				</li>
 				<li class="nav_content_item">|</li>
 				<li class="nav_content_item nav_content_item_active"><a
 					href="${contextPath}/shop/top">Top</a></li>
 				<li class="nav_content_item"><a
-					href="${contextPath}/shop/top/knit">Knit</a></li>
+					href="${contextPath}/shop/top?subcategory=Knit">Knit</a></li>
 				<li class="nav_content_item"><a
-					href="${contextPath}/shop/top/shirt">Shirt</a>
+					href="${contextPath}/shop/top?subcategory=Shirt">Shirt</a>
 				</li>
 				<li class="nav_content_item"><a
-					href="${contextPath}/shop/top/tee">Tee</a></li>
+					href="${contextPath}/shop/top?subcategory=Tee">Tee</a></li>
 				<li class="nav_content_item">|</li>
 				<li class="nav_content_item nav_content_item_active"><a
 					href="${contextPath}/shop/bottom">Bottom</a></li>
 				<li class="nav_content_item"><a
-					href="${contextPath}/shop/bottom/pants">Pants</a>
+					href="${contextPath}/shop/bottom?subcategory=Pants">Pants</a>
 				</li>
 				<li class="nav_content_item"><a
-					href="${contextPath}/shop/bottom/skirt">Skirt</a>
+					href="${contextPath}/shop/bottom?subcategory=Skirt">Skirt</a>
 				</li>
 				<li class="nav_content_item">|</li>
 				<sec:authorize access="isAuthenticated()">

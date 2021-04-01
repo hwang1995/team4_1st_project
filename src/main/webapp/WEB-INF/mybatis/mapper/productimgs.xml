@@ -7,7 +7,7 @@
 		order by product_img_id desc
 	</select>
 	
-	<select id="selectProductImgId" resultType="long" parameterType="productImgs">
+	<select id="selectProductImgId" resultType="productImgs" parameterType="long">
 		select product_img_id, product_img_type, product_img_category, product_img_name, product_id
 		from product_imgs
 		where product_img_id=#{product_img_id}
@@ -32,4 +32,14 @@
 		delete from product_imgs where product_img_id=#{product_img_id}
 	</delete>
 
+	<select id="selectCarouselImgsByProductId" resultType="productImgsCarousel" parameterType="long">
+		select product_img_id, product_img_category, product_img_name, product_id
+		from product_imgs
+		where product_id=#{product_id} and product_img_category='carousel'
+	</select>
+	<select id="selectDetailImgsByProductId" resultType="productImgsDetail" parameterType="long">
+		select product_img_id, product_img_category, product_img_name, product_id
+		from product_imgs
+		where product_id=#{product_id} and product_img_category='detail'
+	</select>
 </mapper>

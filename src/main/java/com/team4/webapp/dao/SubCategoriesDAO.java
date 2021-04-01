@@ -13,5 +13,6 @@ public interface SubCategoriesDAO {
 	public int insertSubCategories(SubCategoriesDTO subCategories);
 	public int updateSubCategories(SubCategoriesDTO subCategories);
 	public int deleteBySubCategoriesId(Long subcategoryId);
+	public SubCategoriesDTO selectBySubCategoryName(String subcategory_name);
 
 }

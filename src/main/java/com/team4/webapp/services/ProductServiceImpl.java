@@ -8,9 +8,18 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.google.common.collect.Lists;
-import com.team4.webapp.controller.ShopController;
+import com.team4.webapp.dao.ColorsDAO;
+import com.team4.webapp.dao.ProductImgsDAO;
 import com.team4.webapp.dao.ProductsDAO;
+import com.team4.webapp.dao.SizesDAO;
+import com.team4.webapp.dao.SubCategoriesDAO;
+import com.team4.webapp.dto.ColorsDTO;
+import com.team4.webapp.dto.ProductDetailsDTO;
+import com.team4.webapp.dto.ProductImgCarouselDTO;
+import com.team4.webapp.dto.ProductImgDetailDTO;
 import com.team4.webapp.dto.ProductsDTO;
+import com.team4.webapp.dto.SizesDTO;
+import com.team4.webapp.dto.SubCategoriesDTO;
 
 @Service
 public class ProductServiceImpl implements IProductService {
@@ -23,6 +32,15 @@ public class ProductServiceImpl implements IProductService {
 	
 	@Autowired
 	private ProductsDAO productDAO;
+	@Autowired
+	private SubCategoriesDAO subCategoriesDAO;
+	@Autowired
+	private ProductImgsDAO productImgsDAO;
+	@Autowired
+	private ColorsDAO colorsDAO;
+	@Autowired
+	private SizesDAO sizesDAO;
+	
 	private static final Logger logger = LoggerFactory.getLogger(ProductServiceImpl.class);
 	
 	@Override
@@ -61,10 +79,62 @@ public class ProductServiceImpl implements IProductService {
 	 * - 컨트롤러에게 List<ProductsDTO> 를 전달해야 한다.
 	 */
 	@Override
-	public List<ProductsDTO> showProductList(String category, String orderBy) {
+	public List<ProductsDTO> showProductList(String category, String order) {
 		// 1. - ProductsDAO에 selectProductListWithCategory(String category, String orderBy)를 실행하여 저장
 		// 2. 받은 List<ProductsDAO> 객체를 Controller로 넘긴다.
-		return null;
+		
+		 logger.info(category);
+		 SubCategoriesDTO subCategoriesDTO = subCategoriesDAO.selectBySubCategoryName(category);
+		 Long subCategory_id = subCategoriesDTO.getSubcategory_id();
+		 List<ProductsDTO> lists;
+		 if(order.equals("desc")) {
+			 lists= productDAO.selectBySubCategoryId(subCategory_id);
+		 }else if(order.equals("high")) {
+			 lists=productDAO.selectBySubCategoryIdOrderByHighPrice(subCategory_id);
+		 }else {
+			 lists=productDAO.selectBySubCategoryIdOrderByLowPrice(subCategory_id);
+		 }
+		 
+		 for(ProductsDTO product : lists ) {
+				String filePath = "/webapp/image?path="+ product.getProduct_image();
+				product.setProduct_image(filePath);
+			}
+		 
+		 return lists;
+	}
+	/**
+	 * productDetailPage
+	 */
+	@Override
+	public ProductDetailsDTO productDetailPage(Long product_id) {
+		
+		ProductDetailsDTO productDetailsDTO = new ProductDetailsDTO();
+		ProductsDTO productsDTO = new ProductsDTO();
+		productsDTO = productDAO.selectByProductId(product_id);
+		List<ProductImgCarouselDTO> carouselLists = productImgsDAO.selectCarouselImgsByProductId(product_id);
+		List<ProductImgDetailDTO> detailLists = productImgsDAO.selectDetailImgsByProductId(product_id);
+		List<ColorsDTO> colorsLists = colorsDAO.selectByProductId(product_id);
+		List<SizesDTO> sizesLists = sizesDAO.selectByProductId(product_id);
+		for(ProductImgCarouselDTO carousel : carouselLists) {
+			carousel.setProduct_img_name("/webapp/image?path=" + carousel.getProduct_img_name());
+		}
+		for(ProductImgDetailDTO detail : detailLists) {
+			detail.setProduct_img_name("/webapp/image?path=" + detail.getProduct_img_name());
+		}
+		
+		productDetailsDTO.setProduct_id(productsDTO.getProduct_id());
+		productDetailsDTO.setProduct_name(productsDTO.getProduct_name());
+		productDetailsDTO.setProduct_price(productsDTO.getProduct_price());
+		productDetailsDTO.setProduct_content(productsDTO.getProduct_content());
+		productDetailsDTO.setProduct_subcontent(productsDTO.getProduct_subcontent());
+		String filePath = "/webapp/image?path="+ productsDTO.getProduct_image();
+		productDetailsDTO.setProduct_image(filePath);
+		productDetailsDTO.setProduct_imgs_carousel_list(carouselLists);
+		productDetailsDTO.setProduct_imgs_detail_list(detailLists);
+		productDetailsDTO.setProduct_colors_list(colorsLists);
+		productDetailsDTO.setProduct_sizes_list(sizesLists);
+		
+		return productDetailsDTO;
 	}
 	
 	/**
@@ -76,6 +146,9 @@ public class ProductServiceImpl implements IProductService {
 	public List<ProductsDTO> showProductList(String category, String subcategory, String orderBy) {
 		// 1. - ProductsDAO에 selectProductListWithCategoryAndSubCategory(String category, String subcategory, String orderBy)를 실행하여 저장
 		// 2. 받은 List<ProductsDAO> 객체를 Controller로 넘긴다.
+		
+		
+		
 		return null;
 	}
 

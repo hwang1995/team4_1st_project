@@ -1,6 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
 	pageEncoding="utf-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
+<% pageContext.setAttribute("replaceChar", "\\n"); %>
 <c:set var="contextPath" value="<%= request.getContextPath()%>"></c:set>  
 <c:set var="resources" value="${contextPath}/resources"></c:set>
 <!DOCTYPE html>
@@ -37,34 +40,47 @@
         <article>
             <div class="container-xl item_details_container">
                 <div class="row">
-                    <div class="col-12 col-md-6">
-                        <img src="${resources}/images/products/1.jpeg" alt="product" width="100%"> 
-                    </div>
-                    <div class="col-12 col-md-6 ">
+                <div id="carousel" class="carousel slide col-12 col-md-6 mt-3" data-ride="carousel">
+				<div class="carousel-inner">
+					<div class="carousel-item active">
+						<img
+							src="${product.product_image}"
+							class="d-block w-100" alt="product" width="100%">
+					</div>
+					<c:forEach var="product" items="${product.product_imgs_carousel_list }">
+						<div class="carousel-item">
+							<img
+								src="${product.product_img_name }"
+								class="d-block w-100" alt="..." width="100%">
+						</div>
+					</c:forEach>
+				</div>
+				<a class="carousel-control-prev" href="#carousel" role="button"
+					data-slide="prev"> <span class="carousel-control-prev-icon"
+					aria-hidden="true"></span> <span class="sr-only">이전</span>
+				</a> <a class="carousel-control-next" href="#carousel" role="button"
+					data-slide="next"> <span class="carousel-control-next-icon"
+					aria-hidden="true"></span> <span class="sr-only">다음</span>
+				</a>
+			</div>
+
+                    <div class="col-12 col-md-6 mt-3">
                          <div class="item_description">
                              <!-- 해상도 조건이 md(768px) 이상인 경우 나오는 레이아웃 -->
                             <div class="d-md-block d-none">
-                                <h2 class="eng_h2">Tortillon Knit</h2>
-                                <h6 class="mt-3"> - 캐시미어 100% </h6>
-                                <h6 class="mt-1"> - All Needle 조직</h6>
-                                <h6 class="mt-1"> - 7 게이지</h6>
+                                <h2 class="eng_h2">${product.product_name}</h2>
+                                <h6 class="mt-3"> ${fn:replace(product.product_subcontent, replaceChar, "<br/>")} </h6>
                                 <h6 class="mt-3">
-                                    캐시미어 소재의 가벼운 착용감의 숏 슬리브 니트입니다. <br>
-                                    촉감이 매우 부드럽고, 단품 이너 등 간절기 및 다양한 활용이 <br>
-                                    가능합니다.
+                                  ${fn:replace(product.product_content, replaceChar, "<br/>")}
                                 </h6>
                             </div>
     
                             <!-- 해상도 조건이 md(768 px) 이하인 경우 나오는 레이아웃 -->
                             <div class="d-md-none d-block mt-4 d-flex flex-column justify-content-center">
-                                <h3 class="eng_h2">Tortillon Knit</h3>
-                                <h6 class="mt-3"> - 캐시미어 100% </h6>
-                                <h6 class="mt-1"> - All Needle 조직</h6>
-                                <h6 class="mt-1"> - 7 게이지</h6>
+                                <h3 class="eng_h2">${product.product_name}</h3>
+                                <h6 class="mt-3"> ${fn:replace(product.product_subcontent, replaceChar, "<br/>")} </h6>
                                 <h6 class="mt-3">
-                                    캐시미어 소재의 가벼운 착용감의 숏 슬리브 니트입니다. <br>
-                                    촉감이 매우 부드럽고, 단품 이너 등 간절기 및 다양한 활용이 <br>
-                                    가능합니다.
+                                  ${fn:replace(product.product_content, replaceChar, "<br/>")}
                                 </h6>
                             </div>
                          </div>
@@ -72,7 +88,7 @@
                         
                         <div class="item_details">
                             <h5 class="eng_h3 mt-2 text-right">
-                                KRW 239,000
+                                KRW <fmt:formatNumber value="${product.product_price}" pattern="#,###,###"/>
                             </h5>
                             <br>
                             <div class="row">
@@ -80,12 +96,18 @@
                                 <div class="col mt-3">
                                     <h6 class="eng_h3">Color</h6>
                                     <select name="color" class="select_item mt-2 p-1">
-                                        <option value="ivory">아이보리</option>
-                                        <option value="old_rose">올드로즈</option>
+                                    	<option value="">Color</option>
+                                    	<c:forEach var="product" items="${product.product_colors_list}">
+                                    		<option value="${product.color_name}">${product.color_name}</option>
+                                    	</c:forEach>
                                     </select>
-                                    <button class="mt-3 white_button" onclick="goCartPage('${contextPath}')">
-                                        <span class="eng_h5">ADD TO CART</span>
-                                    </button>
+                                    <h6 class="eng_h3 mt-3">Size</h6>
+                                    <select name="size" class="select_item mt-2 p-1">
+                                    	<option value="">Size</option>
+                                    	<c:forEach var="product" items="${product.product_sizes_list}">
+                                    		<option value="${product.size_name}">${product.size_name}</option>
+                                    	</c:forEach>
+                                    </select>
                                 </div>
                                 <div class="col mt-3">
                                     <h6 class="eng_h3">Quantity</h6>
@@ -98,6 +120,17 @@
                                             <img src="${resources}/svg/plus.svg" alt="plus" width="24px">
                                         </div>
                                     </div>
+                                </div>
+                               
+                            </div>
+                            <div class="row">
+
+                                <div class="col mt-3">
+                                    <button class="mt-3 white_button" onclick="goCartPage('${contextPath}')">
+                                        <span class="eng_h5">ADD TO CART</span>
+                                    </button>
+                                </div>
+                                <div class="col mt-3">
                                     <button class="mt-3 black_button" onclick="goBuyPage('${contextPath}')">
                                             <span class="eng_h5 white_text">BUY NOW</span>
                                         
@@ -117,11 +150,9 @@
         <article class="container mt-3 mb-5 p-1 ">
             <hr class="divider">
             <div class="">
-                <img src="${resources}/images/products/1_details.jpeg" alt="" width="100%">
-                <img src="${resources}/images/products/1_datails_2.jpg" alt="" width="100%">
-                <img src="${resources}/images/products/1_details_3.jpg" alt="" width="100%">
-                <img src="${resources}/images/products/1_details_4.jpg" alt="" width="100%">
-                <img src="${resources}/images/products/1_details_5.jpg" alt="" width="100%">
+            	<c:forEach var="details" items="${product.product_imgs_detail_list}">
+            		<img class="mt-5" src="${details.product_img_name}" alt="" width="100%">
+            	</c:forEach>
             </div>
         </article>
     </section>

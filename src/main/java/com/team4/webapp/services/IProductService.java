@@ -2,6 +2,7 @@ package com.team4.webapp.services;
 
 import java.util.List;
 
+import com.team4.webapp.dto.ProductDetailsDTO;
 import com.team4.webapp.dto.ProductsDTO;
 
 public interface IProductService {
@@ -30,6 +31,9 @@ public interface IProductService {
 	 * @param String orderBy = "DESC", "HIGH", "LOW"
 	 * @return List<ProductsDTO>
 	 */
+	
+	ProductDetailsDTO productDetailPage(Long product_id);
+	
 	List<ProductsDTO> showProductList(String category, String subcategory, String orderBy);
 	
 	/**

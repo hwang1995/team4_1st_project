@@ -6,7 +6,7 @@
 	from products
 	order by product_id desc
 </select>
-<select id="selectByProductId" resultType="products">
+<select id="selectByProductId" parameterType="long" resultType="products">
 	select product_id, product_name, product_price,product_image, product_content, subcategory_id ,product_subcontent
 	from products
 	where product_id=#{product_id}
@@ -37,6 +37,23 @@
 <select id="selectProductsListOrderByLowPrice" resultType="products">
 	select product_id, product_name, product_price, product_image,product_content, subcategory_id, product_subcontent
 	from products
+	order by product_price asc
+</select>
+<select id="selectBySubCategoryId" parameterType="long" resultType="products">
+	select product_id, product_name, product_price, product_image, product_content, subcategory_id ,product_subcontent
+	from products
+	where subcategory_id=#{subcategory_id}
+</select>
+<select id="selectBySubCategoryIdOrderByHighPrice" parameterType="long" resultType="products">
+	select product_id, product_name, product_price, product_image, product_content, subcategory_id ,product_subcontent
+	from products
+	where subcategory_id=#{subcategory_id}
+	order by product_price desc
+</select>
+<select id="selectBySubCategoryIdOrderByLowPrice" parameterType="long" resultType="products">
+	select product_id, product_name, product_price, product_image, product_content, subcategory_id ,product_subcontent
+	from products
+	where subcategory_id=#{subcategory_id}
 	order by product_price asc
 </select>
 </mapper>

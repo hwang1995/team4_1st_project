@@ -29,5 +29,11 @@
 	<delete id="deleteByColorId" parameterType="long">
 		delete from colors where color_id=#{color_id}
 	</delete>
+	<select id="selectByProductId" parameterType="long" resultType="colors">
+		select color_id, color_name, product_id
+		from colors
+		where product_id=#{product_id}
+	</select>
+
 
 </mapper>
