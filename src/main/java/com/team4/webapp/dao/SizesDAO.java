@@ -13,5 +13,6 @@ public interface SizesDAO {
 	public int insertSizes(SizesDTO sizes);
 	public int updateSizes(SizesDTO sizes);
 	public int deleteBySizeId(Long sizeId);
+	public List<SizesDTO> selectByProductId(Long product_id);
 
 }

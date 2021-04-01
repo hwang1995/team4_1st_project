@@ -13,7 +13,7 @@
 			parameterType="long"
 			resultType="sizes"
 	>
-		select *
+		select size_id, size_name, product_id
 		from sizes
 		where
 		size_id = #{size_id}
@@ -43,6 +43,15 @@
 		where 
 		size_id = #{size_id}
 	</delete>
+	<select id="selectByProductId"
+			parameterType="long"
+			resultType="sizes"
+	>
+		select size_id, size_name, product_id
+		from sizes
+		where
+		product_id = #{product_id}
+	</select>
 
 
 </mapper>

@@ -32,8 +32,6 @@
 
 	<jsp:include page="/WEB-INF/views/fragments/header.jsp" />
 
-
-
 	<section>
 		<article>
 			<div id="carousel" class="carousel slide" data-ride="carousel">
