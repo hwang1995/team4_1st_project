@@ -5,9 +5,9 @@ import java.util.List;
 import com.team4.webapp.dto.CartListDTO;
 import com.team4.webapp.dto.CartsDTO;
 import com.team4.webapp.dto.CheckoutDTO;
-import com.team4.webapp.dto.PreCheckoutDTO;
-import com.team4.webapp.dto.ProductDetailsDTO;
-
+import com.team4.webapp.dto.CheckoutListDTO;
+import com.team4.webapp.dto.MembersDTO;
+import com.team4.webapp.dto.PreOrdersDTO;
 public interface IOrderService {
 	
 	/**
@@ -16,8 +16,8 @@ public interface IOrderService {
 	 * @param List<ProductDetailsDTO> products
 	 * @return PreCheckoutDTO (주문전의 데이터를 넘기기 위한 DTO)
 	 */
-	
-	PreCheckoutDTO showOrderlists(Long member_id, List<ProductDetailsDTO> products);
+	List<CheckoutListDTO> showOrderlists(List<PreOrdersDTO> preorder);
+//	PreCheckoutDTO showOrderlists(Long member_id, List<ProductDetailsDTO> products);
 	
 	
 	/**
@@ -25,13 +25,14 @@ public interface IOrderService {
 	 * @param CheckoutDTO checkout 
 	 * @return true or false
 	 */
-	boolean doCheckout(CheckoutDTO checkout);
+	boolean doCheckout(List<CheckoutListDTO> itemList, CheckoutDTO orderInfo);
 	
 	
 	/**
 	 * 회원이 가지고 있는 장바구니의 상품들을 보여주기 위해 작성한 인터페이스
 	 * @param Long member_id
 	 * @return List<CartListDTO>
+	 * @deprecated 삭제할 인터페이스
 	 */
 	List<CartListDTO> getCartList(Long member_id);
 	
@@ -40,14 +41,18 @@ public interface IOrderService {
 	 * @param CartsDTO cart
 	 * @return int (결과 값으로 쿼리 수행결과를 알기 위해)
 	 */
-	int addCart(CartsDTO cart);
+	boolean addCart(MembersDTO memberInfo ,PreOrdersDTO cart);
 	
 	/**
 	 * 회원이 장바구니에서 자신이 추가한 상품을 제거할 수 있는 인터페이스
 	 * @param CartsDTO cart
 	 * @return int
 	 */
-	int removeCart(CartsDTO cart);
+	boolean removeCart(Long cart_id);
+	
+	List<PreOrdersDTO> getNewCartList(Long member_id);
+	
+	boolean removeCarts(Long member_id);
 	
 	
 }

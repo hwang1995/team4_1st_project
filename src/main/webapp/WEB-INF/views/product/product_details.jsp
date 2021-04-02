@@ -92,18 +92,18 @@
                             </h5>
                             <br>
                             <div class="row">
-
+						
                                 <div class="col mt-3">
                                     <h6 class="eng_h3">Color</h6>
-                                    <select name="color" class="select_item mt-2 p-1">
-                                    	<option value="">Color</option>
+                                    <select name="color" class="select_item mt-2 p-1" id="color_select">
+                                    	<option selected disabled hidden>Color</option>
                                     	<c:forEach var="product" items="${product.product_colors_list}">
                                     		<option value="${product.color_name}">${product.color_name}</option>
                                     	</c:forEach>
                                     </select>
                                     <h6 class="eng_h3 mt-3">Size</h6>
-                                    <select name="size" class="select_item mt-2 p-1">
-                                    	<option value="">Size</option>
+                                    <select name="size" class="select_item mt-2 p-1" id="size_select">
+                                    	<option selected disabled hidden>Size</option>
                                     	<c:forEach var="product" items="${product.product_sizes_list}">
                                     		<option value="${product.size_name}">${product.size_name}</option>
                                     	</c:forEach>

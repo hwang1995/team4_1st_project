@@ -86,6 +86,30 @@ public class OrdersDTO {
 				+ member_id + "]";
 	}
 	
+	// 주문 정보 Set
+	public void setOrderInfo(CheckoutDTO orderInfo) {
+		this.member_id = orderInfo.getMember_id();
+		this.order_bank = orderInfo.getOrder_bank();
+		this.recipient_name = orderInfo.getRecipient_name();
+		this.recipient_address = orderInfo.getRecipient_address();
+		this.recipient_tel = orderInfo.getRecipient_tel();
+	}
+	
+	// 주문 상태 Set
+	public void setOrderStatus(
+			int order_delivery_charge,
+			String order_payment_status,
+			String order_delivery_status
+	) {
+		this.order_delivery_charge = order_delivery_charge;
+		this.order_payment_status = order_payment_status;
+		this.order_delivery_status = order_delivery_status;
+		
+	}
+	
+	
+	
+	
 	
 	
 

@@ -18,6 +18,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.util.FileCopyUtils;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -30,8 +31,13 @@ public class HomeController {
 	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
 	
 	@GetMapping("/")
-	public String home() {
-		logger.info(System.getProperty("user.home"));
+	public String home(Authentication auth) {
+		try {
+			logger.info(auth.getName());
+		} catch(NullPointerException e) {
+			logger.warn("Authentication의 객체에 정보가 없습니다.");
+		}
+		
 		
 		return "index";
 	}

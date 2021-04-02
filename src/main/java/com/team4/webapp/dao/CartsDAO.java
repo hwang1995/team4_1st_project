@@ -13,5 +13,7 @@ public interface CartsDAO {
 	public int insertCarts(CartsDTO carts);
 	public int updateCarts(CartsDTO carts);
 	public int deleteByCartId(Long cart_id);
+	public int deleteByMemberId(Long member_id);
+	public List<CartsDTO> selectCartListByMemberId(Long member_id);
 	
 }

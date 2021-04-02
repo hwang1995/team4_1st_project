@@ -43,11 +43,7 @@ public class ShopController {
 		}
 		model.addAttribute("lists", lists);
 
-		for(List<ProductsDTO> sublist : lists) {
-			for(ProductsDTO product : sublist) {
-				logger.info(product.toString());
-			}
-		}
+	
 		return "shop/all";
 	}
 
