@@ -50,7 +50,7 @@
                     <div class="col-10 col-lg-8 qna_send_letter">
                         <h5>해당 답변은 2-3일 이내에 회원님의 가입하신 이메일로 발송됩니다.</h5>
                         <div class="qna_send_box">
-                            <h4>홍자바 님의 문의가 발송되었습니다.</h4>
+                            <h4>${cookie.member_email.value}님의 문의가 발송되었습니다.</h4>
                         </div>
                         <div class="text-center">
                             <button class="black_button w-25">
