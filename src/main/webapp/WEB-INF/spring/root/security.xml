@@ -11,6 +11,9 @@
 	<!-- 보안 필터 체인 (프로세싱) -->
 	<security:http>
 		<!-- 우선 보안 세션을 체크할 페이지가 정확하게 인식되지 않았으므로 permitAll -->
+		
+		<security:intercept-url pattern="/order/**" access="hasRole('ROLE_USER')"/>
+		<security:intercept-url pattern="/account/**" access="hasRole('ROLE_USER')"/>
 		<security:intercept-url pattern="/**" access="permitAll"/>
 		
 		<!-- 로그인 / 로그아웃 설정 -->
@@ -88,14 +91,13 @@
 		
 	<bean id="authSuccessHandler"
 		  class="com.team4.webapp.security.AuthSuccessHandler">
-		  
+	<!-- 	  
 	 <property name="alwaysUseDefaultTargetUrl" value="false"/>
-	 <property name="defaultTargetUrl" value="/"/>
+	 <property name="defaultTargetUrl" value="/"/> -->
 	</bean>
 	
 	<bean id="authFailureHandler"
 		  class="com.team4.webapp.security.AuthFailureHandler">
-	  <property name="useForward" value="true" />
 	  <property name="defaultFailureUrl" value="/auth/login"/>
 	</bean>
 	

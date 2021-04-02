@@ -76,6 +76,18 @@ public class CartListDTO {
 				+ ", product_price=" + product_price + "]";
 	}
 	
+	public void setCartsInfo(CartsDTO cart) {
+		this.cart_id = cart.getCart_id();
+		this.cart_quantity = cart.getCart_quantity();
+		this.product_color = cart.getProduct_color();
+		this.product_size = cart.getProduct_size();
+		this.product_id = cart.getProduct_id();
+		this.member_id = cart.getMember_id();
+	}
 	
-
+	public void setProductInfo(ProductsDTO product) {
+		this.product_image_name = product.getProduct_image();
+		this.product_name = product.getProduct_name();
+		this.product_price = product.getProduct_price();
+	}
 }

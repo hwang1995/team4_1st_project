@@ -13,4 +13,5 @@ public interface ColorsDAO {
 	public int insertColor(ColorsDTO colors);
 	public int updateColor(ColorsDTO colors);
 	public int deleteByColorId(Long color_id);
+	public List<ColorsDTO> selectByProductId(Long product_id);
 }

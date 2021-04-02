@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <c:set var="contextPath" value="<%= request.getContextPath()%>"></c:set>  
 <c:set var="resources" value="${contextPath}/resources"></c:set>
 
@@ -31,39 +32,48 @@
 </head>
 <body>
 	<jsp:include page="/WEB-INF/views/fragments/header.jsp" />
-
+<%-- 	<c:forEach var="item" items="${itemList}">
+		${item.product_quantity }
+		${item.product_size}
+		${item.product_color}
+		${item.product_id}
+		<br/>
+	</c:forEach> --%>
     <section>
         <article>
             <div class="container-sm order_info_margin">
                 <form>
+                	<input type="text" id="member_id" hidden value="${memberInfo.member_id}" />
                     <div class="order_info_toptext row">
                         <h2>주문 결제</h2>
                     </div>
                     <div class="order_info_line row">
                         <h4>주문자 정보</h4>
+   
                     </div>
                     <div class="form-group row mt-2">
-                        <label for="urepassword" class="col-sm-2 col-form-label">이메일</label>
+                        <label class="col-sm-2 col-form-label">이메일</label>
                         <div class="col-sm-5">
-                          <input type="text" class="form-control" id="urepassword" value="hongjava@gmail.com">
+                          <input type="text" class="form-control" id="member_email" disabled value="${memberInfo.member_email}">
+                          
                         </div>
                     </div>
                     <div class="form-group row order_info_md_line">
-                      <label for="uname" class="col-sm-2 col-form-label">이름</label>
+                      <label for="member_name" class="col-sm-2 col-form-label">이름</label>
                       <div class="col-sm-5">
-                        <input type="text" class="form-control" id="uname" value="홍자바">
+                        <input type="text" class="form-control" id="member_name" disabled value="${memberInfo.member_name }">
                       </div>
                     </div>
                     <div class="form-group row order_info_md_line">
-                        <label for="urepassword" class="col-sm-2 col-form-label">주소</label>
+                        <label for="member_address" class="col-sm-2 col-form-label">주소</label>
                         <div class="col-sm-5">
-                          <input type="text" class="form-control" id="urepassword" value="서울시 송파구 중대로 135, IT벤처타워 서관 14층">
+                          <input type="text" class="form-control" id="member_address" disabled value="${memberInfo.member_address}">
                         </div>
                     </div>
                     <div class="form-group row order_info_md_line">
-                        <label for="uphonenumber" class="col-sm-2 col-form-label">연락처</label>
+                        <label for="member_tel" class="col-sm-2 col-form-label">연락처</label>
                         <div class="col-sm-5">
-                          <input type="text" class="form-control" id="uphonenumber" pattern="010-\d{3,4}-\d{4}" value="010-1234-1234">
+                          <input type="text" class="form-control" id="member_tel" disabled pattern="010-\d{3,4}-\d{4}" value="${memberInfo.member_tel }">
                         </div>
                     </div>
                     <div class="row order_info_bt_line"></div>
@@ -79,21 +89,21 @@
                         </div>
                     </div>
                     <div class="form-group row mt-2">
-                      <label for="uname" class="col-sm-2 col-form-label">이름</label>
+                      <label for="recipient_name" class="col-sm-2 col-form-label">이름</label>
                       <div class="col-sm-5">
-                        <input type="text" class="form-control" id="uname">
+                        <input type="text" class="form-control" id="recipient_name">
                       </div>
                     </div>
                     <div class="form-group row order_info_md_line">
-                        <label for="urepassword" class="col-sm-2 col-form-label">주소</label>
+                        <label for="recipient_address" class="col-sm-2 col-form-label">주소</label>
                         <div class="col-sm-5">
-                          <input type="text" class="form-control" id="urepassword">
+                          <input type="text" class="form-control" id="recipient_address">
                         </div>
                     </div>
                     <div class="form-group row order_info_md_line">
-                        <label for="uphonenumber" class="col-sm-2 col-form-label">연락처</label>
+                        <label for="recipient_tel" class="col-sm-2 col-form-label">연락처</label>
                         <div class="col-sm-5">
-                          <input type="text" class="form-control" id="uphonenumber" pattern="010-\d{3,4}-\d{4}">
+                          <input type="text" class="form-control" id="recipient_tel" pattern="010-\d{3,4}-\d{4}">
                         </div>
                     </div>
                     <div class="row order_info_bt_line"></div>
@@ -112,25 +122,28 @@
                           </div>
                         </div>
                         <div>
-                          <div class="row align-items-center order_info_list_line">
-                            <div class="col-2"><img src="${resources}/images/order/order1.png" width="30%"> </div>
-                            <div class="col-4">Vera Vashmere Crevneck Knit</div>
-                            <div class="col-2">그레이</div>
-                            <div class="col-1">M</div>
-                            <div class="col-1">1개</div>
-                            <div class="col-2">45,000원</div>
-                          </div>
-                          <div class="row align-items-center order_info_list_line">
-                            <div class="col-2"><img src="${resources}/images/order/order2.png" width="30%"> </div>
-                            <div class="col-4">Child Corduroy Pants by Okayama</div>
-                            <div class="col-2">에크루</div>
-                            <div class="col-1">M</div>
-                            <div class="col-1">1개</div>
-                            <div class="col-2">85,000원</div>
-                          </div>
+                          <c:forEach var="item" items="${orderList}">
+                          	<div class="row align-items-center order_info_list_line">
+	                          	<div class="col-2"><img src="${item.product_image}" width="30%" /> </div>
+	                            <div class="col-4">${item.product_name}</div>
+	                            <div class="col-2">${item.product_color}</div>
+	                            <div class="col-1">${item.product_size}</div>
+	                            <div class="col-1">${item.product_quantity}</div>
+	                            <div class="col-2">
+	                            	<fmt:formatNumber value="${item.product_price}" pattern="#,###,###"/> &nbsp;
+	                            </div>
+                          	</div>
+                          
+                          </c:forEach>
+         
+                         
                           <div class="row align-items-center order_info_list_line order_info_bt_line">
                             <div class="col-9"></div>
-                            <div class="col-3"><h6 class="font-weight-bold">주문 금액 : 130,000원</h6></div>
+                            <div class="col-3">
+                            	<h6 class="font-weight-bold">
+                          		  주문 금액 : <fmt:formatNumber value="${totalPrice}" pattern="###,###,###"/>&nbsp;원
+                         		 </h6>
+                         	</div>
                           </div>
                         </div>
                     </div>
@@ -149,11 +162,15 @@
                         </div>
                         <div>
                           <div class="row align-items-center order_info_list_line order_info_bt_line">
-                            <div class="col-4 order_info_font_size">130,000원</div>
+                            <div class="col-4 order_info_font_size">
+                            	<fmt:formatNumber value="${totalPrice}" pattern="###,###,###"/>&nbsp;원
+                            </div>
                             <div class="col-1 order_info_font_size">+</div>
                             <div class="col-2 order_info_font_size">무료</div>
                             <div class="col-1 order_info_font_size">=</div>
-                            <div class="col-4 order_info_font_size font-weight-bold">130,000원</div>
+                            <div class="col-4 order_info_font_size font-weight-bold">
+                           	 <fmt:formatNumber value="${totalPrice}" pattern="###,###,###"/>&nbsp;원
+                            </div>
                           </div>
                         </div>
                     </div>
@@ -166,7 +183,7 @@
                             <div class="col-2">결제방법</div>
                             <div class="col-2">가상계좌</div>
                             <div class="col-2">
-                                <select name="color" id="color_select" style="width : 12rem;">
+                                <select name="bank_select" id="bank_select" style="width : 12rem;">
                                     <option selected disabled hidden>입금 은행 선택</option>
                                     <option value="kukmin">국민은행</option>
                                     <option value="sinhan">신한은행</option>
@@ -250,12 +267,12 @@
                           </div>
                           <div class="row">
                             <div class="form-check form-check-inline">
-                              <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1">
-                              <label class="form-check-label" for="inlineRadio1">약관에 동의합니다.</label>
+                              <input class="form-check-input" type="radio" name="inlineRadioOptions" id="gdpr_agree" value="gdpr_agree">
+                              <label class="form-check-label" for="gdpr_agree">약관에 동의합니다.</label>
                             </div>
                             <div class="form-check form-check-inline">
-                              <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2">
-                              <label class="form-check-label" for="inlineRadio2">약관에 동의하지 않습니다.</label>
+                              <input class="form-check-input" type="radio" name="inlineRadioOptions" id="gdpr_deny" value="gdpr_deny">
+                              <label class="form-check-label" for="gdpr_deny">약관에 동의하지 않습니다.</label>
                             </div>
                           </div>
                           <div class="row mt-4"></div>
@@ -283,12 +300,12 @@
                           </div>
                           <div class="row">
                             <div class="form-check form-check-inline">
-                              <input class="form-check-input" type="radio" name="inlineRadioOptions2" id="inlineRadio3" value="option1">
-                              <label class="form-check-label" for="inlineRadio3">정보 수집에 동의합니다.</label>
+                              <input class="form-check-input" type="radio" name="inlineRadioOptions2" id="info_agree" value="info_agree">
+                              <label class="form-check-label" for="info_agree">정보 수집에 동의합니다.</label>
                             </div>
                             <div class="form-check form-check-inline">
-                              <input class="form-check-input" type="radio" name="inlineRadioOptions2" id="inlineRadio4" value="option2">
-                              <label class="form-check-label" for="inlineRadio4">동의하지 않습니다.</label>
+                              <input class="form-check-input" type="radio" name="inlineRadioOptions2" id="info_deny" value="info_deny">
+                              <label class="form-check-label" for="info_deny">동의하지 않습니다.</label>
                             </div>
                           </div>
                         </div>
@@ -299,8 +316,8 @@
                         </div>
                         <div class="col-10 d-flex ml-n3">
                           <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1">
-                            <label class="form-check-label" for="inlineCheckbox1">상기 결제정보를 확인하였으며, 구매진행에 동의합니다.</label>
+                            <input class="form-check-input" type="checkbox" id="order_agree" >
+                            <label class="form-check-label" for="order_agree">상기 결제정보를 확인하였으며, 구매진행에 동의합니다.</label>
                           </div>
                         </div>
                       </div>
@@ -311,15 +328,14 @@
                   최종 결제 금액
                 </div>
                 <div class="col-10 order_info_font_size">
-                  130,000원
+                   <fmt:formatNumber value="${totalPrice}" pattern="###,###,###"/>&nbsp;원
                 </div>
               </div>
               <div class="d-flex justify-content-center mt-2">
-                <a href="${contextPath}/order/checked">
+              
                   <button class="order_info_black_button">
                     <span class="h6">주문하기</span>
                   </button>
-                </a>
                
                 <div class="ml-3 mr-3"></div>
                 <a href="${contextPath}">
@@ -337,6 +353,7 @@
 
     <!-- jQuery DOM 조작 관련된 JS -->
     <script src="${resources}/js/common.js"></script>
+    <script src="${resources}/js/checkout.js"></script>
 
 </body>
 </html>

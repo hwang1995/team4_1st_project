@@ -10,5 +10,5 @@ public interface IQnaService {
 	 * @param QnasDTO qna
 	 * @return int (insert가 성공적으로 되었는가?)
 	 */
-	int writeQna(Long member_id, QnasDTO qna);
+	int writeQna(String member_email, QnasDTO qna);
 }

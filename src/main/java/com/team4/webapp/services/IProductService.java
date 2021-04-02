@@ -2,6 +2,7 @@ package com.team4.webapp.services;
 
 import java.util.List;
 
+import com.team4.webapp.dto.ProductDetailsDTO;
 import com.team4.webapp.dto.ProductsDTO;
 
 public interface IProductService {
@@ -10,7 +11,7 @@ public interface IProductService {
 	 * @param String orderBy = "DESC", "HIGH", "LOW"
 	 * @return List<ProductsDTO>
 	 */
-	List<ProductsDTO> showAllProduct(String orderBy);
+	List<List<ProductsDTO>> showAllProduct(String orderBy);
 	
 	/**
 	 * 모든 사용자들이 주 카테고리의 상품을 보기 위해 제공하는 인터페이스
@@ -30,6 +31,9 @@ public interface IProductService {
 	 * @param String orderBy = "DESC", "HIGH", "LOW"
 	 * @return List<ProductsDTO>
 	 */
+	
+	ProductDetailsDTO productDetailPage(Long product_id);
+	
 	List<ProductsDTO> showProductList(String category, String subcategory, String orderBy);
 	
 	/**

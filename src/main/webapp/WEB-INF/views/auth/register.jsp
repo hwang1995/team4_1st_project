@@ -92,7 +92,7 @@
                             <h6 class="eng_h2">Tel</h6>
                         </div>
                         <div class="col-6"> 
-                            <input type="tel" name="u_tel" id="u_tel" class="w-100 register_input">
+                            <input type="tel" name="u_tel" id="u_tel" class="w-100 register_input" placeholder="01X-XXXX-XXXX">
                         </div>
                         <div class="col-3"></div>
                     </div>

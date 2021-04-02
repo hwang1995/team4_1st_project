@@ -55,6 +55,14 @@ public class OrderlistsDTO {
 	}
 	
 	
+	public void setCheckoutInfo(CheckoutListDTO checkout) {
+		this.orderlist_quantity = checkout.getProduct_quantity();
+		this.product_color = checkout.getProduct_color();
+		this.product_size = checkout.getProduct_size();
+		this.product_id = checkout.getProduct_id();
+		
+	}
+	
 	
 	
 

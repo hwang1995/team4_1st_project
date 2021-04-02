@@ -29,6 +29,13 @@ public interface IAuthService {
 	boolean isExistedEmail(String email);
 	
 	/**
+	 * 회원의 이메일을 입력하면 MembersDTO를 전달해준다.
+	 * @param String email
+	 * @return MembersDTO
+	 */
+	MembersDTO findMemberbyEmail(String email);
+	
+	/**
 	 * 미구현 사항 - 회원이 탈퇴를 하기 위해 제공하는 인터페이스
 	 * @param Long member_id
 	 * @return int (영향 받은 행의 수를 얻기 위하여)
@@ -40,5 +47,7 @@ public interface IAuthService {
 	 * @return List<MembersDTO>
 	 */
 	List<MembersDTO> showMemberList();
+	
+	
 
 }

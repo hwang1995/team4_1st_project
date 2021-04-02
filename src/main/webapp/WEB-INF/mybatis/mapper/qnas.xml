@@ -7,7 +7,7 @@
 		order by qna_id desc
 	</select>
 	<insert id="insertQnas" parameterType="qnas">
-		<selectKey keyProperty="qna_id" resultType="int" order="BEFORE">
+		<selectKey keyProperty="qna_id" resultType="long" order="BEFORE">
 			select seq_qnas_qna_id.nextval from dual
 		</selectKey>
 		insert into qnas
