@@ -54,5 +54,18 @@ public class CartsDTO {
 	}
 	
 	
+	public void setMemberInfo(MembersDTO memberInfo) {
+		this.member_id = memberInfo.getMember_id();
+		
+	}
+	
+	public void setCartInfo(PreOrdersDTO cartInfo) {
+		this.cart_quantity = cartInfo.getProduct_quantity();
+		this.product_color = cartInfo.getProduct_color();
+		this.product_size = cartInfo.getProduct_size();
+		this.product_id = cartInfo.getProduct_id();
+		
+	}
+	
 
 }

@@ -29,7 +29,6 @@ public class ProductController {
 		ProductDetailsDTO productDetailsDTO = productService.productDetailPage(id);
 		
 		model.addAttribute("product", productDetailsDTO);
-		logger.info("Request for " + productDetailsDTO.toString());
 		return "/product/product_details";
 		
 	}

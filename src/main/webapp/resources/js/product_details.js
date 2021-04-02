@@ -55,13 +55,51 @@ $('.item_details_plus').click(() => {
  * 장바구니 페이지와 구매 페이지로 넘어가는 DOM Event 
  */
 
-const goCartPage = (path) => {
+const goCartPage = () => {
+// elements 의 값을 가져온다.
+	const productIdInfo = location.href.split("/");
+	const colorElem = $('#color_select').val();
+	const sizeElem = $('#size_select').val();
+	const quantityElem = $('.item_details_quantity_status').val();
 	
+	// Object를 만들어준다.
+	let buyInfoObj = {
+		"product_id" : productIdInfo[productIdInfo.length - 1],
+		"product_color" : colorElem,
+		"product_size" : sizeElem,
+		"product_quantity" : quantityElem,
+	};
 	
-	// window.location.href = path + "/order/cart";
+	// 유효성 검사 로직을 넣는다.
+	if(!colorElem){
+		alert("색상을 선택해주세요.");
+		return;
+	} else if(!sizeElem){
+		alert('사이즈를 선택해주세요.');
+		return;
+	} else if(quantityElem < 1){
+		alert("0이상의 숫자를 입력해주세요.");
+		return;
+	}
+	
+	$.ajax({
+		url : "/webapp/order/cart",
+		data : buyInfoObj,
+		method : "post",
+	}).
+	then((data) => {
+		if(data.status == "success"){
+			window.location.href = "/webapp/order/cart";
+		} else {
+			window.location.href= "/webapp/auth/login";
+		}
+		
+	});
+	
+	console.log(buyInfoObj);
 }
 
-const goBuyPage = (path) => {
+const goBuyPage = () => {
 	// elements 의 값을 가져온다.
 	const productIdInfo = location.href.split("/");
 	const colorElem = $('#color_select').val();
@@ -87,6 +125,21 @@ const goBuyPage = (path) => {
 		alert("0이상의 숫자를 입력해주세요.");
 		return;
 	}
+	
+	$.ajax({
+		url : "/webapp/order/preorder",
+		data : buyInfoObj,
+		method : "post",
+	}).
+	then((data) => {
+		if(data.status == "success"){
+			window.location.href = "/webapp/order/checkout";
+			console.log("hello");
+		} else {
+			window.location.href= "/webapp/auth/login";
+		}
+		
+	});
 	
 	console.log(buyInfoObj);
 	//window.location.href = path + "/order/checkout";

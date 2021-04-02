@@ -115,4 +115,10 @@ public class AuthServiceImpl implements IAuthService {
 		return true;
 	}
 
+	@Override
+	public MembersDTO findMemberbyEmail(String email) {
+		MembersDTO member = membersDAO.selectByEmailId(email);
+		return member;
+	}
+
 }

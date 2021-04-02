@@ -12,10 +12,19 @@
 	where order_id=#{order_id}
 </select>
 <insert id="insertOrders" parameterType="orders">
+	<selectKey keyProperty="order_id" resultType="long" order="BEFORE">
+		select seq_orders_orderid.nextval from dual
+	</selectKey>
 	insert into orders
-		(order_id, order_date, order_bank, order_delivery_charge, order_payment_status, order_delivery_status, recipient_flag, recipient_name, recipient_address, member_id)
+		(order_id, order_date, order_bank,
+		 order_delivery_charge, order_payment_status, 
+		 order_delivery_status, recipient_name, 
+		 recipient_address, recipient_tel , member_id)
 		values
-		(#{order_id}, #{order_date}, #{order_bank}, #{order_delivery_charge}, #{order_payment_status},#{order_delivery_status},#{recipient_flag},#{recipient_name},#{recipient_address},#{member_id})
+		(#{order_id}, sysdate, #{order_bank}, 
+		#{order_delivery_charge}, #{order_payment_status},
+		#{order_delivery_status}, #{recipient_name},
+		#{recipient_address}, #{recipient_tel} ,#{member_id})
 </insert>
 <update id="updateOrders" parameterType="orders">
 	update orders set

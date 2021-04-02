@@ -92,7 +92,7 @@
                             </h5>
                             <br>
                             <div class="row">
-
+						
                                 <div class="col mt-3">
                                     <h6 class="eng_h3">Color</h6>
                                     <select name="color" class="select_item mt-2 p-1" id="color_select">
