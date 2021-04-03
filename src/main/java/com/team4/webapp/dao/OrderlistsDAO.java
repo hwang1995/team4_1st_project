@@ -13,4 +13,5 @@ public interface OrderlistsDAO {
 	public OrderlistsDTO selectByOrderlistId(Long orderlist_id);
 	public int updateOrderlists(OrderlistsDTO orderlistsdto);
 	public int deleteByOrderlistId(Long orderlist_id);
+	public List<OrderlistsDTO> selectByOrderId(Long order_id);
 }
