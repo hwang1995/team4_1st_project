@@ -37,13 +37,40 @@
     <section>
         <article>
             <div class="categories_article container-fluid">
-                <div class="categories_orders">
+            
+  
+            	
+            <div class="categories_container">
+            	<!-- Left side -->
+            	<div class="categories_left_container">
+            		<h4 class="eng_h6 categories_inline">
+	            		${category}
+		            	<img src="${contextPath}/resources/svg/chevron-right.svg" width="24px" />
+            		</h4>
+            		<h4 class="eng_h3 categories_inline">
+            			${subcategory}
+            		</h4>
+            	
+            	</div>
+            	
+            	<!-- Right side -->
+            	<div class="categories_right_container">
+            	 <select name="item" id="item_select" class="categories_orders_select" >
+                        <option value="">Select</option>
+                        <option value="high">높은 가격순</option>
+                        <option value="low">낮은 가격순</option>
+                    </select>
+            	</div>
+            	
+            	
+            </div>	
+              <!--   <div class="categories_orders">
                     <select name="item" id="item_select" class="categories_orders_select" >
                         <option value="">Select</option>
                         <option value="high">높은 가격순</option>
                         <option value="low">낮은 가격순</option>
                     </select>
-                </div>
+                </div> -->
                 
                <c:forEach var="product_list" items="${lists}">
                	<div class="row">

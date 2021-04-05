@@ -95,12 +95,12 @@
             </div>
 
             <div class="row">
-                <div class="col-1"></div>
-                <div class="col-9 myinfo_bar"><span></span></div>
+                <div class="col-2"></div>
+                <div class="col-8 myinfo_bar"><span></span></div>
                 <div class="col-2"></div>
             </div>
 
-            <div class="row">
+            <div class="row mt-3 mb-3">
                 <div class="col-2"></div>
                 <div class="col-8 mb-2">
                     <h2 class="eng_h2 order_list_title">Order list</h2>
@@ -116,6 +116,7 @@
             <div class="mypage_table_container">
                 <div class="col-2"></div>
                 <div class="col-8">
+                
                     <table class="table-bordered order_list_table">
                         <thead class="order_list_thead">
                             <th scope="col" width="100">Order No.</th>
@@ -150,9 +151,11 @@
 			                   </c:forEach>
 			                </c:if>
 			                <c:if test="${mypageCount == 0 }">
-				            <td colspan=5 class="mypage_container" style = "height : 50vh;">    
-					        	<h5 class="eng_h2">최근주문내역이 비어있습니다.</h5>
-							</td>
+				               	<tr>
+				               		<td colspan="5" class="eng_h2" style="height : 50vh;">
+				               		최근 주문 내역이 비어있습니다.
+				               		</td>
+				               	</tr>
 				            </c:if>
                         </tbody>
                     </table>

@@ -1,3 +1,5 @@
+let telRegExp = /^01(?:0|1|[6-9])-(?:\d{3}|\d{4})-\d{4}$/;
+
 $('.order_info_black_button').click(
 	() => {
 		// 초기 설정값 가져오기
@@ -32,6 +34,9 @@ $('.order_info_black_button').click(
 			return;
 		} else if(!orderAgreeSelectElem) {
 			alert("주문 동의를 선택해주세요.");
+			return;
+		} else if(!telRegExp.test(recipientTelElem)){
+			alert("전화번호를 올바르게 입력해주세요.");
 			return;
 		}
 		

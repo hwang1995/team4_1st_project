@@ -6,7 +6,7 @@
  */
 
 let initQuantity = 1; // 초기의 수량은 1이 되야 한다.
-
+let numRegExp = /^[0-9]*$/
 /**
  * 1. 수량 -, +를 DOM에 갱신하기
  * =================================================
@@ -80,6 +80,9 @@ const goCartPage = () => {
 	} else if(quantityElem < 1){
 		alert("0이상의 숫자를 입력해주세요.");
 		return;
+	} else if(!numRegExp.test(quantityElem)){
+		alert("숫자만을 입력해주세요.");
+		return;
 	}
 	
 	$.ajax({
@@ -124,6 +127,9 @@ const goBuyPage = () => {
 	} else if(quantityElem < 1){
 		alert("0이상의 숫자를 입력해주세요.");
 		return;
+	}  else if(!numRegExp.test(quantityElem)){
+		alert("숫자만을 입력해주세요.");
+		return;
 	}
 	
 	$.ajax({
@@ -142,6 +148,5 @@ const goBuyPage = () => {
 	});
 	
 	console.log(buyInfoObj);
-	//window.location.href = path + "/order/checkout";
-}
 
+}

@@ -47,10 +47,10 @@
                 <div class="row">
                     <div class="col-1 col-lg-2"></div>
                     <div class="col-10 col-lg-8 find_pw_result_letter">
-                        <h5>회원가입시, 입력하신 이메일 또는 휴대폰 번호로 확인하실 수 있습니다.</h5>
-                        <h5>정보 보호를 위해 임시 비밀번호는 가입하신 이메일로 발송됩니다.</h5>
+                        <h5>회원가입시, 입력하신 회원 정보 또는 본인 인증으로 이메일과 이름으로 확인할 수 있습니다.</h5>
+                        <h5>정보 보호를 위해 임시 비밀번호로 재설정 되었습니다.</h5>
                         <div class="find_pw_content-box">
-                            <h4>메일로 임시비밀번호가 발송되었습니다.</h4>
+                            <h4>임시비밀번호는 1q2w3e4r 입니다.</h4>
                         </div>
                         <div class="find_pw_result_login text-center">
                             <button class="black_button w-40">

@@ -42,7 +42,7 @@ public class ShopController {
 			logger.info("실패");
 		}
 		model.addAttribute("lists", lists);
-
+		model.addAttribute("subcategory", "ALL");
 	
 		return "shop/all";
 	}
@@ -56,6 +56,9 @@ public class ShopController {
 		if(!(order.equals("desc") || order.equals("low") || order.equals("high"))) {
 			order="desc";
 		}
+		
+		// Temp code
+		model.addAttribute("subcategory", "ALL");
 		if(subcategory == null) {
 			for(String subcat : outer) {
 				List<ProductsDTO> subProduct = productService.showProductList(subcat, order);
@@ -69,7 +72,9 @@ public class ShopController {
 						.sorted(Comparator.comparing(ProductsDTO::getProduct_price).reversed())
 						.collect(Collectors.toList());
 				List<List<ProductsDTO>> subLists = Lists.partition(sortedList, 4);
-				model.addAttribute("lists", subLists);	
+				model.addAttribute("lists", subLists);
+				model.addAttribute("category", "Outer");
+				model.addAttribute("subcategory", "ALL");
 				return "shop/all";
 			}else if(order.equals("low")) {
 				List<ProductsDTO> sortedList = products
@@ -77,20 +82,27 @@ public class ShopController {
 						.sorted(Comparator.comparing(ProductsDTO::getProduct_price))
 						.collect(Collectors.toList());
 				List<List<ProductsDTO>> subLists = Lists.partition(sortedList, 4);
-				model.addAttribute("lists", subLists);	
+				model.addAttribute("lists", subLists);
+				model.addAttribute("category", "Outer");
+				model.addAttribute("subcategory", "ALL");
 				return "shop/all";
 			}
 
 		}
 		else if(subcategory.equals("Jacket")) {
 			products = productService.showProductList(subcategory, order);
+			model.addAttribute("subcategory", "Jacket");
 		} else if(subcategory.equals("Coat")) {
 			products = productService.showProductList(subcategory, order);
+			model.addAttribute("subcategory", "Coat");
+			
 		} else if(subcategory.equals("Cardigan")) {
 			products = productService.showProductList(subcategory, order);
+			model.addAttribute("subcategory", "Cardigan");
 		}
-
-
+		
+		model.addAttribute("category", "Outer");
+			
 		// 나중에 수정할 예정
 
 		List<List<ProductsDTO>> subLists = Lists.partition(products, 4);
@@ -106,6 +118,8 @@ public class ShopController {
 		if(!(order.equals("desc") || order.equals("low") || order.equals("high"))) {
 			order="desc";
 		}
+		// Temp code
+		model.addAttribute("subcategory", "ALL");
 		if(subcategory == null) {
 			for(String subcat : top) {
 				List<ProductsDTO> subProduct = productService.showProductList(subcat, order);
@@ -119,7 +133,9 @@ public class ShopController {
 						.sorted(Comparator.comparing(ProductsDTO::getProduct_price).reversed())
 						.collect(Collectors.toList());
 				List<List<ProductsDTO>> subLists = Lists.partition(sortedList, 4);
+				model.addAttribute("category", "Top");
 				model.addAttribute("lists", subLists);	
+				
 				return "shop/all";
 			}else if(order.equals("low")) {
 				List<ProductsDTO> sortedList = products
@@ -127,19 +143,23 @@ public class ShopController {
 						.sorted(Comparator.comparing(ProductsDTO::getProduct_price))
 						.collect(Collectors.toList());
 				List<List<ProductsDTO>> subLists = Lists.partition(sortedList, 4);
+				model.addAttribute("category", "Top");
 				model.addAttribute("lists", subLists);	
 				return "shop/all";
 			}
 		}
 		else if(subcategory.equals("Knit")) {
 			products = productService.showProductList(subcategory, order);
+			model.addAttribute("subcategory", "Knit");
 		} else if(subcategory.equals("Shirt")) {
 			products = productService.showProductList(subcategory, order);
+			model.addAttribute("subcategory", "Shirt");
 		} else if(subcategory.equals("Tee")) {
 			products = productService.showProductList(subcategory, order);
-		}else {
-
+			model.addAttribute("subcategory", "Tee");
 		}
+		
+		model.addAttribute("category", "Top");
 		List<List<ProductsDTO>> subLists = Lists.partition(products, 4);
 		model.addAttribute("lists", subLists);
 		return "shop/all";
@@ -153,6 +173,9 @@ public class ShopController {
 		if(!(order.equals("desc") || order.equals("low") || order.equals("high"))) {
 			order="desc";
 		}
+		
+		// Temp code
+		model.addAttribute("subcategory", "ALL");
 		if(subcategory == null) {
 			for(String subcat : bottom) {
 				List<ProductsDTO> subProduct = productService.showProductList(subcat, order);
@@ -167,6 +190,7 @@ public class ShopController {
 						.collect(Collectors.toList());
 				List<List<ProductsDTO>> subLists = Lists.partition(sortedList, 4);
 				model.addAttribute("lists", subLists);	
+				model.addAttribute("category", "Bottom");
 				return "shop/all";
 			}else if(order.equals("low")) {
 				List<ProductsDTO> sortedList = products
@@ -175,16 +199,18 @@ public class ShopController {
 						.collect(Collectors.toList());
 				List<List<ProductsDTO>> subLists = Lists.partition(sortedList, 4);
 				model.addAttribute("lists", subLists);	
+				model.addAttribute("category", "Bottom");
 				return "shop/all";
 			}
 		}
 		else if(subcategory.equals("Pants")) {
 			products = productService.showProductList(subcategory, order);
+			model.addAttribute("subcategory", "Pants");
 		} else if(subcategory.equals("Skirt")) {
 			products = productService.showProductList(subcategory, order);
-		}else {
-
+			model.addAttribute("subcategory", "Skirt");
 		}
+		model.addAttribute("category", "Bottom");
 		List<List<ProductsDTO>> subLists = Lists.partition(products, 4);
 		model.addAttribute("lists", subLists);
 		return "shop/all";

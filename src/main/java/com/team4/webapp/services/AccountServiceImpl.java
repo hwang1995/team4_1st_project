@@ -40,21 +40,9 @@ public class AccountServiceImpl implements IAccountService {
 	 * - 컨트롤러에 MyPageDTO를 전달해 줘야 한다.
 	 */
 	@Override
+	@Deprecated
 	public MyPageDTO showMyPageInfo(Long member_id) {
-		// 1. member_id로 MemberDAO에서 MemberDTO의 값을 저장한다.
-		// 2. member_id를 통해 내림차순으로 정렬된 List<OrderDTO>를 가져옴
-		// 3. OrderDetailsDTO 객체 리스트를 저장할 공간을 만듬
-		// 4. OrderDetails를 만들기 위해 List<OrderDTO>에 저장된 값을 looping
-		// 4.1 - for(OrderDTO order : orders)
-		// 4.2 - OrderlistDTO의 리스트를 가져온다. => OrderlistDAO.selectByOrderId();
-		// 4.2.1 - for(OrderlistDTO orderlist : orderlists)
-		// 4.2.2 - OrderDetailsDTO의 객체를 생성한다. (orderDetails 라는 이름으로)
-		// 4.2.3 - orderDetails에 orderlist를 세팅한다. orderDetails.setOrderlist(orderlist)
-		// 4.2.4 - Product를 받아온다. Orderlist의 product_id로
-		// 4.2.5 - orderDetails에 orderDetail을 넣어준다.
-		// 5. - MyPageDTO에 MemberDTO, List<OrderDTO>, List<OrderDetails> 저장
-		// 6. 컨트롤러에 MyPageDTO를 전달한다.
-		
+	
 		return null;
 	}
 
@@ -115,6 +103,16 @@ public class AccountServiceImpl implements IAccountService {
 	@Override
 	public OrdersDTO findOrderbyOrderId(Long order_id) {
 		OrdersDTO order = ordersDAO.selectByOrderId(order_id);
+		String paymentStatus = order.getOrder_payment_status();
+		String deliveryStatus = order.getOrder_delivery_status();
+		
+		if(paymentStatus.equals("PAYMENT_FINISHED")) {
+			order.setOrder_payment_status("결제 완료");
+		}
+		
+		if(deliveryStatus.equals("DELIVERY_PENDING")) {
+			order.setOrder_delivery_status("배송 준비중");
+		}
 		return order;
 	}
 	/**

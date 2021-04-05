@@ -22,14 +22,17 @@ public class ProductController {
 	
 	@GetMapping("/{id}")
 	public String productDetailPage(@PathVariable Long id,Model model) {
-		// 이 id에 해당하는 데이터 객체가 존재하는지 체크하는 로직을 작성
-		// 존재한다면? Model attribute로 전달하기
-		// 존재하지 않는다면? 페이지가 존재하지 않습니다. 띄우기
+
+		try {
+			ProductDetailsDTO productDetailsDTO = productService.productDetailPage(id);
+			model.addAttribute("product", productDetailsDTO);
+			return "/product/product_details";
+		} catch(NullPointerException e) {
+			return "redirect:/";
+		}
+
 		
-		ProductDetailsDTO productDetailsDTO = productService.productDetailPage(id);
-		
-		model.addAttribute("product", productDetailsDTO);
-		return "/product/product_details";
+
 		
 	}
 	

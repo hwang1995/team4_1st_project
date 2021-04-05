@@ -40,8 +40,8 @@
             <div class="p-6 d-none d-md-block">
                 <caption>
                     <p class="eng_h2">
-                        회원가입시, 입력하신 회원 정보 또는 본인 인증으로 이메일과 비밀번호를 확인할 수 있습니다. <br>
-                        이메일과 비밀번호는 가입시 적어 주신 이메일로 보내드립니다.
+                        회원가입시, 입력하신 회원 정보 또는 본인 인증으로 이메일과 이름으로 확인할 수 있습니다. <br>
+                        임시비밀번호로 재설정 되어 알려드립니다.
                     </p>
                 </caption>
                 <div class="row mt-5">
@@ -62,7 +62,7 @@
                 <div class="row mt-2">
                     <div class="col-2"></div>
                     <div class="col-3 d-flex align-items-center">
-                        <h6 class="eng_h2">Password</h6>
+                        <h6 class="eng_h2">Name</h6>
                     </div>
                     <div class="col-5 d-flex align-items-center">
                         <input 
@@ -89,8 +89,8 @@
             <div class="p-2 d-md-none">
                 <caption>
                     <p class="eng_h2">
-                        회원가입시, 입력하신 회원 정보 또는 본인 인증으로 이메일과 비밀번호를 확인할 수 있습니다. <br>
-                        이메일과 비밀번호는 가입시 적어 주신 이메일로 보내드립니다.
+                        회원가입시, 입력하신 회원 정보 또는 본인 인증으로 이메일과 이름으로 확인할 수 있습니다. <br>
+                        임시비밀번호로 재설정 되어 알려드립니다.
                     </p>
                 </caption>
                 <div class="row mt-5">
@@ -107,7 +107,7 @@
 
                 <div class="row mt-2">
                     <div class="col-3 d-flex align-items-center">
-                        <h6 class="eng_h2">Password</h6>
+                        <h6 class="eng_h2">Name</h6>
                     </div>
                     <div class="col-9 d-flex align-items-center">
                         <input 

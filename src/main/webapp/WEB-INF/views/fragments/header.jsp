@@ -54,7 +54,7 @@
 				<li class="nav_content_item nav_content_item_active" onclick="goQnaPage('${contextPath}')">
 					<img
 						src="${contextPath}/resources/svg/chat-square.svg"
-						class="nav_icon_item" width="20px" />
+						width="20px" />
 						&nbsp; Q&A
 				</li>
 				</sec:authorize>

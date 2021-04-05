@@ -115,9 +115,12 @@
                    
                     <div class="register_terms mt-3 w-100 h-25">
                         <p>
-                            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Aliquid porro velit expedita. Iure omnis deleniti perferendis qui eveniet dolorum temporibus possimus dignissimos nostrum fugiat, reiciendis mollitia sed. Nobis, quidem necessitatibus?
-                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Error blanditiis debitis aliquam eum iure hic assumenda unde voluptatem, vitae consectetur quas consequuntur et eveniet magni facere suscipit commodi veritatis ab?
-                            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Sit nesciunt eveniet expedita ipsum explicabo? Perferendis quam accusantium ipsam, harum quaerat, optio reprehenderit iure quod eos fuga aut praesentium asperiores voluptatum!
+						인터넷 쇼핑몰 『에디토컴퍼니(주) 사이버 몰』회원 약관
+						<br/>
+						제1조(목적) <br/>
+						이 약관은 에디토컴퍼니(주) 회사(전자상거래 사업자)가 운영하는 에디토컴퍼니(주) 사이버 몰(이하 “몰”이라 한다)에서 제공하는 인터넷 관련 서비스(이하 “서비스”라 한다)를 이용함에 있어 사이버 몰과 이용자의 권리·의무 및 책임사항을 규정함을 목적으로 합니다.
+						<br/>
+						※「PC통신, 무선 등을 이용하는 전자상거래에 대해서도 그 성질에 반하지 않는 한 이 약관을 준용합니다.」
                         </p>
                     </div>
 

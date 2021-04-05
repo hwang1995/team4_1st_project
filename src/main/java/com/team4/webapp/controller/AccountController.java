@@ -59,6 +59,7 @@ public class AccountController {
 			String email_id = auth.getName();
 			memberInfo = authService.findMemberbyEmail(email_id);
 			orderInfo = accountService.findOrderbyOrderId(order_id);
+			
 			orderList = accountService.showMyInfo(order_id);
 			
 			int totalPrice = 0;

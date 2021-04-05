@@ -115,7 +115,7 @@
                                         <div class="item_details_minus ml-2 mr-3 d-flex align-items-center">
                                             <img src="${resources}/svg/dash.svg" alt="minus" width="24px">
                                         </div>
-                                        <input type="tel" class="item_details_quantity_status eng_h3" value=1 >
+                                        <input type="text" class="item_details_quantity_status eng_h3" value=1 >
                                         <div class="item_details_plus ml-3 mr-2 d-flex align-items-center">
                                             <img src="${resources}/svg/plus.svg" alt="plus" width="24px">
                                         </div>

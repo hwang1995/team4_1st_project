@@ -47,13 +47,13 @@ public class OrderController {
 	public String cartPage(Model model, Authentication auth) {
 		MembersDTO memberInfo = null;
 		List<CartListDTO> cartLists = null;
-		int totalPrice = 0;
+		long totalPrice = 0;
 		try {
 			String email_id = auth.getName();
 			memberInfo = authService.findMemberbyEmail(email_id);
 			cartLists = orderService.getCartList(memberInfo.getMember_id());
 			for(CartListDTO cart : cartLists) {
-				int tempPrice = cart.getCart_quantity() * cart.getProduct_price();
+				long tempPrice = (long) cart.getCart_quantity() * (long) cart.getProduct_price();
 				totalPrice += tempPrice;
 			}
 			model.addAttribute("cartLists", cartLists);
@@ -127,7 +127,7 @@ public class OrderController {
 			orderLists = orderService.showOrderlists(preOrder);
 			// Testing
 			for(CheckoutListDTO order : orderLists) {
-				int tempPrice = order.getProduct_price() * order.getProduct_quantity();
+				long tempPrice = (long) order.getProduct_price() * (long) order.getProduct_quantity();
 				totalPrice += tempPrice;
 				
 			}
@@ -162,11 +162,11 @@ public class OrderController {
 	@GetMapping("/checked")
 	public String checkedPage(HttpSession session, Model model) {
 		String purchaseTime = null;
-		int totalPrice = 0;
+		long totalPrice = 0;
 		
 		try {
 			purchaseTime = (String) session.getAttribute("purchaseTime");
-			totalPrice = (int) session.getAttribute("totalPrice");
+			totalPrice = (long) session.getAttribute("totalPrice");
 		} catch(NullPointerException e) {
 			logger.info("주문 기록이 존재하지 않습니다.");
 		}
@@ -210,7 +210,7 @@ public class OrderController {
 	@PostMapping(value= "/checkout", produces = "application/json; charset=UTF-8")
 	@ResponseBody
 	public String checkOut(HttpSession session, CheckoutDTO orderInfo) {
-		int totalPrice = 0;
+		long totalPrice = 0;
 		JSONObject jsonResult = new JSONObject();
 		List<CheckoutListDTO> itemList;
 		boolean isDeletedCart = false;
@@ -236,7 +236,7 @@ public class OrderController {
 				session.removeAttribute("itemList");
 				// itemList에 남겨져있는 product 정보로 총 합 구하기
 				for(CheckoutListDTO product : itemList) {
-					int tempPrice = product.getProduct_price() * product.getProduct_quantity();
+					long tempPrice = (long) product.getProduct_price() * (long) product.getProduct_quantity();
 					totalPrice += tempPrice;
 				}
 				

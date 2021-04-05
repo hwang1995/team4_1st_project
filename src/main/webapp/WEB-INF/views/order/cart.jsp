@@ -58,10 +58,10 @@
                                 <div class="col-3">
                                     <h6 class="eng_h4">Product</h6>
                                 </div>
-                                <div class="col-3">
+                                <div class="col-4">
                                     <h6 class="eng_h4">Description</h6>
                                 </div>
-                                <div class="col-3">
+                                <div class="col-2">
                                     <h6 class="eng_h4">Quantity</h6>
                                 </div>
                                 <div class="col-2">
@@ -90,12 +90,12 @@
                                    	 <img src="${cartList.product_image_name}" width="100%">	
                                     </a>
                                 </div>
-                                <div class="col-3 cart_description">
+                                <div class="col-4 cart_description">
                                     <h6 class="eng_h4">${cartList.product_name}</h6>
                                     <h6 class="eng_h4">Color : ${cartList.product_color}</h6>
                                     <h6 class="eng_h4">Size : ${cartList.product_size}</h6>
                                 </div>
-                                <div class="col-3 cart_quantity">
+                                <div class="col-2 cart_quantity">
                                     <h6 class="eng_h4">
                                     	${cartList.cart_quantity}
                                     </h6>
@@ -106,7 +106,8 @@
                                     </h6>
                                 </div>
                                 <div class="col-1 cart_delete">
-                                <button class="eng_h4 text_underline btn" onclick="removeCart(${cartList.cart_id})">delete</button>
+                                	<h6 class="eng_h4 text_underline btn" onclick="removeCart(${cartList.cart_id})">delete</h6>
+
                                 </div>
                             </div>
                         </div>
