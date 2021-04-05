@@ -6,8 +6,11 @@ import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import com.team4.webapp.dao.MembersDAO;
 import com.team4.webapp.dao.OrderlistsDAO;
 import com.team4.webapp.dao.OrdersDAO;
 import com.team4.webapp.dao.ProductsDAO;
@@ -29,6 +32,8 @@ public class AccountServiceImpl implements IAccountService {
 	private OrderlistsDAO orderlistsDAO;
 	@Autowired
 	private ProductsDAO productsDAO;
+	@Autowired
+	private MembersDAO membersDAO;
 	/**
 	 * 서비스 목적
 	 * - 회원이 자신의 회원 정보, 주문 리스트를 보기 위해 제공하는 서비스
@@ -92,12 +97,26 @@ public class AccountServiceImpl implements IAccountService {
 	 * - 컨트롤러에 MembersDTO를 반환해야 한다.
 	 */
 	@Override
-	public MembersDTO showMyInfo(Long member_id) {
-		// 1. MemberDAO에서 selectByMemberId로 MembersDTO에 값을 저장
-		// 2. 저장한 MembersDTO의 값을 컨트롤러로 전달
-		return null;
+	public List<MyPageDTO> showMyInfo(Long order_id) {
+		List<MyPageDTO> orderinfolist = new ArrayList<>();
+		List<OrderlistsDTO> orderlists = orderlistsDAO.selectByOrderId(order_id);
+		for(OrderlistsDTO orderlist : orderlists) {
+			ProductsDTO products = productsDAO.selectByProductId(orderlist.getProduct_id());
+			MyPageDTO orderinfo = new MyPageDTO();
+			orderinfo.setOrderInfo(orderlist);
+			orderinfo.setProductsInfo(products);
+			String filePath = "/webapp/image?path="+ orderinfo.getProduct_image();
+			orderinfo.setProduct_image(filePath);
+			orderinfolist.add(orderinfo);
+		}
+		return orderinfolist;
 	}
-
+	
+	@Override
+	public OrdersDTO findOrderbyOrderId(Long order_id) {
+		OrdersDTO order = ordersDAO.selectByOrderId(order_id);
+		return order;
+	}
 	/**
 	 * 서비스 목적
 	 * - 회원이 자신의 정보 (비밀번호, 전화번호, 주소)를 바꾸기 위한 서비스
@@ -105,18 +124,17 @@ public class AccountServiceImpl implements IAccountService {
 	 */
 	@Override
 	public int editMyInfo(MembersDTO member) {
-		// 1. MemberDAO에서 selectByMemberId로 MembersDTO에 값을 저장
-		// 2. 수정된 membersDTO를 저장하기 위해 새로운 객체 생성
-		// 3. 만약 값을 받은 member의 password가 빈칸이라면? 원본의 값을 가져오고
-		// 3.1 암호는 암호화필요 (Spring Security)
-		// 4. 만약 값을 받은 member의 phonenumber가 빈칸이라면? 원본의 값을 가져오고
-		// 5. 만약 값을 받은 member의 address가 빈칸이라면? 원본의 값을 가져오고
-		// 6. MemberDAO에 updateMembers로 새로 만든 MemberDTO 객체를 전달
-		// 7. 만약 반환값이 1이 아니면 exception
+		if(!member.getMember_pw().equals("")) {
+			PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+			String encodedPassword = passwordEncoder.encode(member.getMember_pw());
+			member.setMember_pw(encodedPassword);
+		} else {
+			MembersDTO memberInfo =  membersDAO.selectByEmailId(member.getMember_email());
+			member.setMember_pw(memberInfo.getMember_pw());
+		}
+		int row = membersDAO.updateMembers(member);
 		
-		
-		
-		return 0;
+		return row;
 	}
 	
 }

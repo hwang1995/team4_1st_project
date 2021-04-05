@@ -130,11 +130,11 @@
 			                          <tr>
 			                            <td rowspan="${fn:length(order.myPageList)}">
 			                                <fmt:formatDate value="${order.order_date}" pattern="yyyy-MM-dd"/><br/>
-			                                <a href="${contextPath}/account/order-info" class="order_list_orderno">[${order.order_id}]</a>
+			                                <a href="${contextPath}/account/order-info?order_id=${order.order_id}" class="order_list_orderno">[${order.order_id}]</a>
 			                            </td>
 			                            <c:forEach var="orderlist" items="${order.myPageList}">
 			                            <td>
-			                                <a href="">
+			                                <a href="/webapp/product/${orderlist.product_id}">
 			                                    <img src="${orderlist.product_image}" width="50%">
 			                                </a>
 			                            </td>

@@ -25,7 +25,7 @@
 			member_pw=#{member_pw},
 			member_tel=#{member_tel},
 			member_address=#{member_address}
-		where member_id=#{member_id}
+		where member_email=#{member_email}
 	</update>
 	<delete id="deleteByMemberId" parameterType="long">
 		delete from members

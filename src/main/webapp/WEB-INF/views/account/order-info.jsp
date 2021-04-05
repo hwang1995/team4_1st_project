@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <c:set var="contextPath" value="<%= request.getContextPath()%>"></c:set>  
 <c:set var="resources" value="${contextPath}/resources"></c:set>
 
@@ -59,15 +60,15 @@
                         <table class="bordered_table">
                             <tr>
                                 <th>주문번호</th>
-                                <td>20210223-0000180</td>
+                                <td>${order.order_id}</td>
                                 <th>주문일자</th>
-                                <td>2021.02.23</td>		
+                                <td><fmt:formatDate value="${order.order_date}" pattern="yyyy.MM.dd"/></td>		
                             </tr>
                             <tr>
                                 <th>주문자</th>
-                                <td>홍자바</td>
+                                <td>${member.member_name}</td>
                                 <th>결제현황</th>
-                                <td>결제 완료</td>		
+                                <td>${order.order_payment_status}</td>		
                             </tr>
                         </table>
                     </div>
@@ -88,15 +89,15 @@
                         <table class>
                             <tr>
                                 <th>수취인</th>
-                                <td>홍자바</td>
+                                <td>${order.recipient_name}</td>
                                 <th>연락처</th>
-                                <td>010-1234-1234</td>		
+                                <td>${order.recipient_tel}</td>		
                             </tr>
                             <tr>
                                 <th>주소</th>
-                                <td>서울 송파구 중대로 135 아이티벤처타워</td>
+                                <td>${order.recipient_address}</td>
                                 <th>배송현황</th>
-                                <td>배송 대기</td>		
+                                <td>${order.order_delivery_status}</td>		
                             </tr>
                         </table>
                     </div>
@@ -121,10 +122,10 @@
                                 <div class="col-3 ">
                                     <h6 class="eng_h4">Product</h6>
                                 </div>
-                                <div class="col-3 ">
+                                <div class="col-5 ">
                                     <h6 class="eng_h4">Description</h6>
                                 </div>
-                                <div class="col-3 ">
+                                <div class="col-1 ">
                                     <h6 class="eng_h4">Quantity</h6>
                                 </div>
                                 <div class="col-3 ">
@@ -136,54 +137,33 @@
                     <div class="col-1"></div>
                 </div>
                 <!--order item content-->
-                <div class="row mb-3">
-                    <div class="col-1"></div>
-                    <div class="col-10">
-                        <div class="container">
-                            <div class="row">
-                                <div class="col-3">
-                                    <a href="#">
-                                    <img src="${resources}/images/products/2.jpg" width="100%"></a>
-                                </div>
-                                <div class="col-3 order_item_description">
-                                    <h6 class="eng_h4">Bleu Ciel Cardigan</h6>
-                                    <h6 class="eng_h4">Color : Sky Blue</h6>
-                                </div>
-                                <div class="col-3 order_item_quantity">
-                                    <h6 class="eng_h4">1</h6>
-                                </div>
-                                <div class="col-3 order_item_price" >
-                                    <h6 class="eng_h4">KRW 290,000</h6>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-1"></div>
-                </div>
-                <div class="row mb-3">
-                    <div class="col-1"></div>
-                    <div class="col-10">
-                        <div class="container">
-                            <div class="row">
-                                <div class="col-3">
-                                    <a href="#">
-                                        <img src="${resources}/images/products/3.jpg" width="100%"></a>
-                                </div>
-                                <div class="col-3 order_item_description">
-                                    <h6 class="eng_h4">Creased Denim Pants</h6>
-                                    <h6 class="eng_h4">Size : S</h6>
-                                </div>
-                                <div class="col-3 order_item_quantity">
-                                    <h6 class="eng_h4">1</h6>
-                                </div>
-                                <div class="col-3 order_item_price" >
-                                    <h6 class="eng_h4">KRW 245,000</h6>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-1"></div>
-                </div>
+                <c:forEach var="list" items="${orderList}">
+	                <div class="row mb-3">
+	                    <div class="col-1"></div>
+	                    <div class="col-10">
+	                        <div class="container">
+	                            <div class="row">
+	                                <div class="col-3">
+	                                    <a href="/webapp/product/${list.product_id}">
+	                                    <img src="${list.product_image}" width="100%"></a>
+	                                </div>
+	                                <div class="col-5 order_item_description">
+	                                    <h6 class="eng_h4">${list.product_name}</h6>
+	                                    <h6 class="eng_h4">Color : ${list.product_color}</h6>
+	                                    <h6 class="eng_h4">Size : ${list.product_size}</h6>
+	                                </div>
+	                                <div class="col-1 order_item_quantity">
+	                                    <h6 class="eng_h4">${list.product_quantity}</h6>
+	                                </div>
+	                                <div class="col-3 order_item_price" >
+	                                    <h6 class="eng_h4">KRW <fmt:formatNumber value="${list.product_price}" pattern="#,###,###"/></h6>
+	                                </div>
+	                            </div>
+	                        </div>
+	                    </div>
+	                    <div class="col-1"></div>
+	                </div>
+				</c:forEach>
                 <!--delivery Charge-->
                 <div class="row mt-5 mb-3">
                     <div class="col-1"></div>
@@ -196,7 +176,7 @@
                                     <h5 class="eng_h4">Delivery charge :</h5>
                                 </div>
                                 <div class="col-3 d-flex justify-content-end">
-                                    <h5 class="eng_h4">KRW 0</h5>
+                                    <h5 class="eng_h4">KRW ${order.order_delivery_charge}</h5>
                                 </div>
                         
                             </div>
@@ -217,7 +197,7 @@
                                     <h3 class="eng_h3">Total :</h3>
                                 </div>
                                 <div class="col-3 d-flex justify-content-end">
-                                    <h3 class="eng_h3">KRW 535,000</h4>
+                                    <h3 class="eng_h3">KRW <fmt:formatNumber value="${totalPrice}" pattern="#,###,###"/></h3>
                                 </div>
                             </div>
                         </div>
