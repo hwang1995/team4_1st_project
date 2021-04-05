@@ -1,7 +1,11 @@
 package com.team4.webapp.services;
 
+import java.util.List;
+
 import com.team4.webapp.dto.MembersDTO;
 import com.team4.webapp.dto.MyPageDTO;
+import com.team4.webapp.dto.MyPageListDTO;
+import com.team4.webapp.dto.OrdersDTO;
 
 public interface IAccountService {
 	/**
@@ -21,14 +25,14 @@ public interface IAccountService {
 	 * @param Long order_id
 	 * @return MyPageDTO (회원 정보, 주문 정보, 상품 디테일의 대한 정보) 포함
 	 */
-	MyPageDTO showMyOrderInfo(Long member_id, Long order_id);
+	List<MyPageListDTO> showMyOrderInfo(Long member_id);
 	
 	/**
 	 * 회원의 정보를 보여주기 위해 제공하는 인터페이스
 	 * @param Long member_id
 	 * @return MembersDTO
 	 */
-	MembersDTO showMyInfo(Long member_id);
+	List<MyPageDTO> showMyInfo(Long member_id);
 	
 	/**
 	 * 회원이 정보를 바꾸기 위해 제공하는 인터페이스
@@ -36,4 +40,6 @@ public interface IAccountService {
 	 * @return int (영향 받은 행의 수를 받기 위하여)
 	 */
 	int editMyInfo(MembersDTO member);
+
+	OrdersDTO findOrderbyOrderId(Long order_id);
 }

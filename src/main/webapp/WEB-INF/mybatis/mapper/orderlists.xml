@@ -32,5 +32,9 @@
 		delete from orderlists
 		where orderlist_id=#{orderlist_id}
 	</delete>
-
+	<select id="selectByOrderId" parameterType="long" resultType="orderlists">
+		select orderlist_id, orderlist_quantity, product_color, product_size, order_id, product_id
+		from orderlists
+		where order_id=#{order_id}
+	</select>
 </mapper>

@@ -31,7 +31,7 @@
 </head>
 <body>
 	<jsp:include page="/WEB-INF/views/fragments/header.jsp" />
-
+	<input type="hidden" id="u_email" value="${member.member_email}"/>
     <section>
         <article>
             <div class="container edit_my_info_margin">
@@ -42,38 +42,38 @@
                             <div class="form-group row">
                               <label class="col-sm-3 col-form-label">Email</label>
                               <div class="col-sm-7">
-                                  <h5 class="eng_h3">abcde12345@naver.com</h5>
+                                  <h5 class="eng_h3">${member.member_email}</h5>
                               </div>
                             </div>
                             <div class="form-group row">
                                 <label class="col-sm-3 col-form-label">Name</label>
                                 <div class="col-sm-7">
-                                    <h5 class="h5">홍자바</h5>
+                                    <h5 class="h5">${member.member_name}</h5>
                                 </div>
                             </div>
                             <div class="form-group row">
                               <label for="upassword" class="col-sm-3 col-form-label">Password</label>
                               <div class="col-sm-7">
-                                <input type="password" class="form-control" id="upassword">
+                                <input type="password" class="form-control" id="u_password" name="u_password">
+                                <small class="form-text text-muted mb-n2">영문, 숫자 조합 8 ~ 10자</small>
                               </div>
                             </div>
-                            <small class="form-text text-muted text-center mt-n3">영문 대소문자/숫자/특수문자를 혼용하여 10~16자</small>
                             <div class="form-group row">
                                 <label for="urepassword" class="col-sm-3 col-form-label">Re-Password</label>
                                 <div class="col-sm-7">
-                                  <input type="password" class="form-control" id="urepassword">
+                                  <input type="password" class="form-control" id="u_re_password" name="u_re_password">
                                 </div>
                             </div>
                             <div class="form-group row">
                                 <label for="uphonenumber" class="col-sm-3 col-form-label">Phone Number</label>
                                 <div class="col-sm-7">
-                                  <input type="text" class="form-control" id="uphonenumber" pattern="010-\d{3,4}-\d{4}">
+                                  <input type="text" class="form-control" id="u_tel" name="u_tel" value="${member.member_tel}">
                                 </div>
                             </div>
                             <div class="form-group row">
                                 <label for="uaddress" class="col-sm-3 col-form-label">Address</label>
                                 <div class="col-sm-7">
-                                  <input type="text" class="form-control" id="uaddress">
+                                  <input type="text" class="form-control" id="u_address" name="u_address" value="${member.member_address}">
                                 </div>
                             </div>
                         </form>
@@ -84,7 +84,7 @@
                                 </button>
                             </div>
                             <div class="col">
-                                <button class="black_button w-70" onclick="goMyPageWithSendData('${contextPath}')">
+                                <button class="black_button w-70" onclick="goMyPageWithSendData()">
                                     <span class="eng_h1">Confirm</span>
                                 </button>
                             </div>

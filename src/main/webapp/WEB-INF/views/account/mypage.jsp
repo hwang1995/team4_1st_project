@@ -1,7 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <c:set var="contextPath" value="<%= request.getContextPath()%>"></c:set>  
 <c:set var="resources" value="${contextPath}/resources"></c:set>
+<c:set var="mypageCount" value="${fn:length(mypage)}"></c:set>
 
 
 <!DOCTYPE html>
@@ -54,7 +57,7 @@
                             <h5 class="eng_h2">Name</h5>
                         </div>
                         <div class="col-7">
-                            <h5>홍자바</h6>
+                            <h5>${member.member_name}</h6>
                         </div>
                         <div class="col-2"></div>
                     </div>
@@ -64,7 +67,7 @@
                             <h5 class="eng_h2">Email</h5>
                         </div>
                         <div class="col-7">
-                            <h5>aaa123@naver.com</h5>
+                            <h5>${member.member_email}</h5>
                         </div>
                         <div class="col-2"></div>
                     </div>
@@ -74,7 +77,7 @@
                             <h5 class="eng_h2">Mobile</h5>
                         </div>
                         <div class="col-7">
-                            <h5>01012341234</h5>
+                            <h5>${member.member_tel}</h5>
                         </div>
                         <div class="col-2"></div>
                     </div>
@@ -84,7 +87,7 @@
                             <h5 class="eng_h2">Address</h5>
                         </div>
                         <div class="col-7">
-                            <h5>서울 송파구 중대로 135 아이티벤쳐타워</h5>
+                            <h5>${member.member_address}</h5>
                         </div>
                         <div class="col-2"></div>
                     </div>
@@ -113,45 +116,44 @@
             <div class="mypage_table_container">
                 <div class="col-2"></div>
                 <div class="col-8">
-                    <table class="order_list_table">
+                    <table class="table-bordered order_list_table">
                         <thead class="order_list_thead">
-                            <th scope="col">Order No.</th>
-                            <th scope="col">Product</th>
-                            <th scope="col">Description</th>
-                            <th scope="col" width="370">Quantity</th>
+                            <th scope="col" width="100">Order No.</th>
+                            <th scope="col" width="300">Product</th>
+                            <th scope="col" width="300">Description</th>
+                            <th scope="col" width="100">Quantity</th>
                             <th scope="col" width="140">Price</th>
                         </thead>
                         <tbody>
-                          <tr>
-                            <td rowspan="2">
-                                2021-02-23<br/>
-                                <a href="${contextPath}/account/order-info" class="order_list_orderno">[0000180]</a>
-                            </td>
-                            <td>
-                                <a href="">
-                                    <img src="${resources}/images/products/mypage01.PNG" width="50%">
-                                </a>
-                            </td>
-                            <td>
-                               Mock Turtleneck Knit<br/>
-                                Color : Ivory 
-                            </td>
-                            <td>1</td>
-                            <td>KRW 238,000</td>
-                          </tr>
-                          <tr>
-                            <td>
-                                <a href="">
-                                    <img src="${resources}/images/products/mypage02.PNG" width="50%">
-                                </a>
-                            </td>
-                            <td>
-                                Flannel Skirt<br/>
-                                Size : S
-                            </td>
-                            <td>1</td>
-                            <td>KRW 428,000</td>
-                          </tr>
+                        	<c:if test="${mypageCount > 0 }">
+	                    		<c:forEach var="order" items="${mypage}">
+			                          <tr>
+			                            <td rowspan="${fn:length(order.myPageList)}">
+			                                <fmt:formatDate value="${order.order_date}" pattern="yyyy-MM-dd"/><br/>
+			                                <a href="${contextPath}/account/order-info?order_id=${order.order_id}" class="order_list_orderno">[${order.order_id}]</a>
+			                            </td>
+			                            <c:forEach var="orderlist" items="${order.myPageList}">
+			                            <td>
+			                                <a href="/webapp/product/${orderlist.product_id}">
+			                                    <img src="${orderlist.product_image}" width="50%">
+			                                </a>
+			                            </td>
+			                            <td>
+			                               ${orderlist.product_name}<br/>
+			                                Color : ${orderlist.product_color}<br/>
+			                                Size : ${orderlist.product_size}
+			                            </td>
+			                            <td>${orderlist.product_quantity}</td>
+			                            <td>KRW <fmt:formatNumber value="${orderlist.product_price}" pattern="#,###,###"/></td>
+			                            </tr>
+			                            </c:forEach>
+			                   </c:forEach>
+			                </c:if>
+			                <c:if test="${mypageCount == 0 }">
+				            <td colspan=5 class="mypage_container" style = "height : 50vh;">    
+					        	<h5 class="eng_h2">최근주문내역이 비어있습니다.</h5>
+							</td>
+				            </c:if>
                         </tbody>
                     </table>
                 </div>

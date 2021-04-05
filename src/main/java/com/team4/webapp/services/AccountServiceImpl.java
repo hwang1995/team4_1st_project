@@ -1,12 +1,39 @@
 package com.team4.webapp.services;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import com.team4.webapp.dao.MembersDAO;
+import com.team4.webapp.dao.OrderlistsDAO;
+import com.team4.webapp.dao.OrdersDAO;
+import com.team4.webapp.dao.ProductsDAO;
 import com.team4.webapp.dto.MembersDTO;
 import com.team4.webapp.dto.MyPageDTO;
+import com.team4.webapp.dto.MyPageListDTO;
+import com.team4.webapp.dto.OrderlistsDTO;
+import com.team4.webapp.dto.OrdersDTO;
+import com.team4.webapp.dto.ProductsDTO;
 
 @Service
 public class AccountServiceImpl implements IAccountService {
+	private static final Logger logger = LoggerFactory.getLogger(AccountServiceImpl.class);
+	
+	
+	@Autowired
+	private OrdersDAO ordersDAO;
+	@Autowired
+	private OrderlistsDAO orderlistsDAO;
+	@Autowired
+	private ProductsDAO productsDAO;
+	@Autowired
+	private MembersDAO membersDAO;
 	/**
 	 * 서비스 목적
 	 * - 회원이 자신의 회원 정보, 주문 리스트를 보기 위해 제공하는 서비스
@@ -37,24 +64,31 @@ public class AccountServiceImpl implements IAccountService {
 	 * - 컨트롤러에 MyPageDTO를 전달해 줘야 한다.
 	 */
 	@Override
-	public MyPageDTO showMyOrderInfo(Long member_id, Long order_id) {
-		// 1. - MyPageDTO에 객체를 담을 공간을 생성한다. (MyPageDTO orderInfoDat = new MyPageDTO())
-		// 2. - member_id를 통해 MemberDTO 객체를 가져온다.
-		// 3. - orderInfoData에 memberDTO를 저장한다.
-		// 4. - OrdersDTO를 가져오기 위해 OrderDAO에서 selectByOrderId(order_id)를 실행하고 값을 전달받는다.
-		// 5. - orderInfoData에 ordersDTO를 저장한다.
-		// 6. - OrderlistDTO를 담을 리스트 객체를 생성하고 받아온다.
-		// 7. - OrderDetailsDTO를 저장하기 위한 리스트 객체를 생성한다.
-		// 8. - OrderDetails를 만들기 위해 Orderlist를 Looping한다.
-		// 8.1 - for(OrderlistsDTO orderlist : orderlists)
-		// 8.1.1 - OrderDetails 객체를 생성한다.
-		// 8.1.2 - OrderDetails 객체에 orderlist를 넣어준다.
-		// 8.1.3 - Products를 가져오기 위해 orderlist에 있는 product_id로 조회한다.
-		// 8.1.4 - OrderDetails 객체에 product를 넣어준다.
-		// 8.1.5 - 다 완성된 OrderDetailsDTO를 List로 넣어준다.
-		// 9. 다 완성된 List<OrderDetailsDTO>를 orderInfoData로 넣어준다.
-		// 10. 이 MyPageDTO를 컨트롤러로 반환한다.
-		return null;
+	public List<MyPageListDTO> showMyOrderInfo(Long member_id) {
+		List<MyPageListDTO> mypageLists = new ArrayList<>();
+		List<OrdersDTO> orders = ordersDAO.selectByMemberId(member_id);
+		List<OrderlistsDTO> orderlists = new ArrayList<>();
+		for(OrdersDTO order : orders) {
+			List<MyPageDTO> mypageList = new ArrayList<MyPageDTO>();
+			MyPageListDTO mypageInfoList = new MyPageListDTO();
+			mypageInfoList.setOrder_id(order.getOrder_id());
+			mypageInfoList.setOrder_date(order.getOrder_date());
+			orderlists = orderlistsDAO.selectByOrderId(order.getOrder_id());
+			for(OrderlistsDTO orderlist : orderlists) {
+				ProductsDTO products = productsDAO.selectByProductId(orderlist.getProduct_id());
+				MyPageDTO mypage = new MyPageDTO();
+				mypage.setOrderInfo(orderlist);
+				mypage.setProductsInfo(products);
+				String filePath = "/webapp/image?path="+ mypage.getProduct_image();
+				mypage.setProduct_image(filePath);
+				mypageList.add(mypage);
+				logger.info(mypage.toString());
+			}
+			mypageInfoList.setMyPageList(mypageList);
+			mypageLists.add(mypageInfoList);
+		}
+		
+		return mypageLists;
 	}
 
 	/**
@@ -63,12 +97,26 @@ public class AccountServiceImpl implements IAccountService {
 	 * - 컨트롤러에 MembersDTO를 반환해야 한다.
 	 */
 	@Override
-	public MembersDTO showMyInfo(Long member_id) {
-		// 1. MemberDAO에서 selectByMemberId로 MembersDTO에 값을 저장
-		// 2. 저장한 MembersDTO의 값을 컨트롤러로 전달
-		return null;
+	public List<MyPageDTO> showMyInfo(Long order_id) {
+		List<MyPageDTO> orderinfolist = new ArrayList<>();
+		List<OrderlistsDTO> orderlists = orderlistsDAO.selectByOrderId(order_id);
+		for(OrderlistsDTO orderlist : orderlists) {
+			ProductsDTO products = productsDAO.selectByProductId(orderlist.getProduct_id());
+			MyPageDTO orderinfo = new MyPageDTO();
+			orderinfo.setOrderInfo(orderlist);
+			orderinfo.setProductsInfo(products);
+			String filePath = "/webapp/image?path="+ orderinfo.getProduct_image();
+			orderinfo.setProduct_image(filePath);
+			orderinfolist.add(orderinfo);
+		}
+		return orderinfolist;
 	}
-
+	
+	@Override
+	public OrdersDTO findOrderbyOrderId(Long order_id) {
+		OrdersDTO order = ordersDAO.selectByOrderId(order_id);
+		return order;
+	}
 	/**
 	 * 서비스 목적
 	 * - 회원이 자신의 정보 (비밀번호, 전화번호, 주소)를 바꾸기 위한 서비스
@@ -76,18 +124,17 @@ public class AccountServiceImpl implements IAccountService {
 	 */
 	@Override
 	public int editMyInfo(MembersDTO member) {
-		// 1. MemberDAO에서 selectByMemberId로 MembersDTO에 값을 저장
-		// 2. 수정된 membersDTO를 저장하기 위해 새로운 객체 생성
-		// 3. 만약 값을 받은 member의 password가 빈칸이라면? 원본의 값을 가져오고
-		// 3.1 암호는 암호화필요 (Spring Security)
-		// 4. 만약 값을 받은 member의 phonenumber가 빈칸이라면? 원본의 값을 가져오고
-		// 5. 만약 값을 받은 member의 address가 빈칸이라면? 원본의 값을 가져오고
-		// 6. MemberDAO에 updateMembers로 새로 만든 MemberDTO 객체를 전달
-		// 7. 만약 반환값이 1이 아니면 exception
+		if(!member.getMember_pw().equals("")) {
+			PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+			String encodedPassword = passwordEncoder.encode(member.getMember_pw());
+			member.setMember_pw(encodedPassword);
+		} else {
+			MembersDTO memberInfo =  membersDAO.selectByEmailId(member.getMember_email());
+			member.setMember_pw(memberInfo.getMember_pw());
+		}
+		int row = membersDAO.updateMembers(member);
 		
-		
-		
-		return 0;
+		return row;
 	}
 	
 }
