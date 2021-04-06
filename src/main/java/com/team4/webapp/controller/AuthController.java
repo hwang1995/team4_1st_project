@@ -92,5 +92,5 @@ public class AuthController {
 			return "failure";
 		}
 	}
-
+	
 }

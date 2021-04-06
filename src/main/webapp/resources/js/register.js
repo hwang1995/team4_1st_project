@@ -81,9 +81,11 @@ $('.email_check_button').click(() => {
 	}).then(data => {
 		if(data == "success"){
 			isEmailChecked = true;
-			alert("사용가능한 이메일 입니다.");
+			$("#errorUemail").attr("class", "text-success");
+			$("#errorUemail").html("사용가능한 이메일 입니다.");
 		} else{
-			alert("사용 불가능한 이메일 입니다.");
+			$("#errorUemail").attr("class", "text-danger");
+			$("#errorUemail").html("사용 불가능한 이메일 입니다.");
 		}
 	});
 
