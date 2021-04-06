@@ -90,4 +90,9 @@ public class CartListDTO {
 		this.product_name = product.getProduct_name();
 		this.product_price = product.getProduct_price();
 	}
+	
+	public long calcPrice(CartListDTO cart) {
+		long tempPrice = (long) cart.getCart_quantity() * (long) cart.getProduct_price();
+		return tempPrice;
+	}
 }

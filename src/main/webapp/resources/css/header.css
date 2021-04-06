@@ -81,3 +81,15 @@
     z-index: 4;
     width : 100vw;
 }
+
+.nav_grey_divider {
+	border : 1px solid #d0d3d4;
+}
+
+.nav_container_mobile {
+	display : flex;
+	flex-direction : row-reverse;
+	align-items : center;
+	margin-bottom : 1rem;
+	padding-right : 1rem;
+}

@@ -1,9 +1,4 @@
-/**
- * 이 JS는 상품 상세 페이지의 필요한 
- * 1) 수량 -, +를 DOM에 갱신하기
- * 2) 사용자가 선택한 옵션, 수량을 가져와 
- *    다음 웹 페이지로 넘겨주는 역할을 하게 된다. 
- */
+const quantityElem = $('.item_details_quantity_status');
 
 let initQuantity = 1; // 초기의 수량은 1이 되야 한다.
 let numRegExp = /^[0-9]*$/
@@ -18,8 +13,6 @@ let numRegExp = /^[0-9]*$/
  */
 
  $('.item_details_minus').click(() => {
-    // item_details_quantity_status의 DOM을 가져온다.
-    const quantityElem = $('.item_details_quantity_status');
 
     // 수량을 -1 한다.
     initQuantity -= 1;
@@ -37,9 +30,6 @@ let numRegExp = /^[0-9]*$/
 });
 
 $('.item_details_plus').click(() => {
-    // item_details_quantity_status의 DOM을 가져온다.
-    const quantityElem = $('.item_details_quantity_status');
-
     // 수량을 +1 한다.
     initQuantity += 1;
 
@@ -54,6 +44,8 @@ $('.item_details_plus').click(() => {
  * ADD TO CART, BUY NOW 버튼을 클릭 시 
  * 장바구니 페이지와 구매 페이지로 넘어가는 DOM Event 
  */
+
+
 
 const goCartPage = () => {
 // elements 의 값을 가져온다.
@@ -98,8 +90,7 @@ const goCartPage = () => {
 		}
 		
 	});
-	
-	console.log(buyInfoObj);
+
 }
 
 const goBuyPage = () => {
@@ -140,13 +131,12 @@ const goBuyPage = () => {
 	then((data) => {
 		if(data.status == "success"){
 			window.location.href = "/webapp/order/checkout";
-			console.log("hello");
 		} else {
 			window.location.href= "/webapp/auth/login";
 		}
 		
 	});
-	
-	console.log(buyInfoObj);
+
 
 }
+

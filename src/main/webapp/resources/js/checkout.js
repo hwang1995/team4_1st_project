@@ -1,5 +1,8 @@
 let telRegExp = /^01(?:0|1|[6-9])-(?:\d{3}|\d{4})-\d{4}$/;
 
+/**
+상품 구매 버튼을 누를 시에 작동하는 함수
+ */
 $('.order_info_black_button').click(
 	() => {
 		// 초기 설정값 가져오기
@@ -47,7 +50,6 @@ $('.order_info_black_button').click(
 		}).
 		then((data) => {
 			if(data.status == "success"){
-				console.log("Insert Data success");
 				location.href = "/webapp/order/checked";
 			} else {
 				console.log("Failure");
@@ -60,7 +62,9 @@ $('.order_info_black_button').click(
 		
 	}
 );
-
+/**
+체크박스를 다 선택해주는 함수
+ */
 $('#ucheckbox').click(
 	() => {
 		const checkStatus = $('#ucheckbox').prop('checked');

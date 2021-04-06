@@ -77,6 +77,10 @@ public class CheckoutListDTO {
 		this.product_quantity = preorder.getProduct_quantity();
 	}
 	
+	public long calcPrice(CheckoutListDTO checkout) {
+		long tempPrice = (long) checkout.getProduct_quantity() * (long) checkout.getProduct_price();
+		return tempPrice;
+	}
 	
 	
 	
