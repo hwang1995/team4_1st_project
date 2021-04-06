@@ -48,14 +48,15 @@
                     </div>
                 </div>
                 <form method="post" action="${contextPath}/login">
-                                <div class="login_main_conent">
+                <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+                  <div class="login_main_conent">
                     <div class="row mb-3">
                         <div class="col-3"></div>
                         <div class="col-4">
-                            <input type="text" name="user_email" id="user_email" placeholder="E-mail">
+                            <input type="text" name="user_email" id="user_email" placeholder="E-mail" autofocus tabindex="1">
                         </div>
                         <div class="col-2">
-                          <button type="submit" class="black_button ml-1" >
+                          <button type="submit" class="black_button ml-1" onclick="validate()">
 								<span class="h4 eng_h2 login_button white_text">LOGIN</span>
                           </button>
                            <!-- <button class="black_button ml-1" onclick="goHomePage('${contextPath}')"> -->
@@ -66,7 +67,7 @@
                     <div class="row">
                         <div class="col-3"></div>
                         <div class="col-4">
-                            <input type="password" name="user_password" id="user_password" placeholder="PW">
+                            <input type="password" name="user_password" id="user_password" placeholder="PW" tabindex="2">
                         </div>
                         <div class="col-2">
                         <a href="${contextPath}/auth/register" class="btn white_button ml-1">
@@ -83,8 +84,20 @@
                         <div class="col-3"></div>
                     </div>
                 </div>
+                <div class="row mt-3">
+                	<div class="col-3"></div>
+                	<div class="col-4">
+                		<c:if test="${not empty SPRING_SECURITY_LAST_EXCEPTION}">
+	                		<p style="color:red">${sessionScope["SPRING_SECURITY_LAST_EXCEPTION"].message}</p>
+	                		<c:remove var="SPRING_SECURITY_LAST_EXCEPTION" scope="session"/>
+	               		</c:if>
+                	</div>
+	                
+                </div>
+                
+                
                 </form>
-
+                
             </div>
         </article>
     </section>

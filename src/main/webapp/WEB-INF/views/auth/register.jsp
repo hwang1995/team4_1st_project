@@ -51,6 +51,15 @@
                             </button>
                         </div>
                     </div>
+                    
+                    <div class="row">
+                    	<div class="col-3"></div>
+                    	<div class="col-6 ml-3">
+                    		<span id="errorUemail" class=""></span>
+                    	</div>
+                    	<div class="col-3"></div>
+                    </div>
+                    
 
                     <div class="row m-2">
                         <div class="col-3 register_info_text">
