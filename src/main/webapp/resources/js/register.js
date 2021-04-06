@@ -12,9 +12,9 @@
 
 // 전역 변수 (이메일 있는지 체크 여부, email, pw, tel 정규 표현식 작성)
 let isEmailChecked = false;
-let emailRegExp = /^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/i;
-let telRegExp = /^01(?:0|1|[6-9])-(?:\d{3}|\d{4})-\d{4}$/;
-let passwordRegExp = /^(?=.*\d)(?=.*[a-zA-Z])[0-9a-zA-Z]{8,10}$/; //  8 ~ 10자 영문, 숫자 조합
+const emailRegExp = /^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/i;
+const telRegExp = /^01(?:0|1|[6-9])-(?:\d{3}|\d{4})-\d{4}$/;
+const passwordRegExp = /^(?=.*\d)(?=.*[a-zA-Z])[0-9a-zA-Z]{8,10}$/; //  8 ~ 10자 영문, 숫자 조합
 
 
 /**
@@ -91,68 +91,78 @@ $('.email_check_button').click(() => {
 
 });
 
-function validate(){
-	//정규표현식
-	
-	let passwordResult = true;
-	let agreementResult = true;
-	let memberInfo = {};
-	const u_email = $("#u_email").val();
-	const u_name = $("#u_name").val();
-	const u_password = $("#u_password").val();
-	const u_re_password = $("#u_re_password").val();
-	const u_tel = $("#u_tel").val();
-	const u_address = $("#u_address").val();
+function registerValidate(){
+	let result = true;
+	const memberInfo = {};
+	const emailElem = $("#u_email").val();
+	const nameElem = $("#u_name").val();
+	const passwordElem = $("#u_password").val();
+	const rePasswordElem = $("#u_re_password").val();
+	const telElem = $("#u_tel").val();
+	const addressElem = $("#u_address").val();
 	const agreement = $("#agreement").prop("checked");
 	const gdpr_agreement = $("#gdpr_agreement").prop("checked");
 	const marketing_agreement = $("#marketing_agreement").prop("checked");
-	const emailResult = emailRegExp.test(u_email);
-	const telResult = telRegExp.test(u_tel);
-	const nameResult = true;
 	
-	if(!emailResult){
+	if(!emailElem){
+		alert("이메일을 입력해주세요.");
+		result = false;
+		return;
+	} else if(!emailRegExp.test(emailElem)){
 		alert("이메일 형식이 올바르지 않습니다.");
+		result = false;
 		return;
 	}
 	
-	if(u_name == ""){
+	if(!nameElem){
 		alert("이름을 입력해주세요.");
+		result = false;
 		return;
 	}
 	
-	if(u_password == "" && u_re_password == ""){
+	if(!passwordElem && !rePasswordElem){
 		alert("비밀번호를 입력해주세요.");
-		passwordResult = false;
+		result = false;
 		return;
-	} else if(u_password != u_re_password){
+	} else if(passwordElem != rePasswordElem){
 		alert("비밀번호가 다릅니다.");
-		passwordResult = false;
+		result = false;
 		return;		
-	} else if(!passwordRegExp.test(u_password)){
+	} else if(!passwordRegExp.test(passwordElem)){
 		alert("비밀번호 형식이 올바르지 않습니다.");
-		passwordResult = false;
+		result = false;
 		return;
 	}
 	
-	if(!telResult){
+	if(!telElem){
+		alert("전화번호를 입력해주세요.");
+		result = false;
+		return;
+	} else if(!telRegExp.test(telElem)){
 		alert("전화번호 형식이 올바르지 않습니다.");
+		result = false;
 		return;
 	}
+		
 	
+	if(!addressElem){
+		alert("주소를 입력해주세요.");
+		result = false;
+		return;
+	}
 	
 	if(!(agreement && gdpr_agreement && marketing_agreement)){
 		alert("약관에 동의해주세요.");
-		agreementResult = false;
+		result = false;
 		return;
 	}
 	
-	if(passwordResult && agreementResult && emailResult && telResult && isEmailChecked){
-		memberInfo.member_email = u_email;
-		memberInfo.member_name = u_name;
-		memberInfo.member_pw = u_password;
-		memberInfo.member_tel = u_tel;
-		memberInfo.member_address = u_address;
-		console.log(memberInfo);
+	if(result){
+		memberInfo.member_email = emailElem;
+		memberInfo.member_name = nameElem;
+		memberInfo.member_pw = passwordElem;
+		memberInfo.member_tel = telElem;
+		memberInfo.member_address = addressElem;
 		
 		$.ajax({
 			url: "/webapp/auth/register",
@@ -162,7 +172,6 @@ function validate(){
 			if(data == "success"){
 				window.location.href = "/webapp/auth/welcome";
 			}
-			console.log(data);
 		}
 		);
 	} else{
@@ -170,72 +179,3 @@ function validate(){
 	}
 	
 }
-
-
-
-// 4) 회원 가입 구현 로직
-// $('.register_confirm_button').click(() => {
-//     // 회원 객체 생성 준비
-//     let registObj = {};
-//     const welcomeUrl = "http://localhost:5500/pages/auth/welcome.html"
-
-//     // JSON 객체 만들기
-//     registObj.email = $('#u_email').val();
-//     registObj.name = $('#u_name').val();
-//     registObj.password = $('#u_password').val();
-//     registObj.rePassword = $('#u_re_password').val();
-//     registObj.tel = $('#u_tel').val();
-//     registObj.address = $('#u_address').val();
-//     registObj.agreements = {
-//         terms : $('#agreement').prop("checked"),
-//         gdpr : $('#gdpr_agreement').prop("checked"),
-//         marketing : $('#marketing_agreement').prop("checked")
-//     };
-
-//     // 1. E-Mail이 유효한지 점검했는가?
-//     if(!isEmailChecked){
-//         alert("이메일 CHECK 버튼을 눌러주세요.");
-//         return;
-//     }
-
-//     // 2. 이름을 입력했는가?
-//     if(registObj.name === ""){
-//         alert("이름을 입력하세요.");
-//         return;
-//     }
-    
-//     // 이 줄에 비밀번호의 유효성 검사를 끝냈는지 점검 if문으로 작성
-
-
-//     // 3. 비밀번호를 입력했는지 점검 or 비밀번호와 비밀번호 확인이 동일한지 점검
-//     if(registObj.password === "") {
-//         alert("비밀번호를 입력하세요.");
-//         return;
-//     } else if (registObj.password !== registObj.rePassword){
-//         alert("패스워드가 다릅니다.")
-//         return;
-//     }
-
-//     // 4. 전화번호의 유효성 검사 및 빈칸 점검 
-//     if(registObj.tel === ""){
-//         alert("전화번호 칸이 비었습니다.");
-//         return;
-//     }
-
-//     // 5. 주소를 입력했는가?
-//     if(registObj.address === ""){
-//         alert("주소칸이 비었습니다.");
-//         return;
-//     }
-
-//     // 6. 약관에 동의하였는가?
-//     if(!registObj.agreement.terms) {
-//         alert("약관에 동의해주세요.");
-//         return;
-//     }
-
-//     $(location).attr('href', welcomeUrl);
-    
-    
-//     console.log(registObj);
-// })

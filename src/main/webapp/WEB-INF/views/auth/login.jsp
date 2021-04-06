@@ -48,7 +48,6 @@
                     </div>
                 </div>
                 <form method="post" action="${contextPath}/login">
-                <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
                   <div class="login_main_conent">
                     <div class="row mb-3">
                         <div class="col-3"></div>
@@ -56,11 +55,9 @@
                             <input type="text" name="user_email" id="user_email" placeholder="E-mail" autofocus tabindex="1">
                         </div>
                         <div class="col-2">
-                          <button type="submit" class="black_button ml-1" onclick="validate()">
+                          <button type="submit" class="black_button ml-1" onclick="loginValidate()">
 								<span class="h4 eng_h2 login_button white_text">LOGIN</span>
                           </button>
-                           <!-- <button class="black_button ml-1" onclick="goHomePage('${contextPath}')"> -->
-                         
                         </div>
                         <div class="col-3"></div>
                     </div>
@@ -70,25 +67,25 @@
                             <input type="password" name="user_password" id="user_password" placeholder="PW" tabindex="2">
                         </div>
                         <div class="col-2">
-                        <a href="${contextPath}/auth/register" class="btn white_button ml-1">
-                        	<span class="h4 eng_h2">
-                        		REGISTER
-                        	</span>
-                        </a>
-                          <%--   <button class="white_button ml-1" onClick="goRegisterPage('${contextPath}')">
-                                <span class="h4 eng_h2">
-                                        REGISTER
-                                    </span>
-                            </button> --%>
+	                        <a href="${contextPath}/auth/register" class="btn white_button ml-1">
+	                        	<span class="h4 eng_h2">
+	                        		REGISTER
+	                        	</span>
+	                        </a>
                         </div>
                         <div class="col-3"></div>
                     </div>
                 </div>
+                
+                <!--
+                Bad Credentials 에러 -> '아이디 또는 비밀번호가 틀립니다' 보여주기 위함
+                세션에 저장되어 온 에러메시지를 출력 후, 세션 제거
+                -->
                 <div class="row mt-3">
                 	<div class="col-3"></div>
                 	<div class="col-4">
                 		<c:if test="${not empty SPRING_SECURITY_LAST_EXCEPTION}">
-	                		<p style="color:red">${sessionScope["SPRING_SECURITY_LAST_EXCEPTION"].message}</p>
+	                		<p class="text-danger">${sessionScope["SPRING_SECURITY_LAST_EXCEPTION"].message}</p>
 	                		<c:remove var="SPRING_SECURITY_LAST_EXCEPTION" scope="session"/>
 	               		</c:if>
                 	</div>

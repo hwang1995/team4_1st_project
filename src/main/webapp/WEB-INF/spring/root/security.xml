@@ -18,8 +18,8 @@
 		
 		<!-- 로그인 / 로그아웃 설정 -->
 		<!-- 
-			나중에 authentication-success-handler-ref, 
-			authentication-failure-handler-ref 만들기 (내일 오전까지 / 3월 27일)
+			authentication-success-handler-ref, 
+			authentication-failure-handler-ref
 		 -->
 		<security:form-login
 			login-page="/auth/login"
@@ -91,9 +91,6 @@
 		
 	<bean id="authSuccessHandler"
 		  class="com.team4.webapp.security.AuthSuccessHandler">
-	<!-- 	  
-	 <property name="alwaysUseDefaultTargetUrl" value="false"/>
-	 <property name="defaultTargetUrl" value="/"/> -->
 	</bean>
 	
 	<bean id="authFailureHandler"
@@ -107,6 +104,7 @@
 		<property name="defaultTargetUrl" value="/"/>
 	</bean>
 	
+	<!-- 메시지 변경을 위해 만든 error_message.properties를 사용하기 위한 bean 추가 -->
 	<bean id="messageSource" class="org.springframework.context.support.ReloadableResourceBundleMessageSource">
 		<property name="basenames">
 			<list>

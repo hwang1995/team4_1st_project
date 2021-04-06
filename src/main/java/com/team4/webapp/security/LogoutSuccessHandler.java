@@ -15,10 +15,8 @@ public class LogoutSuccessHandler extends SimpleUrlLogoutSuccessHandler {
 	private static final Logger logger = LoggerFactory.getLogger(LogoutSuccessHandler.class);
 	
 	@Override
-	public void onLogoutSuccess(HttpServletRequest request, HttpServletResponse response, Authentication authentication)
-			throws IOException, ServletException {
+	public void onLogoutSuccess(HttpServletRequest request, HttpServletResponse response, Authentication authentication) throws IOException, ServletException {
 		logger.info(getDefaultTargetUrl());
 		super.onLogoutSuccess(request, response, authentication);
 	}
-
 }

@@ -176,7 +176,7 @@
                     </div>
 
                     <div class="d-flex flex-row-reverse mt-5 ">
-                        <button class="black_button w-50 register_confirm_button" onclick="validate()">
+                        <button class="black_button w-50 register_confirm_button" onclick="registerValidate()">
                                 <h5 class="eng_h2 white_text">CONFIRM</h5>
                             
                         </button>

@@ -7,19 +7,18 @@
  * 2) 이메일, 비밀번호를 입력했는지 점검 (추후 API 서버 만들어지면 구체 구현)
  */
 
-// 전역 변수 (email, pw 정규 표현식)
-let emailRegExp = /^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/i;
-const pwPattern = "";
+// 전역 변수 (email 정규 표현식)
+const emailRegExp = /^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/i;
 
-// 1) 이메일, 비밀번호 inputbox에 hover시 popover 구현
+// 1) 이메일, 이름 inputbox에 hover시 popover 구현
 $('#u_email_desktop').popover({
     trigger : 'hover',
     content : "이메일을 입력해주세요."
 });
 
-$('#u_password_desktop').popover({
+$('#u_name_desktop').popover({
     trigger : 'hover',
-    content : "비밀번호를 입력해주세요."
+    content : "이름를 입력해주세요."
 });
 
 $('.forgot_my_pw_button_mobile').click(() => {
@@ -33,40 +32,15 @@ $('.forgot_my_pw_button_mobile').click(() => {
         return;
     }
 
-    // 2 - 비밀번호가 빈칸인가?
+    // 2 - 이름이 빈칸인가?
     if(infoObj.member_name === ""){
-        alert("비밀번호가 빈칸입니다.");
+        alert("이름이 빈칸입니다.");
         return;
     }
 
-    // 2.1 - 비밀번호가 유효성 검사에 통과되었는가?
-
-    // 3 - 서버로 데이터 넘겨주기
-
-    console.log(infoObj);
-});
-
-$('.forgot_my_pw_button_desktop').click(() => {
-    let infoObj = {};
-    infoObj.member_email = $('#u_email_desktop').val();
-    infoObj.member_name = $('#u_name_desktop').val();
-
-
-    // 1 - 이메일이 빈칸인가?
-    if(infoObj.member_email === ""){
-        alert("이메일이 빈칸입니다.");
-        return;
-    }
-
-    // 2 - 비밀번호가 빈칸인가?
-    if(infoObj.member_name === ""){
-        alert("비밀번호가 빈칸입니다.");
-        return;
-    }
-
-    // 2.1 - 비밀번호가 유효성 검사에 통과되었는가?
+    // 2.1 - 이메일이 유효성 검사에 통과되었는가?
 	if(!emailRegExp.test(infoObj.member_email)){
-		alert("비밀번호 형식이 올바르지 않습니다.");
+		alert("이메일 형식이 올바르지 않습니다.");
 		return;
 	}
 
@@ -82,6 +56,42 @@ $('.forgot_my_pw_button_desktop').click(() => {
 			alert("존재하지 않는 계정 입니다.");
 		}
 	});
+});
 
-    console.log(infoObj);
+$('.forgot_my_pw_button_desktop').click(() => {
+    let infoObj = {};
+    infoObj.member_email = $('#u_email_desktop').val();
+    infoObj.member_name = $('#u_name_desktop').val();
+
+
+    // 1 - 이메일이 빈칸인가?
+    if(infoObj.member_email === ""){
+        alert("이메일이 빈칸입니다.");
+        return;
+    }
+
+    // 2 - 이름이 빈칸인가?
+    if(infoObj.member_name === ""){
+        alert("이름이 빈칸입니다.");
+        return;
+    }
+
+    // 2.1 - 이메일이 유효성 검사에 통과되었는가?
+	if(!emailRegExp.test(infoObj.member_email)){
+		alert("이메일 형식이 올바르지 않습니다.");
+		return;
+	}
+
+    // 3 - 서버로 데이터 넘겨주기
+	$.ajax({
+		url: "/webapp/auth/forgot-my-pw",
+		data: infoObj,
+		method: "post"
+	}).then( data => {
+		if(data == "success"){
+			window.location.href = "/webapp/auth/forgot-my-pw-result";
+		} else{
+			alert("존재하지 않는 계정 입니다.");
+		}
+	});
 });

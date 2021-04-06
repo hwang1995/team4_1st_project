@@ -38,9 +38,6 @@ public class QnaController {
 	@PostMapping("/write")
 	@ResponseBody
 	public String writeQnaPage(QnasDTO qna, Authentication auth, HttpServletResponse response) {
-		logger.info(auth.getName());
-		logger.info(qna.toString());
-		
 		String member_email = auth.getName();
 		int row = qnaService.writeQna(member_email, qna);
 		if(row == 1) {
