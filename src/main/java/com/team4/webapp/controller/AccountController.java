@@ -2,6 +2,8 @@ package com.team4.webapp.controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.json.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -18,6 +20,7 @@ import com.team4.webapp.dto.MembersDTO;
 import com.team4.webapp.dto.MyPageDTO;
 import com.team4.webapp.dto.MyPageListDTO;
 import com.team4.webapp.dto.OrdersDTO;
+import com.team4.webapp.dto.Pager;
 import com.team4.webapp.services.AccountServiceImpl;
 import com.team4.webapp.services.AuthServiceImpl;
 
@@ -32,42 +35,66 @@ public class AccountController {
 	// 로거 설정
 	private static final Logger logger = LoggerFactory.getLogger(AccountController.class);
 	
-	@GetMapping("/mypage")
-	public String myPage(Model model, Authentication auth) {
-		MembersDTO memberInfo = null;
-		List<MyPageListDTO> mypage = null;
+	@RequestMapping("/mypage")
+	public String content(Model model) {	
+		return "account/mypage";
+	}
+	
+	@GetMapping("/list")
+	public String myPage(String pageNo, Model model, Authentication auth, HttpSession session) {
+		int intPageNo = 1;
+		if(pageNo == null) {
+			//세션에서 Pager를 찾고, 있으면 pageNo를 설정
+			Pager pager = (Pager) session.getAttribute("pager");
+			if(pager != null) {
+				intPageNo = pager.getPageNo();
+			}
+		} else {
+			intPageNo = Integer.parseInt(pageNo);
+		}
+		
 		try {
+			//1.이메일로 회원의 정보를 가져옴.
+			//2.해당 회원의 주문리스트 정보를 가져옴.
 			String email_id = auth.getName();
-			memberInfo = authService.findMemberbyEmail(email_id);
-			mypage = accountService.showMyOrderInfo(memberInfo.getMember_id());
+			MembersDTO memberInfo = authService.findMemberbyEmail(email_id);
 			
+			int totalRows = accountService.getTotalRows(memberInfo.getMember_id());
+			Pager pager = new Pager(3, 5, totalRows, intPageNo);
+			session.setAttribute("pager", pager);
+			
+			pager.setMember_id(memberInfo.getMember_id());
+			List<MyPageListDTO> mypage = accountService.showMyInfo(pager);
+			
+			model.addAttribute("pager", pager);
 			model.addAttribute("member", memberInfo);
 			model.addAttribute("mypage", mypage);
 		} catch (NullPointerException e) {
 			logger.warn("회원 객체가 존재하지 않습니다.");
 			return "redirect:/";
 		}
-		return "account/mypage";
+		return "account/orderlist";
 	}
 	
 	@GetMapping("/order-info")
 	public String orderInfoPage(Long order_id, Authentication auth, Model model) {
-		MembersDTO memberInfo = null;
-		OrdersDTO orderInfo = null;
-		List<MyPageDTO> orderList = null;
 		try {
+			//1.이메일로 회원의 정보를 가져옴.
+			//2.주문번호로 주문 정보를 가져옴.
+			//3.주문번호로 주문리스트 정보를 가져옴.
 			String email_id = auth.getName();
-			memberInfo = authService.findMemberbyEmail(email_id);
-			orderInfo = accountService.findOrderbyOrderId(order_id);
+			MembersDTO memberInfo = authService.findMemberbyEmail(email_id);
+			OrdersDTO orderInfo = accountService.findOrderbyOrderId(order_id);
+			List<MyPageDTO> orderList = accountService.showMyOrderInfo(order_id);
 			
-			orderList = accountService.showMyInfo(order_id);
-			
-			int totalPrice = 0;
+			//1.주문리스트 정보로 총합계를 구함.
+			long totalPrice = 0;
 			for(MyPageDTO list : orderList) {
-				int tempPrice = list.getProduct_quantity() * list.getProduct_price();
+				long tempPrice = list.getProduct_quantity() * list.getProduct_price();
 				totalPrice += tempPrice;
 			}
 			
+			//1.멤버, 주문, 주문리스트, 총합계를 모델로 넘겨줌.
 			model.addAttribute("member", memberInfo);
 			model.addAttribute("order", orderInfo);
 			model.addAttribute("orderList", orderList);
@@ -81,10 +108,11 @@ public class AccountController {
 	
 	@GetMapping("/edit-info")
 	public String editInfoPage(Authentication auth, Model model) {
-		MembersDTO memberInfo = null;
 		try {
+			//1.이메일로 회원의 정보를 가져옴.
+			//2.회원의 정보를 모델로 넘겨줌.
 			String email_id = auth.getName();
-			memberInfo = authService.findMemberbyEmail(email_id);
+			MembersDTO memberInfo = authService.findMemberbyEmail(email_id);
 			model.addAttribute("member", memberInfo);
 		} catch (NullPointerException e) {
 			logger.warn("회원 객체가 존재하지 않습니다.");
@@ -96,6 +124,8 @@ public class AccountController {
 	@PostMapping(value = "/send-edit-info", produces ="application/json; charset=UTF-8")
 	@ResponseBody
 	public String sendEditInfo(MembersDTO member) {
+		//1.회원정보를 넘겨줘서 DB에 update 해줌.
+		//2.JSONObject로 JS로 다시 넘겨줌.
 		int row = accountService.editMyInfo(member);
 		JSONObject jsonObj = new JSONObject();
 		if(row == 1) {
