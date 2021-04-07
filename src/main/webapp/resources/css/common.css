@@ -123,7 +123,7 @@ button {
     사용법 : <hr class="divider">
 */
 .divider {
-    border : 1px solid #c7c7c7;
+    border : 1px solid #343a40;
 }
 
 .bold_divider {
@@ -131,7 +131,7 @@ button {
 }
 
 .vertical_divider {
-    border-left : 1px solid #c7c7c7;
+    border-left : 1px solid #343a40;
 }
 
 /*

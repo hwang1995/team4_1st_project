@@ -35,11 +35,12 @@
     <section>
         <article class="container mtb-8">
             <h1 class="eng_h2 mb-4">Register</h1>
+            <hr class="divider" />
             <div class="row">
                 <div class="col-12 col-md-7 mt-2 vertical_divider">
                     <div class="row m-2">
                         <div class="col-3 register_info_text">
-                            <h6 class="eng_h2">E-Mail</h6>
+                            <h5 class="eng_h2">E-Mail</h5>
                         </div>
                         <div class="col-6"> 
                             <input type="email" name="u_email" id="u_email" 
@@ -47,7 +48,7 @@
                         </div>
                         <div class="col-3">
                             <button class="white_button email_check_button w-100 h-100">
-                                <h6 class="eng_h2">CHECK</h6>
+                                <h5 class="eng_h2">CHECK</h5>
                             </button>
                         </div>
                     </div>
@@ -63,7 +64,7 @@
 
                     <div class="row m-2">
                         <div class="col-3 register_info_text">
-                            <h6 class="eng_h2">Name</h6>
+                            <h5 class="eng_h2">Name</h5>
                         </div>
                         <div class="col-6"> 
                             <input type="text" name="u_name" id="u_name" class="w-100 register_input">
@@ -73,7 +74,7 @@
 
                     <div class="row m-2">
                         <div class="col-3 register_info_text">
-                            <h6 class="eng_h2">PW</h6>
+                            <h5 class="eng_h2">PW</h5>
                         </div>
                         <div class="col-6"> 
                             <input type="password" name="u_password" id="u_password" 
@@ -88,7 +89,7 @@
 
                     <div class="row m-2">
                         <div class="col-3 register_info_text">
-                            <h6 class="eng_h2">Re-PW</h6>
+                            <h5 class="eng_h2">Re-PW</h5>
                         </div>
                         <div class="col-6"> 
                             <input type="password" name="u_re_password" id="u_re_password" class="w-100 register_input">
@@ -98,7 +99,7 @@
 
                     <div class="row m-2">
                         <div class="col-3 register_info_text">
-                            <h6 class="eng_h2">Tel</h6>
+                            <h5 class="eng_h2">Tel</h5>
                         </div>
                         <div class="col-6"> 
                             <input type="tel" name="u_tel" id="u_tel" class="w-100 register_input" placeholder="01X-XXXX-XXXX">
@@ -108,7 +109,7 @@
 
                     <div class="row m-2">
                         <div class="col-3 register_info_text">
-                            <h6 class="eng_h2">Address</h6>
+                            <h5 class="eng_h2">Address</h5>
                         </div>
                         <div class="col-6"> 
                             <input type="text" name="u_address" id="u_address" class="w-100 register_input">

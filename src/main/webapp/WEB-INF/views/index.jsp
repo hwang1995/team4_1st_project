@@ -38,12 +38,12 @@
 				<div class="carousel-inner">
 				<div class="carousel-item">
 						<img
-							src="${resources}/images/main/210407_carousel.jpeg"
+							src="${resources}/images/main/210407_carousel.png"
 							class="d-block w-100" alt="...">
 					</div>
 					<div class="carousel-item active">
 						<img
-							src="${resources}/images/main/210407_carousel_2.jpeg"
+							src="${resources}/images/main/210407_carousel_2.png"
 							class="d-block w-100" alt="...">
 					</div>
 					

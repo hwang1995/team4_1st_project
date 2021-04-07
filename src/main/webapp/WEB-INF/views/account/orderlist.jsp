@@ -125,7 +125,7 @@
 			                   <tr>
 							   	<td colspan="5" class="text-center">
 							   		<div class="d-flex justify-content-center">
-								   		<div class="d-flex justify-content-center align-items-center" style="width:50%;">
+								   		<div class="d-flex justify-content-center align-items-center" style="width:512px;">
 									   		<!-- [처음][이전] 1 2 3 4 5 [다음][맨끝] -->
 									   		<button class="btn btn-sm"
 									   		   onclick="getList(1)" style="width:12%;">[처음]</button>
