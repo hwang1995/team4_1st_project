@@ -59,7 +59,7 @@
 						</div>
 						<div class="col d-flex flex-column">
 							<h5 class="eng_h2">Title</h5>
-							<input type="text" id="title" name="title" class="mt-4 qna_input_area_container pl-2" />
+							<input type="text" id="title" name="title" class="mt-4 qna_input_area_container pl-2" maxlength="66"/>
 						</div>
 					</div>
 					

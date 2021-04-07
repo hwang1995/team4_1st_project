@@ -30,6 +30,8 @@ const getQnaData = (path) => {
 		if(data == "success"){
 			console.log("성공");
 			window.location.href = "/webapp/qna/result";
+		}else {
+			alert("")
 		}
 	}
 	);	

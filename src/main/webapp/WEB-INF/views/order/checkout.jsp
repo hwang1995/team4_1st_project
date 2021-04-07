@@ -91,13 +91,13 @@
                     <div class="form-group row mt-2">
                       <label for="recipient_name" class="col-sm-2 col-form-label">이름</label>
                       <div class="col-sm-5">
-                        <input type="text" class="form-control" id="recipient_name">
+                        <input type="text" class="form-control" id="recipient_name" maxlength="15">
                       </div>
                     </div>
                     <div class="form-group row order_info_md_line">
                         <label for="recipient_address" class="col-sm-2 col-form-label">주소</label>
                         <div class="col-sm-5">
-                          <input type="text" class="form-control" id="recipient_address">
+                          <input type="text" class="form-control" id="recipient_address" maxlength="199">
                         </div>
                     </div>
                     <div class="form-group row order_info_md_line">

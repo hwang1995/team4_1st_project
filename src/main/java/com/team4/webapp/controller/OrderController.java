@@ -157,13 +157,14 @@ public class OrderController {
 		// 세션에 preOrder 객체가 존재하는가?
 		try {
 			preOrder = (List<PreOrdersDTO>) session.getAttribute("orderInfo");
+			// preOrder에 담긴 주문 리스트를 가져온다.
+			orderLists = orderService.showOrderlists(preOrder);
 		} catch(NullPointerException e) {
 			logger.warn("올바른 경로로 접속해주세요.");
 			return "redirect:/";
 		}
 		
-		// preOrder에 담긴 주문 리스트를 가져온다.
-		orderLists = orderService.showOrderlists(preOrder);
+		
 		
 		for(CheckoutListDTO order : orderLists) {
 			totalPrice += order.calcPrice(order);
