@@ -28,10 +28,9 @@ public class AuthServiceImpl implements IAuthService {
 	public int registMember(MembersDTO member) {
 		// 1. MembersDAO의 insertMembers(member)를 전달한다.
 		// 2. 영향받은 행의 수를 전달한다.
+		String encodedPassword = pwEncoder(member.getMember_pw());
 		member.setMember_authority("ROLE_USER");
 		member.setMember_enabled(true);
-		PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
-		String encodedPassword = passwordEncoder.encode(member.getMember_pw());
 		member.setMember_pw(encodedPassword);
 		
 		int row = membersDAO.insertMembers(member);
@@ -55,8 +54,7 @@ public class AuthServiceImpl implements IAuthService {
 		try{
 			MembersDTO member = membersDAO.selectByEmailId(email);
 			if(member.getMember_name().equals(name)) {
-				PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
-				String encodedPassword = passwordEncoder.encode("1q2w3e4r");
+				String encodedPassword = pwEncoder("1q2w3e4r");
 				member.setMember_pw(encodedPassword);
 				int row = membersDAO.updateMembers(member);
 				if(row != 1) {
@@ -107,10 +105,22 @@ public class AuthServiceImpl implements IAuthService {
 		return true;
 	}
 
+	/**
+	 * 서비스 목적
+	 * - 회원의 mypage에서 회원정보를 전달하기 위한 서비스
+	 * - Account컨트롤러에 찾은 MemberDTO를 전달한다. 
+	 */
 	@Override
 	public MembersDTO findMemberbyEmail(String email) {
 		MembersDTO member = membersDAO.selectByEmailId(email);
 		return member;
+	}
+	
+	//비밀번호 암호화하는 메소드
+	private String pwEncoder(String password) {
+		PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+		String encodedPassword = passwordEncoder.encode(password);
+		return encodedPassword;
 	}
 
 }

@@ -92,7 +92,6 @@ $('.email_check_button').click(() => {
 });
 
 function registerValidate(){
-	let result = true;
 	const memberInfo = {};
 	const emailElem = $("#u_email").val();
 	const nameElem = $("#u_name").val();
@@ -106,76 +105,62 @@ function registerValidate(){
 	
 	if(!emailElem){
 		alert("이메일을 입력해주세요.");
-		result = false;
 		return;
 	} else if(!emailRegExp.test(emailElem)){
 		alert("이메일 형식이 올바르지 않습니다.");
-		result = false;
 		return;
 	}
 	
 	if(!nameElem){
 		alert("이름을 입력해주세요.");
-		result = false;
 		return;
 	}
 	
 	if(!passwordElem && !rePasswordElem){
 		alert("비밀번호를 입력해주세요.");
-		result = false;
 		return;
 	} else if(passwordElem != rePasswordElem){
 		alert("비밀번호가 다릅니다.");
-		result = false;
 		return;		
 	} else if(!passwordRegExp.test(passwordElem)){
 		alert("비밀번호 형식이 올바르지 않습니다.");
-		result = false;
 		return;
 	}
 	
 	if(!telElem){
 		alert("전화번호를 입력해주세요.");
-		result = false;
 		return;
 	} else if(!telRegExp.test(telElem)){
 		alert("전화번호 형식이 올바르지 않습니다.");
-		result = false;
 		return;
 	}
 		
 	
 	if(!addressElem){
 		alert("주소를 입력해주세요.");
-		result = false;
 		return;
 	}
 	
 	if(!(agreement && gdpr_agreement && marketing_agreement)){
 		alert("약관에 동의해주세요.");
-		result = false;
 		return;
 	}
 	
-	if(result){
-		memberInfo.member_email = emailElem;
-		memberInfo.member_name = nameElem;
-		memberInfo.member_pw = passwordElem;
-		memberInfo.member_tel = telElem;
-		memberInfo.member_address = addressElem;
-		
-		$.ajax({
-			url: "/webapp/auth/register",
-			data: memberInfo,
-			method: "post"
-		}).then( data => {
-			if(data == "success"){
-				window.location.href = "/webapp/auth/welcome";
-			}
+	memberInfo.member_email = emailElem;
+	memberInfo.member_name = nameElem;
+	memberInfo.member_pw = passwordElem;
+	memberInfo.member_tel = telElem;
+	memberInfo.member_address = addressElem;
+	
+	$.ajax({
+		url: "/webapp/auth/register",
+		data: memberInfo,
+		method: "post"
+	}).then( data => {
+		if(data == "success"){
+			window.location.href = "/webapp/auth/welcome";
 		}
-		);
-	} else{
-		console.log("실패");
 	}
+	);
 	
 }
