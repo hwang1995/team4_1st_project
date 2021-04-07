@@ -28,12 +28,10 @@ public class AuthServiceImpl implements IAuthService {
 	public int registMember(MembersDTO member) {
 		// 1. MembersDAO의 insertMembers(member)를 전달한다.
 		// 2. 영향받은 행의 수를 전달한다.
+		String encodedPassword = pwEncoder(member.getMember_pw());
 		member.setMember_authority("ROLE_USER");
 		member.setMember_enabled(true);
-		PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
-		String encodedPassword = passwordEncoder.encode(member.getMember_pw());
 		member.setMember_pw(encodedPassword);
-		
 		
 		int row = membersDAO.insertMembers(member);
 		return row;
@@ -55,24 +53,19 @@ public class AuthServiceImpl implements IAuthService {
 		// 7. MembersDAO에 updateMembers에 멤버 객체를 전달한다.
 		try{
 			MembersDTO member = membersDAO.selectByEmailId(email);
-			logger.info(member.toString());
 			if(member.getMember_name().equals(name)) {
-				PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
-				String encodedPassword = passwordEncoder.encode("1q2w3e4r");
+				String encodedPassword = pwEncoder("1q2w3e4r");
 				member.setMember_pw(encodedPassword);
 				int row = membersDAO.updateMembers(member);
-				logger.info(member.toString());
 				if(row != 1) {
 					return false;
 				}
+			}else {
+				return false;
 			}
-			
-			
 		} catch(NullPointerException e){
-			logger.info(email + name);
 			return false;
 		}
-		
 		return true;
 	}
 
@@ -91,11 +84,11 @@ public class AuthServiceImpl implements IAuthService {
 	 * - 관리자가 회원의 목록을 보기 위해 사용하는 서비스
 	 * - 컨트롤러의 회원의 목록을 전달한다.
 	 */
-	
 	@Override
 	public List<MembersDTO> showMemberList() {
 		return null;
 	}
+	
 	/**
 	 * 서비스 목적
 	 * - 회원이 회원가입시에 이메일이 중복되는지 체크하기 위한 서비스
@@ -103,22 +96,31 @@ public class AuthServiceImpl implements IAuthService {
 	 */
 	@Override
 	public boolean isExistedEmail(String email) {
-
 		try{
 			MembersDTO member = membersDAO.selectByEmailId(email);
 			logger.info(member.toString());
 		} catch(NullPointerException e){
 			return false;
 		}
-		
-		
 		return true;
 	}
 
+	/**
+	 * 서비스 목적
+	 * - 회원의 mypage에서 회원정보를 전달하기 위한 서비스
+	 * - Account컨트롤러에 찾은 MemberDTO를 전달한다. 
+	 */
 	@Override
 	public MembersDTO findMemberbyEmail(String email) {
 		MembersDTO member = membersDAO.selectByEmailId(email);
 		return member;
+	}
+	
+	//비밀번호 암호화하는 메소드
+	private String pwEncoder(String password) {
+		PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+		String encodedPassword = passwordEncoder.encode(password);
+		return encodedPassword;
 	}
 
 }

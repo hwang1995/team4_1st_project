@@ -21,13 +21,8 @@ public class AuthSuccessHandler extends SavedRequestAwareAuthenticationSuccessHa
 	private static final Logger logger = LoggerFactory.getLogger(AuthSuccessHandler.class);
 
 	@Override
-	public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response,
-			Authentication authentication) throws ServletException, IOException {
+	public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response, Authentication authentication) throws ServletException, IOException {
 			logger.info(authentication.getName());
 			super.onAuthenticationSuccess(request, response, authentication);
-	
 	}
-
-		
-
 }

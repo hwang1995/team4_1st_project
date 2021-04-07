@@ -15,12 +15,8 @@ public class AuthFailureHandler extends SimpleUrlAuthenticationFailureHandler{
 	private static final Logger logger = LoggerFactory.getLogger(AuthFailureHandler.class);
 	
 	@Override
-	public void onAuthenticationFailure(HttpServletRequest request, HttpServletResponse response,
-			AuthenticationException exception) throws IOException, ServletException {
+	public void onAuthenticationFailure(HttpServletRequest request, HttpServletResponse response, AuthenticationException exception) throws IOException, ServletException {
 		logger.info(exception.getMessage());
-
 		super.onAuthenticationFailure(request, response, exception);
-
 	}
-
 }
