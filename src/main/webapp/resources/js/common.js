@@ -10,6 +10,9 @@
 let isOpened = false;
 
 
+/**
+ 모바일 Drawer가 열리는 이벤트를 정의하기 위한 함수
+ */
 const drawerClickEvent = () => {
     const drawer = $('.nav_drawer_mobile');
     isOpened = !isOpened;
@@ -18,4 +21,10 @@ const drawerClickEvent = () => {
 
 const goQnaPage = (path) => {
 	window.location.href = path + "/qna";
+}
+/**
+ 모바일 헤더에서 로그아웃을 누를 시에 동작하는 함수
+ */
+const mobileLogoutButton = () => {
+	$('#nav_mobile_logout_form').submit();
 }

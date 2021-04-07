@@ -106,21 +106,48 @@
 
 	</nav>
 
+	<!-- 모바일 버전  -->
 	<div class="nav_drawer_mobile d-md-none">
 
 		<div class="p-4">
 			<a href="${contextPath}/shop">
 				<h4 class="eng_h2 text_underline mt-3">ALL</h4>
 			</a>
-
-			<h4 class="eng_h2 text_underline mt-3">OUTER</h4>
-			<h4 class="eng_h2 text_underline mt-3">TOP</h4>
-			<h4 class="eng_h2 text_underline mt-3">BOTTOM</h4>
+			<a href="${contextPath}/shop/outer">
+				<h4 class="eng_h2 text_underline mt-3">OUTER</h4>
+			</a>
+			<a href="${contextPath}/shop/top">
+				<h4 class="eng_h2 text_underline mt-3">TOP</h4>
+			</a>
+			<a href="${contextPath}/shop/bottom">
+				<h4 class="eng_h2 text_underline mt-3">BOTTOM</h4>
+			</a>
 			<a href="${contextPath}/qna">
 				<h4 class="eng_h2 text_underline mt-3">Q&A</h4>
 			</a>
+			<hr class="nav_grey_divider" />
+			<sec:authorize access="isAnonymous()">
+				<a href="${contextPath}/auth/login"> 
+					<h4 class="eng_h2 text_underline mt-3">LOGIN</h4>
+				</a> 
+			</sec:authorize>
+			<sec:authorize access="isAuthenticated()">
+				<a href="${contextPath}/account/mypage"> 
+					<h4 class="eng_h2 text_underline mt-3">MYPAGE</h4>
+				</a> 
+				<a href="${contextPath}/order/cart"> 
+					<h4 class="eng_h2 text_underline mt-3">CART</h4>
+				</a> 
+				<form action="${contextPath}/logout" method="POST" id="nav_mobile_logout_form">
+					<h4 class="eng_h2 text_underline mt-3" onclick="mobileLogoutButton()">LOGOUT</h4>
+				</form>
 			
+			</sec:authorize>
 		</div>
+
+		
+		</div>
+	
 
 	</div>
 

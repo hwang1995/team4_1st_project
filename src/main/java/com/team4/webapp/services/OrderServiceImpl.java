@@ -41,18 +41,22 @@ public class OrderServiceImpl implements IOrderService{
 
 	@Override
 	public List<CartListDTO> getCartList(Long member_id) {
-//		List<CartsDTO> cartLists = cartsDAO.se
+		// 장바구니와 장바구니의 리스트 (상품과 장바구니를 합친 것)을 만들기 위함.
 		List<CartsDTO> cartLists = cartsDAO.selectCartListByMemberId(member_id);
 		List<CartListDTO> cartInfoLists = new ArrayList<CartListDTO>();
 		
+		// 장바구니 리스트를 만들기 위한 로직
 		for(CartsDTO cart : cartLists) {
 			CartListDTO cartInfoList = new CartListDTO();
+			
 			Long product_id = cart.getProduct_id();
 			ProductsDTO product = productsDAO.selectByProductId(product_id);
-			String filePath = "/webapp/image?path="+ product.getProduct_image();
-			product.setProduct_image(filePath);
+			
+			product.setImagePath();
+			
 			cartInfoList.setCartsInfo(cart);
 			cartInfoList.setProductInfo(product);
+			
 			cartInfoLists.add(cartInfoList);
 		}
 		
@@ -61,42 +65,48 @@ public class OrderServiceImpl implements IOrderService{
 
 	@Override
 	public boolean addCart(MembersDTO memberInfo, PreOrdersDTO cart) {
+		// 장바구니 DTO에 회원 정보와 장바구니 정보를 넣어준다.
 		CartsDTO sendData = new CartsDTO();
+		
 		sendData.setMemberInfo(memberInfo);
 		sendData.setCartInfo(cart);
-		int row = cartsDAO.insertCarts(sendData);
-		if(row != 1) {
-			return false;
-		}
 		
-		return true;
+		int row = cartsDAO.insertCarts(sendData);
+		boolean result = isTransactionSuccess(row);
+		
+		return result;
 	}
 
+	/**
+	 * 장바구니 ID로 
+	 */
 	@Override
 	public boolean removeCart(Long cart_id) {
 		int rows = cartsDAO.deleteByCartId(cart_id);
-		if(rows != 1) {
-			return false;
-		} 
-		return true;
+		boolean result = isTransactionSuccess(rows);
+		
+		return result;
 	}
 	
-	// 가제 - 수정 가능성 있음.
 	@Override
-	public List<CheckoutListDTO> showOrderlists(List<PreOrdersDTO> preorder) {
-		List<CheckoutListDTO> info = new ArrayList<>();
-		for(PreOrdersDTO order : preorder) {
+	public List<CheckoutListDTO> showOrderlists(List<PreOrdersDTO> preOrder) {
+		// 주문리스트의 정보를 보여주기 위해 존재.
+		List<CheckoutListDTO> checkoutInfo = new ArrayList<>();
+		
+		// 주문 리스트를 생성하는 로직
+		for(PreOrdersDTO order : preOrder) {
 			CheckoutListDTO combinedData = new CheckoutListDTO();
 			Long product_id = order.getProduct_id();
+			
 			ProductsDTO product = productsDAO.selectByProductId(product_id);
-			String filePath = "/webapp/image?path="+ product.getProduct_image();
-			product.setProduct_image(filePath);
+			product.setImagePath();
+			
 			combinedData.setProductsInfo(product);
 			combinedData.setPreOrdersInfo(order);
-			info.add(combinedData);
+			checkoutInfo.add(combinedData);
 		}
 		
-		return info;
+		return checkoutInfo;
 	}
 
 	@Override
@@ -108,9 +118,8 @@ public class OrderServiceImpl implements IOrderService{
 		order.setOrderStatus(0, "PAYMENT_FINISHED", "DELIVERY_PENDING");
 		int row = ordersDAO.insertOrders(order);
 		// 2. 주문이 생성이 잘 되었는지 체크한다.
-		if(row != 1) {
-			return false;
-		}
+		boolean result = isTransactionSuccess(row);
+		
 		// 3. 주문을 생성하고 나온 Long order_id; 를 저장합시다.
 		Long order_id = order.getOrder_id();
 		
@@ -119,15 +128,10 @@ public class OrderServiceImpl implements IOrderService{
 			orderlist.setOrder_id(order_id);
 			orderlist.setCheckoutInfo(item);
 			int rows = orderlistsDAO.insertOrderlists(orderlist);
-			if(rows != 1) {
-				return false;
-			}
+			result = isTransactionSuccess(rows);
 		}
 		
-		
-
-		
-		return true;
+		return result;
 	}
 
 	@Override
@@ -146,16 +150,24 @@ public class OrderServiceImpl implements IOrderService{
 		return modifiedList;
 	}
 
+	
 	@Override
 	public boolean removeCarts(Long member_id) {
 		int rows = cartsDAO.deleteByMemberId(member_id);
-		if(rows < 1) {
-			return false;
-		}
+		boolean result = isTransactionSuccess(rows);
 		
-		return true;
+		return result;
 	}
 
+	public boolean isTransactionSuccess(int rows) {
+		boolean result = true;
+		
+		if(rows != 1) {
+			result = false;
+		}
+		
+		return result;
+	}
 	
 	
 	

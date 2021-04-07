@@ -75,6 +75,10 @@ public class ProductsDTO {
 				+ ", product_subcontent=" + product_subcontent + ", subcategory_id=" + subcategory_id + "]";
 	}
 
+	public void setImagePath() {
+		String filePath = "/webapp/image?path=" + this.getProduct_image();
+		this.product_image = filePath;
+	}
 	
 	
 

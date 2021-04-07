@@ -17,7 +17,6 @@ public interface IOrderService {
 	 * @return PreCheckoutDTO (주문전의 데이터를 넘기기 위한 DTO)
 	 */
 	List<CheckoutListDTO> showOrderlists(List<PreOrdersDTO> preorder);
-//	PreCheckoutDTO showOrderlists(Long member_id, List<ProductDetailsDTO> products);
 	
 	
 	/**
@@ -32,7 +31,6 @@ public interface IOrderService {
 	 * 회원이 가지고 있는 장바구니의 상품들을 보여주기 위해 작성한 인터페이스
 	 * @param Long member_id
 	 * @return List<CartListDTO>
-	 * @deprecated 삭제할 인터페이스
 	 */
 	List<CartListDTO> getCartList(Long member_id);
 	
@@ -50,8 +48,19 @@ public interface IOrderService {
 	 */
 	boolean removeCart(Long cart_id);
 	
+	/**
+	 * 회원이 장바구니에서 결제 페이지로 가기 이전에 장바구니의 정보를 가져와 전달하기 위한 인터페이스
+	 * @param Long member_id
+	 * @return List<PreOrdersDTO>
+	 * product_id, product_color, product_size, product_quantity
+	 */
 	List<PreOrdersDTO> getNewCartList(Long member_id);
 	
+	/**
+	 * 회원이 주문을 끝내고 장바구니에 존재하는 상품들을 다 지우기 위해 필요한 인터페이스
+	 * @param Long member_id
+	 * @return true or false
+	 */
 	boolean removeCarts(Long member_id);
 	
 	
