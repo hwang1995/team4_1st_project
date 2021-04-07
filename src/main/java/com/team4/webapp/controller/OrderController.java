@@ -95,13 +95,17 @@ public class OrderController {
 			MembersDTO memberInfo = authService.findMemberbyEmail(email_id);
 			
 			boolean result = orderService.addCart(memberInfo, data);
-			resultObj = writeJSONResult(result);
-			
+			if(result) {
+				resultObj.put("status", "success");
+			} else {
+				resultObj.put("status", "failure");
+			}
+			logger.info(result + "");
 			return resultObj.toString();
 			
 		} catch(NullPointerException e) {
 			logger.warn("회원 객체가 존재하지 않습니다.");
-			resultObj = writeJSONResult(false);
+			resultObj.put("status", "failure");
 			return resultObj.toString();
 			
 		}
@@ -120,8 +124,11 @@ public class OrderController {
 		
 		Long cartId = cart.getCart_id();
 		boolean result = orderService.removeCart(cartId);
-		resultObj = writeJSONResult(result);
-		
+		if(result) {
+			resultObj.put("status", "success");
+		} else {
+			resultObj.put("status", "failure");
+		}
 		return resultObj.toString();
 	}
 	
@@ -222,7 +229,7 @@ public class OrderController {
 		JSONObject resultObj = new JSONObject();
 		List<PreOrdersDTO> sendData = new ArrayList<>();
 		sendData.add(data);
-		resultObj = writeJSONResult(true);
+		resultObj.put("status", "success");
 		session.setAttribute("orderInfo", sendData);
 		
 		return resultObj.toString();
@@ -241,7 +248,7 @@ public class OrderController {
 		JSONObject resultObj = new JSONObject();
 		List<PreOrdersDTO> sendData = orderService.getNewCartList(member.getMember_id());
 		session.setAttribute("orderInfo", sendData);
-		resultObj = writeJSONResult(true);
+		resultObj.put("status", "success");
 		
 		return resultObj.toString();
 		
@@ -280,7 +287,7 @@ public class OrderController {
 			boolean result = orderService.doCheckout(itemList, orderInfo);
 			
 			if(result) {
-				jsonResult = writeJSONResult(result);
+				jsonResult.put("status", "success");
 				session.removeAttribute("itemList");
 				for(CheckoutListDTO product : itemList) {
 					totalPrice += product.calcPrice(product);
@@ -290,7 +297,10 @@ public class OrderController {
 				if(isDeletedCart) {
 					session.removeAttribute("deleteCart");
 					boolean deleteResult = orderService.removeCarts(orderInfo.getMember_id());
-					jsonResult = writeJSONResult(deleteResult);
+					if(deleteResult) {
+						jsonResult.put("status", "success");
+						return jsonResult.toString();
+					}
 					
 				}
 			
@@ -299,7 +309,7 @@ public class OrderController {
 				
 				return jsonResult.toString();
 			} else {
-				jsonResult = writeJSONResult(false);
+				jsonResult.put("status", "failure");
 				return jsonResult.toString();
 			}
 			
@@ -311,20 +321,6 @@ public class OrderController {
 
 		
 		
-	}
-	/**
-	 * Boolean의 결과 값에 따라 JSON의 결과 값을 만들어 주는 메서드
-	 * @param boolean result
-	 * @return JSONObject
-	 */
-	public JSONObject writeJSONResult (boolean result) {
-		JSONObject resultObj = new JSONObject();
-		if(result) {
-			resultObj.put("status", "success");
-		} else {
-			resultObj.put("status", "failure");
-		}
-		return resultObj;
 	}
 	
 

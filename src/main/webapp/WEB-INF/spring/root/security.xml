@@ -35,7 +35,7 @@
 		/>
 		<security:csrf disabled="true"/>
 		<!-- 로그인 중복 처리 설정 (중복 로그인 시에 세션 관리) -->
-		<security:session-management>
+		<security:session-management invalid-session-url="/auth/login">
 			<security:concurrency-control
 				max-sessions="1"
 				error-if-maximum-exceeded="false"
