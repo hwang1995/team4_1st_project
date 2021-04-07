@@ -154,7 +154,11 @@ public class OrderServiceImpl implements IOrderService{
 	@Override
 	public boolean removeCarts(Long member_id) {
 		int rows = cartsDAO.deleteByMemberId(member_id);
-		boolean result = isTransactionSuccess(rows);
+		boolean result = true;
+		
+		if(rows < 1) {
+			result = false;
+		}
 		
 		return result;
 	}

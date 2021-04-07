@@ -297,8 +297,8 @@ public class OrderController {
 				if(isDeletedCart) {
 					session.removeAttribute("deleteCart");
 					boolean deleteResult = orderService.removeCarts(orderInfo.getMember_id());
-					if(deleteResult) {
-						jsonResult.put("status", "success");
+					if(!deleteResult) {
+						jsonResult.put("status", "failure");
 						return jsonResult.toString();
 					}
 					
