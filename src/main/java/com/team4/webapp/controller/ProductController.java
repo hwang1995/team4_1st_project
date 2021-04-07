@@ -24,13 +24,16 @@ public class ProductController {
 	 * @return "/product/product_details"
 	 */
 	@GetMapping("/{id}")
-	public String productDetailPage(@PathVariable Long id,Model model) {
+	public String productDetailPage(@PathVariable String id,Model model) {
 
 		try {
-			ProductDetailsDTO productDetailsDTO = productService.showProductDetail(id);
+			Long convertId = Long.valueOf(id);
+			ProductDetailsDTO productDetailsDTO = productService.showProductDetail(convertId);
 			model.addAttribute("product", productDetailsDTO);
 			return "/product/product_details";
 		} catch(NullPointerException e) {
+			return "redirect:/";
+		} catch(NumberFormatException e) {
 			return "redirect:/";
 		}
 	}

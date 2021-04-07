@@ -53,11 +53,9 @@
                             <h4>임시비밀번호는 1q2w3e4r 입니다.</h4>
                         </div>
                         <div class="find_pw_result_login text-center">
-                            <button class="black_button w-40">
+                            <button class="black_button w-40" onclick="location.href='${contextPath}/auth/login'">
                                 <h5 class="eng_h2">
-									<a href="${contextPath}/auth/login" class="white_text">
-										LOGIN
-									</a>                                
+										LOGIN                            
                                 </h5>
                             </button>
                         </div>

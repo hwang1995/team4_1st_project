@@ -66,12 +66,12 @@
                         <div class="col-4">
                             <input type="password" name="user_password" id="user_password" placeholder="PW" tabindex="2">
                         </div>
-                        <div class="col-2">
-	                        <a href="${contextPath}/auth/register" class="btn white_button ml-1 register_button">
+                        <div class="col-2" >
+	                        <div class="btn white_button ml-1 register_button" onclick="location.href='${contextPath}/auth/register'" >
 	                        	<span class="h4 eng_h2">
 	                        		REGISTER
 	                        	</span>
-	                        </a>
+	                        </div>
                         </div>
                         <div class="col-3"></div>
                     </div>

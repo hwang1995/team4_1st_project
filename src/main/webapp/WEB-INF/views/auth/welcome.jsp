@@ -46,11 +46,9 @@
                         <p>감사합니다 :D</p>
                     </div>
                     <div class="d-flex justify-content-center">
-                        <button class="black_button w-25">
-                            <a href="${contextPath}">
-                                <span class="h6 white_text">
+                        <button class="black_button w-25" onclick="location.href='${contextPath}'">
+                                <span class="h6">
                                     메인으로</span>
-                            </a>
                         </button>
                     </div>
                 </div>
