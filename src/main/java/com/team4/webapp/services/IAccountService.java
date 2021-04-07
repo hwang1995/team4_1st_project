@@ -6,18 +6,9 @@ import com.team4.webapp.dto.MembersDTO;
 import com.team4.webapp.dto.MyPageDTO;
 import com.team4.webapp.dto.MyPageListDTO;
 import com.team4.webapp.dto.OrdersDTO;
+import com.team4.webapp.dto.Pager;
 
 public interface IAccountService {
-	/**
-	 * 회원이 회원의 정보, 주문 기록, 상품 리스트를 보여주기 위해 제공하는 인터페이스
-	 * @param Long member_id; 
-	 * @return MyPageDTO
-	 * MyPageDTO
-	 * - MembersDTO memberInfo
-	 * - List<OrdersDTO> ordersInfo
-	 * - List<OrderDetailsDTO> orderDetailsInfo
-	 */
-	MyPageDTO showMyPageInfo(Long member_id);
 	
 	/**
 	 * 회원이 자신이 주문한 상세 내역(주문자, 수취인, 상품 리스트(상품, 주문 기록))을 보여주기 위해 제공하는 인터페이스
@@ -25,14 +16,14 @@ public interface IAccountService {
 	 * @param Long order_id
 	 * @return MyPageDTO (회원 정보, 주문 정보, 상품 디테일의 대한 정보) 포함
 	 */
-	List<MyPageListDTO> showMyOrderInfo(Long member_id);
+	List<MyPageListDTO> showMyInfo(Pager pager);
 	
 	/**
 	 * 회원의 정보를 보여주기 위해 제공하는 인터페이스
 	 * @param Long member_id
 	 * @return MembersDTO
 	 */
-	List<MyPageDTO> showMyInfo(Long member_id);
+	List<MyPageDTO> showMyOrderInfo(Long member_id);
 	
 	/**
 	 * 회원이 정보를 바꾸기 위해 제공하는 인터페이스
@@ -41,5 +32,17 @@ public interface IAccountService {
 	 */
 	int editMyInfo(MembersDTO member);
 
+	/**
+	 * 주문번호로 주문테이블을 보여주기 위해 제공하는 인터페이스
+	 * @param Long order_id
+	 * @return OrdersDTO
+	 */
 	OrdersDTO findOrderbyOrderId(Long order_id);
+	
+	/**
+	 * 페이징에 필요한 총 행의 count를 구하기 위해 제공하는 인터페이스
+	 * @param Long member_id
+	 * @return int (카운트 값을 얻기 위해)
+	 */
+	int getTotalOrderRows(Long member_id);
 }

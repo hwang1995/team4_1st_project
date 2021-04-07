@@ -16,5 +16,6 @@
    		<typeAlias type="com.team4.webapp.dto.QnasDTO" alias="qnas"/>
    		<typeAlias type="com.team4.webapp.dto.SizesDTO" alias="sizes"/>
    		<typeAlias type="com.team4.webapp.dto.SubCategoriesDTO" alias="subcategories"/>
+   		<typeAlias type="com.team4.webapp.dto.Pager" alias="pager"/>
    </typeAliases>
 </configuration>
