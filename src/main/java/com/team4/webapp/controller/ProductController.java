@@ -15,26 +15,23 @@ import com.team4.webapp.services.ProductServiceImpl;
 @Controller
 @RequestMapping("/product")
 public class ProductController {
-	// 로거 설정
-	private static final Logger logger = LoggerFactory.getLogger(ProductController.class);
 	@Autowired
 	private ProductServiceImpl productService;
-	
+
+	/**
+	 * 해당 상품 상세 페이지 클릭 시 상품상세페이지의 데이터 전달
+	 * @param id = product_id
+	 * @return "/product/product_details"
+	 */
 	@GetMapping("/{id}")
 	public String productDetailPage(@PathVariable Long id,Model model) {
 
 		try {
-			ProductDetailsDTO productDetailsDTO = productService.productDetailPage(id);
+			ProductDetailsDTO productDetailsDTO = productService.showProductDetail(id);
 			model.addAttribute("product", productDetailsDTO);
 			return "/product/product_details";
 		} catch(NullPointerException e) {
 			return "redirect:/";
 		}
-
-		
-
-		
 	}
-	
-
 }

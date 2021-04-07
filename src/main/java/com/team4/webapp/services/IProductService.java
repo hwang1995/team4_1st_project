@@ -8,33 +8,25 @@ import com.team4.webapp.dto.ProductsDTO;
 public interface IProductService {
 	/**
 	 * 모든 사용자들이 웹 사이트의 모든 상품을 보기 위해 제공하는 인터페이스
-	 * @param String orderBy = "DESC", "HIGH", "LOW"
-	 * @return List<ProductsDTO>
+	 * @param String order = "DESC", "HIGH", "LOW"
+	 * @return List<List<ProductsDTO>>
 	 */
-	List<List<ProductsDTO>> showAllProduct(String orderBy);
+	List<List<ProductsDTO>> showAllProduct(String order);
 	
 	/**
-	 * 모든 사용자들이 주 카테고리의 상품을 보기 위해 제공하는 인터페이스
-	 * @param String category = "outer", "top", "bottom"
-	 * @param String orderBy = "DESC", "HIGH", "LOW"
+	 * 모든 사용자들이 해당 카테고리의 상품을 보기 위해 제공하는 인터페이스
+	 * @param String subcategory = "Jacket, Coat, Cardigan", "Knit, Shirt, Tee", "Pants, Skirt"
+	 * @param String order = "desc", "high", "low"
 	 * @return List<ProductsDTO>
 	 */
-	List<ProductsDTO> showProductList(String category, String orderBy);
+	List<ProductsDTO> showProductByCategory(String subcategory, String order);
 	
 	/**
-	 * 모든 사용자들이 주 카테고리 & 부 카테고리의 상품을 보기 위해 제공하는 인터페이스
-	 * @param String category = "outer", "top", "bottom"
-	 * @param String subcategory = 
-	 * 		"jacket", "coat", "jumper",
-	 *      "knit", "shirt", "tee",
-	 *      "pants", "skirt"
-	 * @param String orderBy = "DESC", "HIGH", "LOW"
-	 * @return List<ProductsDTO>
+	 * 모든 사용자들이 상품의 상세 정보를 보기 위해 제공하는 인터페이스
+	 * @param product_id
+	 * @return ProductDetailsDTO
 	 */
-	
-	ProductDetailsDTO productDetailPage(Long product_id);
-	
-	List<ProductsDTO> showProductList(String category, String subcategory, String orderBy);
+	ProductDetailsDTO showProductDetail(Long product_id);
 	
 	/**
 	 * 미구현 사항

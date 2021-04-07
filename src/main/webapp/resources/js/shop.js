@@ -1,3 +1,6 @@
+/*
+*  maincategory와 subcategry에 따라 order의 queryString 변경
+*/
 $(function() {
    $('#item_select').change(function() {
      if(this.value === "high") {
@@ -17,6 +20,7 @@ $(function() {
          }
    })
 });
+  
 
 const goProductDetailPage = (path, product_id) => {
 	window.location.href = path + "/product/" + product_id;
