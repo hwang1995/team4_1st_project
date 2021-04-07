@@ -147,8 +147,8 @@ public class AccountServiceImpl implements IAccountService {
 	}
 	
 	@Override
-	public int getTotalRows(Long member_id) {
-		int rows = ordersDAO.count(member_id);
+	public int getTotalOrderRows(Long member_id) {
+		int rows = ordersDAO.countOrders(member_id);
 		return rows;
 	}
 }

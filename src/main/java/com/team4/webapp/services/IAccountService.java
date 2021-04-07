@@ -32,6 +32,17 @@ public interface IAccountService {
 	 */
 	int editMyInfo(MembersDTO member);
 
+	/**
+	 * 주문번호로 주문테이블을 보여주기 위해 제공하는 인터페이스
+	 * @param Long order_id
+	 * @return OrdersDTO
+	 */
 	OrdersDTO findOrderbyOrderId(Long order_id);
-	int getTotalRows(Long member_id);
+	
+	/**
+	 * 페이징에 필요한 총 행의 count를 구하기 위해 제공하는 인터페이스
+	 * @param Long member_id
+	 * @return int (카운트 값을 얻기 위해)
+	 */
+	int getTotalOrderRows(Long member_id);
 }

@@ -15,5 +15,5 @@ public interface OrdersDAO {
 	public int deleteByOrderId(Long order_id);
 	public List<OrdersDTO> selectByMemberId(Long member_id);
 	public List<OrdersDTO> selectByPage(Pager pager);
-	public int count(Long member_id);
+	public int countOrders(Long member_id);
 }

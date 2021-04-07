@@ -55,11 +55,12 @@ public class AccountController {
 		
 		try {
 			//1.이메일로 회원의 정보를 가져옴.
-			//2.해당 회원의 주문리스트 정보를 가져옴.
+			//2.회원이 주문한 order count를 구하여 페이징을 함.
+			//3.페이지 객체를 세션으로 추가하고, 멤버번호를 세팅해줌.
+			//4.해당 회원의 주문리스트 정보를 페이징으로 가져옴.
 			String email_id = auth.getName();
 			MembersDTO memberInfo = authService.findMemberbyEmail(email_id);
-			
-			int totalRows = accountService.getTotalRows(memberInfo.getMember_id());
+			int totalRows = accountService.getTotalOrderRows(memberInfo.getMember_id());
 			Pager pager = new Pager(3, 5, totalRows, intPageNo);
 			session.setAttribute("pager", pager);
 			
