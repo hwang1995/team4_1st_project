@@ -1,6 +1,9 @@
 package com.team4.webapp.services;
 
 import java.util.List;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.google.common.collect.Lists;
@@ -19,6 +22,8 @@ import com.team4.webapp.dto.SubCategoriesDTO;
 
 @Service
 public class ProductServiceImpl implements IProductService {
+	
+	private static final Logger logger = LoggerFactory.getLogger(ProductServiceImpl.class);
 	
 	@Autowired
 	private ProductsDAO productDAO;
@@ -74,9 +79,9 @@ public class ProductServiceImpl implements IProductService {
 	 * - low : product_price 기준으로 asc 정렬 
 	 */
 	@Override
-	public List<ProductsDTO> showProductByCategory(String subCategory, String order) {
+	public List<ProductsDTO> showProductByCategory(String subcategory, String order) {
 		
-		 SubCategoriesDTO subCategoriesDTO = subCategoriesDAO.selectBySubCategoryName(subCategory);
+		 SubCategoriesDTO subCategoriesDTO = subCategoriesDAO.selectBySubCategoryName(subcategory);
 		 Long subCategory_id = subCategoriesDTO.getSubcategory_id();
 		 List<ProductsDTO> products;
 		 

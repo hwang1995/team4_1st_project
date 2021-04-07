@@ -88,13 +88,13 @@ public class ShopController {
 	}
 	/**
 	 * 사용자가 클릭한 카테고리별로 상품 리스트를 가져오는 메소드
-	 * @param mainCategory : 사용자가 클릭한 메인카테고리
+	 * @param maincategory : 사용자가 클릭한 메인카테고리
 	 * @param subcategory : 사용자가 클릭한 서브카테고리
 	 * @param order = "desc", "high", "low", 이외의 값은 "desc"로 설정
-	 * @param subcatArr : 서브카테고리의 배열 
+	 * @param subcatArr : maincategory에 해당하는 서브카테고리 배열 
 	 * @return "shop/all"
 	 */
-	private String getProductsList(String mainCategory, String subcategory, String order, Model model, String[] subcatArr) {
+	private String getProductsList(String maincategory, String subcategory, String order, Model model, String[] subcatArr) {
 
 		List<ProductsDTO> products = new ArrayList<ProductsDTO>();
 
@@ -111,7 +111,7 @@ public class ShopController {
 					products.add(product);
 				}
 			}
-			//화면에 메인카테고리 > ALL이라고 보여주기 위해
+			//화면에 "메인카테고리 > ALL"이라고 보여주기 위해
 			model.addAttribute("subcategory", "ALL");
 			//메인카테고리별로 가져온 상품들을 상품가격이 높은 순으로 정렬(stream 사용)
 			if(order.equals("high")) {
@@ -121,7 +121,7 @@ public class ShopController {
 						.collect(Collectors.toList());
 				List<List<ProductsDTO>> sortedProductLists = Lists.partition(sortedList, 4);
 				model.addAttribute("lists", sortedProductLists);
-				model.addAttribute("category", mainCategory);
+				model.addAttribute("category", maincategory);
 				model.addAttribute("subcategory", "ALL");
 				return "shop/all";
 			}
@@ -133,7 +133,7 @@ public class ShopController {
 						.collect(Collectors.toList());
 				List<List<ProductsDTO>> sortedProductLists = Lists.partition(sortedList, 4);
 				model.addAttribute("lists", sortedProductLists);
-				model.addAttribute("category", mainCategory);
+				model.addAttribute("category", maincategory);
 				model.addAttribute("subcategory", "ALL");
 				return "shop/all";
 			}
@@ -141,7 +141,7 @@ public class ShopController {
 		//서브카테고리를 클릭한 경우
 		else {
 			for(String subcat : subcatArr) {
-				//subcategory가 올바른 카테고리이면 해당하는 order기준으로 정렬한 상품 리스트를 가져옴
+				//subcategory가 올바른 카테고리이면 해당하는 order기준으로 정렬한 상품 리스트를 products로 가져옴
 				if(subcat.equals(subcategory)) {
 					products = productService.showProductByCategory(subcat, order);
 					model.addAttribute("subcategory", subcat);
@@ -152,7 +152,7 @@ public class ShopController {
 		//한 row당 4개의 상품을 보여주기 위해 => productLists안에 하나의 리스트 당 상품 4개 담긴 리스트(구아바 라이브러리)
 		List<List<ProductsDTO>> productLists = Lists.partition(products, 4);
 		model.addAttribute("lists", productLists);
-		model.addAttribute("category", mainCategory);
+		model.addAttribute("category", maincategory);
 
 		return "shop/all";
 	}
