@@ -43,3 +43,10 @@
     text-align : center;
     color : black;
 }
+
+
+.register_button {
+	display : flex;
+	align-items : center;
+	justify-content : center;
+}

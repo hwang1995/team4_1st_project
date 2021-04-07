@@ -36,16 +36,17 @@
 		<article>
 			<div id="carousel" class="carousel slide" data-ride="carousel">
 				<div class="carousel-inner">
+				<div class="carousel-item">
+						<img
+							src="${resources}/images/main/210407_carousel.jpeg"
+							class="d-block w-100" alt="...">
+					</div>
 					<div class="carousel-item active">
 						<img
-							src="${resources}/images/main/210314_carousel.jpeg"
+							src="${resources}/images/main/210407_carousel_2.jpeg"
 							class="d-block w-100" alt="...">
 					</div>
-					<div class="carousel-item">
-						<img
-							src="${resources}/images/main/210314_carousel1.jpeg"
-							class="d-block w-100" alt="...">
-					</div>
+					
 				</div>
 				<a class="carousel-control-prev" href="#carousel" role="button"
 					data-slide="prev"> <span class="carousel-control-prev-icon"
@@ -60,56 +61,69 @@
 			<div class="container-fluid">
 				<div class="row">
 					<div class="col">
-						<h2 class="eng_h3 main_text_header">Best Seller</h2>
+						<h2 class="eng_h3 main_text_header">MD's Pick</h2>
 					</div>
 				</div>
 				<div class="row">
 					<div class="col-xs-12 col-md-6 col-lg-3">
-						<div class="main_item">
+						<div class="main_item" onclick="goProductPage(302)">
 							<hr>
 							<img
-								src="${resources}/images/main/outer_1.jpeg"
+								src="${contextPath}/image?path=/Outer/Cardigan/302.jpg"
+								class="cursor_pointer"
 								width="100%">
 							<hr>
 							<div class="main_item_textarea"></div>
-							<span class="eng_span main_item_text"> Diana Cardigan </span> <span
-								class="eng_span main_item_text"> KRW 279,000 </span>
+							<span class="eng_span main_item_text"> Bouffant Cardigan </span> <span
+								class="eng_span main_item_text"> KRW 198,000 </span>
 						</div>
 
 					</div>
 					<div class="col-xs-12 col-md-6 col-lg-3">
-						<div class="main_item">
+						<div class="main_item" onclick="goProductPage(504)">
 							<hr>
 							<img
-								src="${resources}/images/main/outer_2.jpeg"
+								src="${contextPath}/image?path=/Top/Shirt/504.jpg"
+								class="cursor_pointer"
 								width="100%">
 							<hr>
-							<span class="eng_span main_item_text"> William Jacket by
-								Harris Tweed </span> <span class="eng_span main_item_text"> KRW
-								580,000 </span>
+							<span class="eng_span main_item_text">
+								Greek Shirt
+							</span>
+							 <span class="eng_span main_item_text">
+							  KRW 109,000 
+							  </span>
 						</div>
 					</div>
 					<div class="col-xs-12 col-md-6 col-lg-3">
-						<div class="main_item">
+						<div class="main_item" onclick="goProductPage(303)" >
 							<hr>
 							<img
-								src="${resources}/images/main/outer_3.jpeg"
+								src="${contextPath}/image?path=/Outer/Cardigan/303.jpg"
+								class="cursor_pointer"
 								width="100%">
 							<hr>
-							<span class="eng_span main_item_text"> Gris Jacket by
-								Harris Tweed </span> <span class="eng_span main_item_text"> KRW
-								580,000 </span>
+							<span class="eng_span main_item_text">
+								Bleu Ciel Cardigan
+							 </span> 
+							 <span class="eng_span main_item_text">
+							 	KRW 290,000
+							 </span>
 						</div>
 					</div>
 					<div class="col-xs-12 col-md-6 col-lg-3">
-						<div class="main_item">
+						<div class="main_item" onclick="goProductPage(204)">
 							<hr>
 							<img
-								src="${resources}/images/main/outer_4.jpeg"
+								src="${contextPath}/image?path=/Outer/Coat/204.jpg"
+								class="cursor_pointer"
 								width="100%">
 							<hr>
-							<span class="eng_span main_item_text"> Camus Jacket by
-								Lovat </span> <span class="eng_span main_item_text"> KRW 598,000
+							<span class="eng_span main_item_text"> 
+								Mac Coat with Detachable Lining
+							 </span> 
+							 <span class="eng_span main_item_text"> 
+							 KRW 960,000
 							</span>
 						</div>
 					</div>

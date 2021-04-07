@@ -82,13 +82,20 @@ const goCartPage = () => {
 		data : buyInfoObj,
 		method : "post",
 	}).
-	then((data) => {
-		if(data.status == "success"){
-			window.location.href = "/webapp/order/cart";
+	then((data ,arg1, response) => {
+		if(data.status){
+			window.location.href ="/webapp/order/cart";
 		} else {
-			window.location.href= "/webapp/auth/login";
+			alert("로그인을 해주세요");
+			return;	 
+			 
 		}
 		
+		
+	})
+	.catch(result => {
+		console.log("fail");
+		console.log(result);
 	});
 
 }
@@ -131,8 +138,6 @@ const goBuyPage = () => {
 	then((data) => {
 		if(data.status == "success"){
 			window.location.href = "/webapp/order/checkout";
-		} else {
-			window.location.href= "/webapp/auth/login";
 		}
 		
 	});
@@ -140,3 +145,7 @@ const goBuyPage = () => {
 
 }
 
+const alertError = () => {
+	alert("로그인을 해주세요.");
+	window.location.href ="/webapp/auth/login";
+}

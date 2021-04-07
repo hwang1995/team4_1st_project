@@ -67,7 +67,7 @@
                             <input type="password" name="user_password" id="user_password" placeholder="PW" tabindex="2">
                         </div>
                         <div class="col-2">
-	                        <a href="${contextPath}/auth/register" class="btn white_button ml-1">
+	                        <a href="${contextPath}/auth/register" class="btn white_button ml-1 register_button">
 	                        	<span class="h4 eng_h2">
 	                        		REGISTER
 	                        	</span>

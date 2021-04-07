@@ -51,7 +51,7 @@
 				</li>
 				<li class="nav_content_item">|</li>
 				<sec:authorize access="isAuthenticated()">
-				<li class="nav_content_item nav_content_item_active" onclick="goQnaPage('${contextPath}')">
+				<li class="nav_content_item nav_content_item_active cursor_pointer" onclick="goQnaPage('${contextPath}')">
 					<img
 						src="${contextPath}/resources/svg/chat-square.svg"
 						width="20px" />

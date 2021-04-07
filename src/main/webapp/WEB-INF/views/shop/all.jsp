@@ -63,7 +63,7 @@
                		<c:forEach var="product" items="${product_list}">
                			<div class="col-xs-12 col-md-6 col-lg-3" onclick="goProductDetailPage('${contextPath}','${product.product_id}')">
                         	<div class="categories_item">
-                            	<img src="${product.product_image}" width="80%">
+                            	<img src="${product.product_image}" width="80%" class="cursor_pointer">
 	                            <div class="categories_item_text">
 	                                <h5 class="eng_h4">${product.product_name}</h5>
 	                                <h5 class="eng_h4"><fmt:formatNumber value="${product.product_price}" pattern="#,###,###"/></h5>

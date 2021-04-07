@@ -167,11 +167,9 @@
                     <div class="col-3"></div>
                     <div class="col-3"></div>
                     <div class="col-6 d-flex">
-                        <button class="white_button m-3">
-                            <a href="${contextPath}">
+                        <button class="white_button m-3" onclick="history.back()">
                                 <h4 class="eng_h2 ">Back</h4>
-                            </a>
-                            
+
                         </button>
                         <button class="black_button m-3" onclick="goCheckoutPage()">
                                 <h4 class="eng_h2 white_text">Check</h4>

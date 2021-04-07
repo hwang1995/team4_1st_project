@@ -28,3 +28,8 @@ const goQnaPage = (path) => {
 const mobileLogoutButton = () => {
 	$('#nav_mobile_logout_form').submit();
 }
+
+
+const goProductPage = (product_id) => {
+	window.location.href = "/webapp/product/" + product_id;
+}

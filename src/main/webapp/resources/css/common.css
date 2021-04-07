@@ -206,3 +206,7 @@ button {
 .white_text {
     color : white;
 }
+
+.cursor_pointer {
+	cursor : pointer;
+}

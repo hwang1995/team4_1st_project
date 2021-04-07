@@ -60,10 +60,9 @@
                     </div>
                     <div class="d-flex mt-5 mb-5 justify-content-center">
 
-                        <button class="black_button w-25">
-                          <a href="${contextPath}">
+                        <button class="black_button w-25" onclick="window.location.href='${contextPath}'">
+   
                             <span class="h6 white_text">메인으로</span>
-                          </a>
                             
                         </button>
                     </div>
