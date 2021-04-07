@@ -36,7 +36,7 @@ public class AccountController {
 	private static final Logger logger = LoggerFactory.getLogger(AccountController.class);
 	
 	@RequestMapping("/mypage")
-	public String content(Model model) {	
+	public String content(Model model) {
 		return "account/mypage";
 	}
 	
@@ -91,7 +91,7 @@ public class AccountController {
 			//1.주문리스트 정보로 총합계를 구함.
 			long totalPrice = 0;
 			for(MyPageDTO list : orderList) {
-				long tempPrice = list.getProduct_quantity() * list.getProduct_price();
+				long tempPrice = (long) list.getProduct_quantity() * (long) list.getProduct_price();
 				totalPrice += tempPrice;
 			}
 			
