@@ -38,7 +38,12 @@ public class OrderServiceImpl implements IOrderService{
 	
 	@Autowired
 	private CartsDAO cartsDAO;
-
+	
+	/**
+	 * 장바구니의 목록을 가져오기 위한 서비스
+	 * @param Long member_id (회원의 번호)
+	 * @return 장바구니 정보 (수량) / 회원 정보 / 상품 정보 (색상, 이미지, ..)
+	 */
 	@Override
 	public List<CartListDTO> getCartList(Long member_id) {
 		// 장바구니와 장바구니의 리스트 (상품과 장바구니를 합친 것)을 만들기 위함.
@@ -62,7 +67,13 @@ public class OrderServiceImpl implements IOrderService{
 		
 		return cartInfoLists;
 	}
-
+	
+	/**
+	 * 장바구니에 상품을 추가하기 위한 서비스
+	 * @param MembersDTO memberInfo (회원 정보)
+	 * @param PreOrdersDTO cart (상품 정보, 수량)
+	 * @return boolean (성공했는지의 여부)
+	 */
 	@Override
 	public boolean addCart(MembersDTO memberInfo, PreOrdersDTO cart) {
 		// 장바구니 DTO에 회원 정보와 장바구니 정보를 넣어준다.
@@ -78,7 +89,9 @@ public class OrderServiceImpl implements IOrderService{
 	}
 
 	/**
-	 * 장바구니 ID로 
+	 * 장바구니 ID로 장바구니의 상품을 삭제하는 서비스
+	 * @param Long cart_id (장바구니 ID)
+	 * @return boolean (성공 여부)
 	 */
 	@Override
 	public boolean removeCart(Long cart_id) {
@@ -88,6 +101,11 @@ public class OrderServiceImpl implements IOrderService{
 		return result;
 	}
 	
+	/**
+	 * 주문 리스트를 보여주기 위한 서비스
+	 * @param List<PreOrdersDTO> preOrder (상품의 색상. 수량)
+	 * @return List<CheckoutListDTO> -> ProductsDTO의 정보 (상품 이름, 가격) + PreOrdersDTO의 정보 (색상, 크기, 수량)
+	 */
 	@Override
 	public List<CheckoutListDTO> showOrderlists(List<PreOrdersDTO> preOrder) {
 		// 주문리스트의 정보를 보여주기 위해 존재.
@@ -108,7 +126,13 @@ public class OrderServiceImpl implements IOrderService{
 		
 		return checkoutInfo;
 	}
-
+	
+	/**
+	 * 실제 주문 프로세스를 진행하는 서비스
+	 * @param List<CheckoutListDTO> -> ProductsDTO의 정보 (상품 이름, 가격) + PreOrdersDTO의 정보 (색상, 크기, 수량)
+	 * @param CheckoutDTO (회원 ID, 주문 은행, 주문자 정보)
+	 * @return boolean (성공 여부)
+	 */
 	@Override
 	public boolean doCheckout(List<CheckoutListDTO> itemLists, CheckoutDTO orderInfo) {
 		
@@ -133,7 +157,12 @@ public class OrderServiceImpl implements IOrderService{
 		
 		return result;
 	}
-
+	
+	/**
+	 * 회원이 장바구니에서 결제 페이지로 가기 이전에 장바구니의 정보를 가져오는 서비스
+	 * @param Long member_id (회원 ID)
+	 * @return List<PreOrdersDTO> -> 상품의 색상, 크기, 수량
+	 */
 	@Override
 	public List<PreOrdersDTO> getNewCartList(Long member_id) {
 		// 멤버 ID를 이용하여 카트 정보를 가져온다.
@@ -150,7 +179,12 @@ public class OrderServiceImpl implements IOrderService{
 		return modifiedList;
 	}
 
-	
+	/**
+	 * 회원이 상품 주문을 성공적으로 완료시 
+	 * 가지고 있는 장바구니의 모든 상품을 삭제하는 서비스
+	 * @param Long member_id (회원의 ID)
+	 * @return boolean (성공 여부)
+	 */
 	@Override
 	public boolean removeCarts(Long member_id) {
 		int rows = cartsDAO.deleteByMemberId(member_id);
@@ -162,7 +196,13 @@ public class OrderServiceImpl implements IOrderService{
 		
 		return result;
 	}
-
+	
+	/**
+	 * 서비스에서 삽입시 성공적으로 트랜잭션이 되었는지
+	 * 판단해주는 메서드
+	 * @param int rows
+	 * @return boolean (성공 여부)
+	 */
 	public boolean isTransactionSuccess(int rows) {
 		boolean result = true;
 		

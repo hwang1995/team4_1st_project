@@ -34,12 +34,23 @@ public class AccountController {
 	private AccountServiceImpl accountService;
 	// 로거 설정
 	private static final Logger logger = LoggerFactory.getLogger(AccountController.class);
-	
+	/**
+	 * 회원이 마이페이지에 들어가기 위한 컨트롤러
+	 * @return viewName
+	 */
 	@RequestMapping("/mypage")
-	public String content(Model model) {
+	public String content() {
 		return "account/mypage";
 	}
-	
+
+	/**
+	 * 회원이 마이페이지에 들어가서 상세 정보 및 페이저가 구현된 주문 리스트를 보여줌. 
+	 * @param String pageNo (세션에 pageNo가 있으면 참조)
+	 * @param Model model (데이터를 view에 전달하기 위해)
+	 * @param Authentication auth (회원 정보를 가져오기 위해)
+	 * @param HttpSession session (세션을 가져오기 위해)
+	 * @return viewName
+	 */
 	@GetMapping("/list")
 	public String myPage(String pageNo, Model model, Authentication auth, HttpSession session) {
 		int intPageNo = 1;
@@ -76,7 +87,13 @@ public class AccountController {
 		}
 		return "account/orderlist";
 	}
-	
+	/**
+	 * 회원의 상세 주문 기록을 보여주기 위해 필요한 컨트롤러
+	 * @param Long order_id (주문 번호)
+	 * @param Authentication auth (회원 정보)
+	 * @param Model model (데이터를 뷰에 전달하기 위해)
+	 * @return viewName
+	 */
 	@GetMapping("/order-info")
 	public String orderInfoPage(Long order_id, Authentication auth, Model model) {
 		try {
@@ -106,7 +123,12 @@ public class AccountController {
 		}
 		return "account/order-info";
 	}
-	
+	/**
+	 * 회원 정보를 수정하기 위한 컨트롤러
+	 * @param Authentication auth (회원 정보를 가져오기 위해)
+	 * @param Model model (view에 데이터를 전달하기 위해)
+	 * @return viewName
+	 */
 	@GetMapping("/edit-info")
 	public String editInfoPage(Authentication auth, Model model) {
 		try {
@@ -121,7 +143,11 @@ public class AccountController {
 		}
 		return "account/edit-my-info";
 	}
-	
+	/**
+	 * 'edit-info' 페이지에서 ajax로 데이터를 보낼때 사용되는 컨트롤러
+	 * @param MembersDTO member (회원 정보를 담아서 받기 위해)
+	 * @return JSONObject (JSON 데이터로 ajax의 결과값을 결정하기 위해)
+	 */
 	@PostMapping(value = "/send-edit-info", produces ="application/json; charset=UTF-8")
 	@ResponseBody
 	public String sendEditInfo(MembersDTO member) {

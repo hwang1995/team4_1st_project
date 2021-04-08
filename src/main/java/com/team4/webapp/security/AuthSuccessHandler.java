@@ -17,9 +17,13 @@ import org.springframework.security.web.authentication.SimpleUrlAuthenticationSu
 
 
 public class AuthSuccessHandler extends SavedRequestAwareAuthenticationSuccessHandler {
+	// 로거 사용
 	private static final Logger logger = LoggerFactory.getLogger(AuthSuccessHandler.class);
 
-	
+	/**
+	 * SavedRequestAwareAuthenticationSuccessHandler의 메서드를 재정의함.
+	 * 회원의 이메일을 로거로 출력
+	 */
 	@Override
 	public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response, Authentication authentication) throws ServletException, IOException {
 			logger.info(authentication.getName());

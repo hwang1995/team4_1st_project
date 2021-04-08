@@ -30,6 +30,7 @@ public class ShopController {
 	 * @param order= "desc", "high", "low"
 	 * order가 null인 경우 기본 값 "desc"로 설정
 	 * order 값이 "desc", "high", "low" 아닌 경우 "desc"로 설정
+	 * @return viewName
 	 */
 	@GetMapping("")
 	public String allPage(@RequestParam(name = "order",defaultValue = "desc") String order, Model model) {
@@ -46,11 +47,12 @@ public class ShopController {
 
 		return "shop/all";
 	}
+	
 	/**
 	 * Outer 또는 Jacket, Coat, Cardigan를 클릭했을 때 상품 리스트 데이터 전달
 	 * @param subcategory = "Jacket", "Coat", "Cardigan", null(메인카테고리 클릭 시) 
 	 * @param order
-	 * @return
+	 * @return viewName
 	 */
 	@GetMapping("/outer")
 	public String OuterPage(String subcategory, @RequestParam(name = "order",defaultValue = "desc") String order, Model model) {
@@ -59,11 +61,12 @@ public class ShopController {
 
 		return getProductsList("Outer", subcategory, order, model, outer);
 	}
+	
 	/**
 	 * Top 또는 Knit, Shirt, Tee를 클릭했을 때 상품 리스트 데이터 전달
 	 * @param subcategory = "Knit", "Shirt", "Tee", null(메인카테고리 클릭 시) 
 	 * @param order
-	 * @return
+	 * @return viewName
 	 */
 	@GetMapping("/top")
 	public String TopPage(String subcategory, @RequestParam(name = "order",defaultValue = "desc") String order, Model model) {
@@ -72,11 +75,12 @@ public class ShopController {
 
 		return getProductsList("Top", subcategory, order, model, top);
 	}
+	
 	/**
 	 * Bottom 또는 Pants, Skirt를 클릭했을 때 상품 리스트 데이터 전달
 	 * @param subcategory = "Pants", "Skirt", null(메인카테고리 클릭 시) 
 	 * @param order
-	 * @return
+	 * @return viewName
 	 */
 	@GetMapping("/bottom")
 	public String BottomPage(String subcategory, @RequestParam(name = "order",defaultValue = "desc") String order, Model model) {
@@ -86,13 +90,14 @@ public class ShopController {
 		return getProductsList("Bottom", subcategory, order, model, bottom);
 
 	}
+	
 	/**
 	 * 사용자가 클릭한 카테고리별로 상품 리스트를 가져오는 메소드
 	 * @param maincategory : 사용자가 클릭한 메인카테고리
 	 * @param subcategory : 사용자가 클릭한 서브카테고리
 	 * @param order = "desc", "high", "low", 이외의 값은 "desc"로 설정
 	 * @param subcatArr : maincategory에 해당하는 서브카테고리 배열 
-	 * @return "shop/all"
+	 * @return viewName
 	 */
 	private String getProductsList(String maincategory, String subcategory, String order, Model model, String[] subcatArr) {
 

@@ -39,6 +39,7 @@ public class AccountServiceImpl implements IAccountService {
 	 * 서비스 목적
 	 * - 회원의 정보를 보여주기 위한 서비스
 	 * - 회원 자신이 주문한 최근 내역 (상품 리스트(상품, 주문기록))을 보여주기 위한 서비스
+	 * @return MyPageListDTO (주문 정보와 상품 정보의 리스트)
 	 */
 	@Override
 	public List<MyPageListDTO> showMyInfo(Pager pager) {
@@ -82,33 +83,35 @@ public class AccountServiceImpl implements IAccountService {
 	 * 서비스 목적
 	 * - 회원이 자신이 주문한 상세 내역 (주문자, 수취인, 상품 리스트(상품, 주문기록))을 보여주기 위한 서비스
 	 * - 컨트롤러에 MyPageDTO 리스트를 전달해 줘야 한다.
+	 * @return MyPageDTO (상품 정보)
 	 */
 	@Override
 	public List<MyPageDTO> showMyOrderInfo(Long order_id) {
-		List<MyPageDTO> orderinfolist = new ArrayList<>();
-		List<OrderlistsDTO> orderlists = orderlistsDAO.selectByOrderId(order_id);
+		List<MyPageDTO> orderInfoList = new ArrayList<>();
+		List<OrderlistsDTO> orderLists = orderlistsDAO.selectByOrderId(order_id);
 		
 		//1.주문번호로 주문리스트 정보를 받아옴.
 		//2.주문리스트의 상품정보를 받아옴.
 		//3.MyPageDTO에 OrderList와 Product 정보를 세팅해줌.
 		//4.DB에 저장되어 있는 이미지명을 새로운 Path로 설정해줌.
 		//5.MyPageDTO를 리스트로 추가해줌.
-		for(OrderlistsDTO orderlist : orderlists) {
+		for(OrderlistsDTO orderlist : orderLists) {
 			ProductsDTO products = productsDAO.selectByProductId(orderlist.getProduct_id());
-			MyPageDTO orderinfo = new MyPageDTO();
-			orderinfo.setOrderInfo(orderlist);
-			orderinfo.setProductsInfo(products);
-			String filePath = "/webapp/image?path="+ orderinfo.getProduct_image();
-			orderinfo.setProduct_image(filePath);
-			orderinfolist.add(orderinfo);
+			MyPageDTO orderInfo = new MyPageDTO();
+			orderInfo.setOrderInfo(orderlist);
+			orderInfo.setProductsInfo(products);
+			String filePath = "/webapp/image?path="+ orderInfo.getProduct_image();
+			orderInfo.setProduct_image(filePath);
+			orderInfoList.add(orderInfo);
 		}
 		
-		return orderinfolist;
+		return orderInfoList;
 	}
 	/**
 	 * 서비스 목적
 	 * - 주문번호의 주문정보를 (수취인 정보, 결제현황, 배송현황)을 보여주기 위한 서비스
 	 * - 컨트롤러에 OrdersDTO를 전달해 줘야 한다.
+	 * @return OrdersDTO (주문 정보, 은행, 주문자 정보)
 	 */
 	@Override
 	public OrdersDTO findOrderbyOrderId(Long order_id) {
@@ -128,6 +131,7 @@ public class AccountServiceImpl implements IAccountService {
 	 * 서비스 목적
 	 * - 회원이 자신의 정보 (비밀번호, 전화번호, 주소)를 바꾸기 위한 서비스
 	 * - 컨트롤러에 영향받은 행의 수를 반환해야 한다.
+	 * @return 행 수 (정상적으로 되었는지 확인하기 위해)
 	 */
 	@Override
 	public int editMyInfo(MembersDTO member) {
@@ -146,6 +150,10 @@ public class AccountServiceImpl implements IAccountService {
 		return row;
 	}
 	
+	/**
+	 * 회원의 총 주문의 행 수를 반환하는 메서드
+	 * @return rows (행 수)
+	 */
 	@Override
 	public int getTotalOrderRows(Long member_id) {
 		int rows = ordersDAO.countOrders(member_id);

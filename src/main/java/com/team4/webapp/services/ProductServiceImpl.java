@@ -43,6 +43,7 @@ public class ProductServiceImpl implements IProductService {
 	 * - desc : product_id 기준으로 desc 정렬
 	 * - high : product_price 기준으로 desc 정렬
 	 * - low : product_price 기준으로 asc 정렬
+	 * @return List<List<ProductsDTO>> -> Google의 Guava를 사용해서 List Partitioning 해서 리턴
 	 */
 	@Override
 	public List<List<ProductsDTO>> showAllProduct(String order) {
@@ -77,6 +78,7 @@ public class ProductServiceImpl implements IProductService {
 	 * - desc : product_id 기준으로 desc 정렬
 	 * - high : product_price 기준으로 desc 정렬
 	 * - low : product_price 기준으로 asc 정렬 
+	 * @return List<ProductsDTO> 상품들의 리스트를 반환
 	 */
 	@Override
 	public List<ProductsDTO> showProductByCategory(String subcategory, String order) {
@@ -86,18 +88,18 @@ public class ProductServiceImpl implements IProductService {
 		 List<ProductsDTO> products;
 		 
 		 if(order.equals("desc")) {
-			 products= productDAO.selectBySubCategoryId(subCategory_id);
-		 }else if(order.equals("high")) {
-			 products=productDAO.selectBySubCategoryIdOrderByHighPrice(subCategory_id);
-		 }else {
-			 products=productDAO.selectBySubCategoryIdOrderByLowPrice(subCategory_id);
+			 products = productDAO.selectBySubCategoryId(subCategory_id);
+		 } else if(order.equals("high")) {
+			 products = productDAO.selectBySubCategoryIdOrderByHighPrice(subCategory_id);
+		 } else {
+			 products = productDAO.selectBySubCategoryIdOrderByLowPrice(subCategory_id);
 		 }
 		
 		 //상품의 이미지 경로를 설정하기 위한 for문
 		 for(ProductsDTO product : products ) {
-				String filePath = "/webapp/image?path="+ product.getProduct_image();
-				product.setProduct_image(filePath);
-			}
+			 String filePath = "/webapp/image?path="+ product.getProduct_image();
+			 product.setProduct_image(filePath);
+		 }
 		 
 		 return products;
 	}
@@ -105,6 +107,8 @@ public class ProductServiceImpl implements IProductService {
 	/**
 	 * 서비스 목적
 	 * - 모든 사용자들이 상품의 상세 정보를 보기 위해 제공하는 서비스
+	 * @param Long member_id (상품의 ID)
+	 * @return ProductDetailsDTO (상품 상세 정보)
 	 */
 	@Override
 	public ProductDetailsDTO showProductDetail(Long product_id) {
@@ -122,6 +126,7 @@ public class ProductServiceImpl implements IProductService {
 		for(ProductImgCarouselDTO carousel : carouselList) {
 			carousel.setProduct_img_name("/webapp/image?path=" + carousel.getProduct_img_name());
 		}
+		
 		for(ProductImgDetailDTO detail : detailList) {
 			detail.setProduct_img_name("/webapp/image?path=" + detail.getProduct_img_name());
 		}
@@ -144,6 +149,7 @@ public class ProductServiceImpl implements IProductService {
 		// TODO Auto-generated method stub
 		return 0;
 	}
+	
 	/**
 	 * 미구현 사항
 	 * 서비스 목적

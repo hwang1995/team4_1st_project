@@ -24,17 +24,31 @@ public class QnaController {
 	
 	@Autowired
 	private QnaServiceImpl qnaService;
-	
+	/**
+	 * Q&A 작성 페이지로 이동하기 위한 컨트롤러
+	 * @return viewName
+	 */
 	@GetMapping("")
 	public String qnaPage() {
 		return "qna/write-qna";
 	}
 	
+	/**
+	 * Q&A 작성 후 결과 값을 보여주기 위한 컨트롤러
+	 * @return viewName
+	 */
 	@GetMapping("/result")
 	public String qnaResultPage() {
 		return "qna/qna-sended";
 	}
-	
+	/**
+	 * 회원이 Q&A를 작성하기 버튼을 누를 시에 ajax 통신을 위한 컨트롤러이며,
+	 * 회원의 category, title, content를 넣어 전달해준다.
+	 * @param QnasDTO qna (정보를 받기 위해)
+	 * @param Authentication auth (회원 정보를 가져오기 위해)
+	 * @param HttpServletResponse response (Cookie를 넣기 위해)
+	 * @return String
+	 */
 	@PostMapping("/write")
 	@ResponseBody
 	public String writeQnaPage(QnasDTO qna, Authentication auth, HttpServletResponse response) {

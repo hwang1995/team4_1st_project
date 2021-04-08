@@ -19,6 +19,9 @@ public class QnaServiceImpl implements IQnaService {
 	 * 서비스 목적
 	 * - 회원이 상품, 배송, 교환, 기타 문의에 대하여
 	 * - 관리자에게 남길 수 있도록 제공하는 서비스
+	 * @param String member_email (회원의 이메일 주소)
+	 * @param QnasDTO qna (Q&A 정보)
+	 * @return 행의 수
 	 */
 	@Override
 	public int writeQna(String member_email, QnasDTO qna) {
